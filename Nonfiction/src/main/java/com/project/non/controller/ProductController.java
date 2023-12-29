@@ -10,7 +10,7 @@ public class ProductController {
 	@GetMapping("/")
 	public ModelAndView main() {
 		ModelAndView mav = new ModelAndView();
-		//ㅎㅇqq
+		//홍승희
 		mav.setViewName("index");
 		return mav;
 	}
