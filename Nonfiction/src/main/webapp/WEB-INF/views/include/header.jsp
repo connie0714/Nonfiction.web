@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>header</title>
+<link rel="stylesheet" type="text/css" href="../css/index.css">
 </head>
 <body>
 
