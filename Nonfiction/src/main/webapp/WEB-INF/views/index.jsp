@@ -1,26 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="include/header.jsp" %>
 
-   <ul>
-    		<c:choose>
-				<c:when test="${empty loginUser}">
-						<li><a href="loginForm">LOGIN</a></li>
-						<li><a href="contract">JOIN</a></li>
-						<li><a href="#" onClick="find_id_pw()">FIND ID/PW</a></li>
-				</c:when>
-		    	<c:otherwise>
-		       			<li><a href="memberEditForm">EDIT MEMBER</a></li>
-		      			<li><a href="logout">LOGOUT</a></li>
-				</c:otherwise>
-			</c:choose>
-    </ul>
 
-</body>
-</html>
+
+
+<div class="fullscreen-video">
+  <video class="center" autoplay muted loop>
+  <source src="/nonimage/mainvideo.mp4" type="video/mp4">
+</video>
+</div>
+<!-- <div>
+   <img src = "/nonimage/main2.jpg">
+</div> -->
+<script src="../script/index.js"></script>
+
+<%@ include file="include/footer.jsp" %>
