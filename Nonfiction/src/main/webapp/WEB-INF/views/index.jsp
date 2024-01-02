@@ -12,6 +12,6 @@
 <!-- <div>
    <img src = "/nonimage/main2.jpg">
 </div> -->
-<script src="../script/index.js"></script>
+<script src="../script/member.js"></script>
 
 <%@ include file="include/footer.jsp" %>
