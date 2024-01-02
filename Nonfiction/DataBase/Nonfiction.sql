@@ -1,6 +1,7 @@
 
 /* Drop Triggers */
 
+DROP TRIGGER TRI_MSG_CARD_mgseq;
 DROP TRIGGER TRI_orders_oseq;
 DROP TRIGGER TRI_product_pseq;
 
@@ -18,19 +19,22 @@ DROP TABLE qna CASCADE CONSTRAINTS;
 DROP TABLE review CASCADE CONSTRAINTS;
 DROP TABLE members CASCADE CONSTRAINTS;
 DROP TABLE product CASCADE CONSTRAINTS;
+DROP TABLE MSG_CARD CASCADE CONSTRAINTS;
 
 
 
 /* Drop Sequences */
 
+DROP SEQUENCE SEQ_MSG_CARD_mgseq;
 DROP SEQUENCE SEQ_orders_oseq;
 DROP SEQUENCE SEQ_product_pseq;
 
 
-select*from members;
+
 
 /* Create Sequences */
 
+CREATE SEQUENCE SEQ_MSG_CARD_mgseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_orders_oseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_product_pseq INCREMENT BY 1 START WITH 1;
 
@@ -97,7 +101,13 @@ CREATE TABLE members
 	PRIMARY KEY (userid)
 );
 
-select*from members;
+
+CREATE TABLE MSG_CARD
+(
+	mgseq number(10,0) NOT NULL,
+	msg_content varchar2(50) NOT NULL,
+	PRIMARY KEY (mgseq)
+);
 
 
 CREATE TABLE orders
@@ -108,7 +118,6 @@ CREATE TABLE orders
 	PRIMARY KEY (oseq)
 );
 
-select*from orders;
 
 CREATE TABLE order_detail
 (
@@ -124,6 +133,7 @@ CREATE TABLE order_detail
 CREATE TABLE product
 (
 	pseq number(10,0) NOT NULL,
+	mgseq number(10,0) NOT NULL,
 	name varchar2(100) NOT NULL,
 	shop char(2) NOT NULL,
 	-- 원가
@@ -136,7 +146,6 @@ CREATE TABLE product
 	image varchar2(255) NOT NULL,
 	bestyn char(1) DEFAULT 'N',
 	indate date DEFAULT SYSDATE,
-	msg_card varchar2(30) NOT NULL,
 	holidayyn char(1) NOT NULL,
 	acc char(1) NOT NULL,
 	PRIMARY KEY (pseq)
@@ -206,12 +215,16 @@ ALTER TABLE review
 ;
 
 
+ALTER TABLE product
+	ADD FOREIGN KEY (mgseq)
+	REFERENCES MSG_CARD (mgseq)
+;
+
+
 ALTER TABLE order_detail
 	ADD FOREIGN KEY (oseq)
 	REFERENCES orders (oseq)
 ;
-
-select*from order_detail
 
 
 ALTER TABLE cart
@@ -234,6 +247,16 @@ ALTER TABLE review
 
 
 /* Create Triggers */
+
+CREATE OR REPLACE TRIGGER TRI_MSG_CARD_mgseq BEFORE INSERT ON MSG_CARD
+FOR EACH ROW
+BEGIN
+	SELECT SEQ_MSG_CARD_mgseq.nextval
+	INTO :new.mgseq
+	FROM dual;
+END;
+
+/
 
 CREATE OR REPLACE TRIGGER TRI_orders_oseq BEFORE INSERT ON orders
 FOR EACH ROW
@@ -264,7 +287,6 @@ COMMENT ON COLUMN product.price1 IS '원가';
 COMMENT ON COLUMN product.price2 IS '판매가';
 COMMENT ON COLUMN product.price3 IS '마진';
 
-
 --회원
 
 select*from members;
@@ -272,3 +294,46 @@ select*from members;
 insert into members(userid, pwd, name, zip_num, address1, address2, phone, email) values
 ('hong', '1234', '홍승희', '133-110', '서울시 성동구 성수동1가' , '1번지21호', '017-777-7777','acc@abc.com');
 
+
+-- 상품
+
+select * from PRODUCT;
+
+insert into product(pseq, name, shop, price1, price2, content, image, bestyn)
+values(SEQ_product_pseq.nextval, '테스트상품3', '0', '3000', '6000', '테스트 상품입니다', '/CAMPAIGN/campaign3.jpg', 'N');
+insert into product(pseq, name, shop, price1, price2, content, image, bestyn)
+values(SEQ_product_pseq.nextval, '테스트상품', '1', '3000', '6000', '테스트 상품입니다', '/CAMPAIGN/campaign2.jpg', 'Y');
+insert into product(pseq, name, shop, price1, price2, content, image, bestyn)
+values(SEQ_product_pseq.nextval, '테스트상품', '2', '3000', '6000', '테스트 상품입니다', '/CAMPAIGN/campaign3.jpg', 'Y');
+insert into product(pseq, name, shop, price1, price2, content, image, bestyn)
+values(SEQ_product_pseq.nextval, '테스트상품', '3', '3000', '6000', '테스트 상품입니다', '/CAMPAIGN/campaign4.jpg', 'Y');
+insert into product(pseq, name, shop, price1, price2, content, image, bestyn)
+values(SEQ_product_pseq.nextval, '테스트상품', '4', '3000', '6000', '테스트 상품입니다', '/CAMPAIGN/campaign5.jpg', 'Y');
+insert into product(pseq, name, shop, price1, price2, content, image, bestyn)
+values(SEQ_product_pseq.nextval, '테스트상품', '5', '3000', '6000', '테스트 상품입니다', '/CAMPAIGN/campaign6.jpg', 'Y');
+insert into product(pseq, name, shop, price1, price2, content, image, bestyn)
+values(SEQ_product_pseq.nextval, '테스트상품', '6', '3000', '6000', '테스트 상품입니다', '/CAMPAIGN/campaign7.jpg', 'Y');
+insert into product(pseq, name, shop, price1, price2, content, image, bestyn)
+values(SEQ_product_pseq.nextval, '테스트상품', '7', '3000', '6000', '테스트 상품입니다', '/CAMPAIGN/campaign8.jpg', 'Y');
+insert into product(pseq, name, shop, price1, price2, content, image, bestyn)
+values(SEQ_product_pseq.nextval, '테스트상품', '8', '3000', '6000', '테스트 상품입니다', '/CAMPAIGN/campaign9.jpg', 'Y');
+insert into product(pseq, name, shop, price1, price2, content, image, bestyn)
+values(SEQ_product_pseq.nextval, '테스트상품', '9', '3000', '6000', '테스트 상품입니다', '/CAMPAIGN/campaign10.jpg', 'Y');
+insert into product(pseq, name, shop, price1, price2, content, image, bestyn)
+values(SEQ_product_pseq.nextval, '테스트상품', '10', '3000', '6000', '테스트 상품입니다', '/CAMPAIGN/campaign1.jpg', 'Y');
+
+
+-- 메세지 카드
+
+insert into MSG_CARD(mgseq, msg_content)
+values(SEQ_MSG_CARD_mgseq.nextval, '메세지카드 테스트1');
+insert into MSG_CARD(mgseq, msg_content)
+values(SEQ_MSG_CARD_mgseq.nextval, '메세지카드 테스트2');
+
+
+delete from product;
+
+ALTER TABLE product MODIFY mgseq number(10,0) NULL;
+
+ALTER TABLE product DROP COLUMN holidayyn;
+ALTER TABLE product DROP COLUMN acc;

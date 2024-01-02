@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
    
+   
    <footer>
       <div id="footer">
          <div class="footer_conbox">
@@ -7,14 +8,14 @@
                <div class="footer_box">
                   <div class="footer_box_inner">
                      <h3 class="serif">Customer Service</h3>
-                     <p class="footer_cs">
-                       <i class="fa fa-phone" style="position:relative; top:-4px;"> ::before </i> 
-                       <span style="font-size:24px;">1666-7891</span><br/>
-                       <span style="opacity:0.45;">
-                              <i class="fa fa-clock-o">::before</i> 10:00 ~ 17:00 <br/>
-                              <i class="fa fa-check">::before</i>주말 및 공휴일 휴무
-                           </span>
-                         </p>
+                      	<p class="footer_cs">
+                        	<i class="fa fa-phone" style="position:relative; top:-4px;"></i> 
+                        	<span style="font-size:24px;">1666-7891</span><br/>
+                        	<span style="opacity:0.45;">
+                        		<i class="fa fa-clock-o"></i> 10:00 ~ 17:00 <br/>
+                        		<i class="fa fa-check"></i> 주말 및 공휴일 휴무
+                        	</span>
+                     	</p>
                      <div class="terms_container">
                         <h6>이용약관&nbsp;|&nbsp;개인정보처리방침&nbsp;|&nbsp;사업자정보확인</h6>
                      </div>
