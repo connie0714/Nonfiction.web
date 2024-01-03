@@ -25,9 +25,35 @@ function idok( userid ){
 	self.close();
 }
 
-window.onload = function() {
-    var video = document.querySelector(".fullscreen-video video");
-    video.style.width = "100%";
-    video.style.height = "100%";
-    video.style.objectFit = "fill";
-};
+
+document.addEventListener("DOMContentLoaded", () => {
+	const modal = document.getElementById("modal");
+	const openModalBtn = document.getElementById("btn-open-modal");
+	const closeModalBtn = document.getElementById("btn-close-modal");
+
+	// 모달창 열기
+	openModalBtn.onclick = function() {
+	modal.style.opacity = "0"; // 초기에 투명도를 0으로 설정
+	modal.style.display = "block";
+		 setTimeout(function() {
+		   modal.style.opacity = "1"; // 일정 시간 후에 투명도를 1로 설정하여 부드러운 효과 적용
+		  }, 0); // 0.05초(50ms) 후에 투명도를 1로 변경
+		}
+		
+		// 모달창 닫기
+		closeModalBtn.onclick = function() {
+		  modal.style.opacity = "0"; // 투명도를 0으로 설정하여 부드러운 효과 적용
+		  setTimeout(function() {
+		    modal.style.display = "none";
+		  }, 250); // 일정 시간 후에 모달창을 숨김
+		}
+	});
+				  
+				  
+				  
+				  
+				  
+				  
+				  
+				  
+				  

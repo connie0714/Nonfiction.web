@@ -2,28 +2,30 @@
 
 
 /*------------------- 종범 -------------------*/
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
-
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,700|Poppins:400,500,700');
-
-@font-face {
-    font-family: 'FGR';
-    src: url('/fonts/Figue_Regular.eot');
-    src: local('☺'),url('/fonts/Figue_Regular.woff') format('woff'),url('/fonts/Figue_Regular.ttf') format('truetype'),url('/fonts/Figue_Regular.svg') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
 
 @font-face {
     font-family: 'UNO';
     src: url('/fonts/Union-Regular.eot');
     src: local('☺'),url('/fonts/Union-Regular.woff') format('woff'),url('/fonts/Union-Regular.ttf') format('truetype'),url('/fonts/Union-Regular.svg') format('svg');
-    font-weight: normal;
+    font-weight: 500;
     font-style: normal;
 }
 
+.fa fa-phone:before {
+    content: "\f095";
+}
+
+.fa-clock-o:before {
+    content: "\f017";
+}
+
+.fa-check:before {
+    content: "\f00c";
+}
+
 .serif {
-    font-family: 'FGR',serif;
+    font-family: 'Playfair Display', serif;
 }
 
 .sans {
@@ -32,10 +34,11 @@
 
 
 #footer {
-   position: absolute;
+   position: relative;
+   margin-top: 100%;
    top: 100%;
    width: 100%;
-    font-family: 'FGR',sans-serif;
+    font-family: 'Playfair Display', sans-serif;
     /* padding:50px; */
     overflow: hidden;
     margin-top: 20px;
@@ -50,17 +53,15 @@
 }
 
 #footer .footer_conbox {
-    font-family: 'FGR',sans-serif;
+  font-family: 'Playfair Display', sans-serif;
     align-items: flex-start;
     display: flex;
     width: 100%;
-    border-top: 1px solid #000;
-    padding-top: 50px;
-     justify-content: center;
+    justify-content: center;
 }
 
 #footer .footer_conbox .footer_box {
-    font-family: 'FGR',sans-serif;
+    font-family: 'Playfair Display', sans-serif;
     float: left;
     padding: 0 15px 0 15px;
     margin-bottom: 45px;
@@ -80,8 +81,41 @@
 }
 
 #footer .footer_conbox .footer_box:nth-child(5) {
-    font-family: 'FGR',sans-serif;
+    font-family: 'Playfair Display', sans-serif;
     font-size: 14px;
+}
+
+#footer .footer_conbox .footer_box:nth-child(1) h3 {
+  margin-left: 50px;
+}
+
+/* MEMBERSHIP BENEFIT, INFO, CONTACT US, SOCIAL 제목들에 대한 새로운 스타일 적용 */
+#footer .footer_conbox .footer_box:nth-child(2) h3,
+#footer .footer_conbox .footer_box:nth-child(3) h3,
+#footer .footer_conbox .footer_box:nth-child(4) h3,
+#footer .footer_conbox .footer_box:nth-child(5) h3 {
+  margin-left: 40px; /* 왼쪽에서 40px 떨어지도록 마진 설정 */
+}
+
+
+#footer .footer_cs {
+  line-height: 20px;
+  font-size: 12px;
+  margin-left: 50px; /* 왼쪽에서 100px 떨어지도록 마진 설정 */
+}
+
+#footer .footer_box h3 {
+  text-transform: uppercase;
+  font-size: 16px;
+  margin-left: 50px; /* 왼쪽에서 50px 떨어지도록 마진 설정 */
+}
+
+.terms_container {
+  margin-left: 50px; /* 왼쪽에서 50px 떨어지도록 마진 설정 */
+}
+
+.terms_container h6 {
+  font-size: 10px; /* 폰트 사이즈를 10px로 설정 */
 }
 
 
@@ -111,27 +145,157 @@
 #footer .footer_cs i {
     margin-right: 5px;
 }
+
+.item-container {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  box-sizing: border-box;
+  overflow: auto;
+  padding: 20px 50px 50px;
+  margin-left: 30%;
+  margin-right: 30%;
+  
+}
+
+.item {
+  position: relative;
+  box-sizing: border-box;
+  padding: 25px;
+  text-align: center;
+  width: 50%;
+}
+
+.productimage {
+    max-width: 100%;
+    height: auto;
+    max-height: 400px;
+  }
+
+#btn-open-modal {
+	position: fixed;
+	bottom: 60px;
+	margin: 0px;
+	width: 56px;
+	height: 56px;
+	right: 30px;
+	z-index: 9999;
+	border-radius: 20px 20px 20px 20px;
+	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+
+
+#modal {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0);
+  transition: 0.25s;
+}
+
+.modal_body {
+	position: absolute;
+	top: 50%;
+	left: 70%;
+	width: 390px;
+	height: 600px;
+	padding: 10px;
+	text-align: center;
+	background-color: rgb(255, 255, 255);
+	border-radius: 20px;
+	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+	transform: translateY(-50%);
+}
+
+#btn-close-modal,
+#btn-close-modal::after {
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+  	-o-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+#btn-close-modal {
+  background: none;
+  border: 2px solid #2ecc71;
+  border-radius: 5px;
+  color: #2ecc71;
+  display: block;
+  font-size: 130%;
+  font-weight: bold;
+  position: relative;
+  text-transform: uppercase;
+}
+
+#btn-close-modal::before,
+#btn-close-modal::after {
+  background: #2ecc71;
+  content: '';
+  position: absolute;
+  z-index: -1;
+}
+
+#btn-close-modal:hover {
+  color: #fff;
+}
+
+.btn-2::after {
+  height: 100%;
+  left: 0;
+  top: 0;
+  width: 0;
+}
+
+.btn-2:hover:after {
+  width: 100%;
+}
+
+.header_top_menu {
+	position: fixed;
+	width: 100%;
+	top: 0px;
+	margin: 0 auto;
+	text-align: center;
+	float: left;
+	display: flex;
+	align-items: center;
+	background: rgba(255, 255, 255, 0.9);
+}
+
+.header_info {
+	position: relative;
+	text-align: center;
+	margin: 0 auto;
+	float: left;
+}
+
+.header_info img{
+	width: 36px;
+}
+
+.header_info_text{
+	align-items: center;
+}
+
+header {
+	position: fixed;
+	z-index: 9999;
+}
 /*------------------- 종범 -------------------*/
-
-
 
 
 /*------------------- 훈 -------------------*/
 body, html {
-  height: 100%;
+  height: auto;
   margin: 0;
   padding: 0;
-}
-
-.fullscreen-video {
-  position: fixed;
-  top: 30px;
-  left:200px;
-}
-
-.fullscreen-video video {
-  width: 100%;
-  height: 100%;
 }
 
 .center{
@@ -151,6 +315,9 @@ body, html {
   align-items: center;
   justify-content: center;
   font-size: 12px;
+  z-index: 9999;
+  color: white;
+  transition: top 0.3s;
 }
 
 #black-bar a {
@@ -163,18 +330,236 @@ body, html {
 }
 
 .fullscreen-video {
-  position: fixed;
-  top: calc(50% - 360px);
-  left: calc(50% - 706px);
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  margin-top: 30px;
 }
 
 .fullscreen-video video {
-  width: 1412px;
-  height: 720px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-/* 형이 만들어 둔 footer css는 위에 footer 작성한 css 코드에 한번에 묶어서 작성. */
+.fullscreen-image {
+  position: relative;
+  width: 100vw;
+  z-index: 1;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.centered-text {
+  position: absolute;
+  bottom: 50px;  /* 사진 아래에서의 위치를 조절합니다. 필요에 따라 값을 변경하세요. */
+  left: 50%;
+  transform: translate(-50%, 0);  /* 글자를 사진의 중앙으로 이동합니다. */
+  color: white;  /* 글자 색을 하얀색으로 설정합니다. */
+  font-size: large;
+  font-weight:bold;
+}
+
+.fullscreen-image img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
+.no_dot {
+  list-style-type: none;
+}
+
+a:link {
+  color: black;
+  text-decoration: none;
+}
+
+a:visited {
+  color: black;
+  text-decoration: none;
+}
+
+a:hover {
+  color: black;
+  text-decoration: underline;
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
+.category-menu {
+  position: fixed;
+  left: 10;
+  width: 100px;
+  z-index: 100;
+}
+
+.category-menu .serif {
+  margin: 0;
+  transition: transform 0.3s ease;
+}
+
+.category-menu .category-item {
+  display: inline-block;
+  transition: transform 0.5s ease;
+}
+
+.category-menu .dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0);
+  min-width: 0px;
+  width: 240px;
+  left: 35px;
+}
+
+.category-menu .dropdown-menu a {
+  display: block;
+  text-decoration: none;
+  color: black;
+  padding: 6px 0px 6px 0px;
+}
+
+.category-menu .category-item:hover .dropdown-menu {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
+.category-menu .category-item:not(:hover) .dropdown-menu {
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.category-menu .category-item:first-child:hover ~ .category-item:nth-child(n) {
+  transform: translateY(328px);
+}
+
+.category-menu .category-item:nth-child(2):hover ~ .category-item:nth-child(n+3) {
+  transform: translateY(90px);
+}
+
+.category-menu:not(:hover) .category-item {
+  transform: translateY(0);
+}
+
+.category-menu .serif a {
+  display: block;
+  color: #333;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+  border: none;
+  background: none;
+  line-height: 1;
+}
+
+.category-menu a {
+  position: relative;
+  top: 30px;
+  left: 40px;
+  display: block;
+  color: #333;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: left;
+  text-decoration: none;
+}
+
+.category-menu a:hover {
+	text-decoration: underline;
+} 
+
+.category-menu .category-item:first-child {
+	margin-top: 0px;
+}
+
+.category-menu .category-item {
+	margin-top: 10px;
+}
+
+.category-menu .category-item:last-child {
+  flex-basis: 100%;
+  margin-top: 40px;
+}
+
+.top-menu-container {
+  position: absolute;
+  top: 50px;
+  right: 60px;
+  z-index: 10;
+  margin: 0px 0px 0px 40px;
+}
+
+.right-menu {
+  display: flex;
+  flex-direction: row;
+}
+
+.right-menu a {
+  text-decoration: none;
+  color: #333;
+  padding: 10px;
+}
+
+.right-menu .serif a {
+  font-size: 23px;
+}
 
 
+/*KR JP EN*/
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
 
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+/*KR JP EN*/
 /*------------------- 훈 -------------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
