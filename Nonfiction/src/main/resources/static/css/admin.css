@@ -1,0 +1,97 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
+#wrap {
+	position: relative;
+	text-align: center;
+	margin: 0;
+	border: 0;
+}
+
+#logo {
+	position: relative;
+	text-align: center;
+	margin: 0 auto;
+	width: 100%;
+	height: 75px;
+	padding: 20px 0px 10px;
+}
+
+
+#loginform {
+	position: relative;
+	top: 120px;
+	width: 300px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+fieldset {
+	height: 320px;
+}
+
+.login{
+	text-align: center;
+	margin: 0 auto;
+}
+
+.btn-outline {
+    position: relative;
+    padding: 15px 30px;
+    border-radius: 15px;
+    font-family: 'Playfair Display', sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+}
+
+.btn-outline:hover {
+	letter-spacing: 2px;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.btn-outline:active {
+    transform: scale(1.5);
+}
+
+.btn-skin-outline{
+    background-color: #f8e6e0;
+    color: #6e6e6e;
+}
+
+.btn-skin-outline:hover {
+    background-color: #f8e6e0;
+    color: #6e6e6e;
+}
+
+input[type="text"],
+input[type="password"] {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+
+input[type="text"] {
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+
+input[type="password"] {
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
