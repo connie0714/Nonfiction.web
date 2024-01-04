@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>header</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/index.css">
 <script type="text/javascript" src="../script/member.js"></script>
 <script type="text/javascript" src="../script/index.js"></script>
@@ -19,30 +20,53 @@
 				<a href="">전 구매 무료 배송 | 선물 포장 서비스 제공</a>
 			</div>
       	<br><br>
-      	
-      	
-      		<button id="btn-open-modal">1:1<br>TALK</button>
-			  	
-			<div id="modal">
-				<div class="modal_body">
-					<div class="header_top_menu">
-						<button id="btn-close-modal" class="btn-2"> &lt; </button>
-						<div class="header_info">
-							<img src="../nonimage/qnalogo.jpg">
-							<p class=header_info_text>
-								<div class="header_info_title">
-									<h2 style="font-weight: bold;">논픽션</h2>
-								</div>
-								<div class="header_info_content">
-									<span style="opacity:0.45;">라이프 스타일 뷰티 브랜드</span>
-								</div>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-
-			
+		
+		<div class="container">
+		    <div class="category-menu">
+		        <div class="serif category-item">
+		            <a href="#" class="category-link">SHOP</a>
+		            <div class="dropdown-menu">
+			            <a href="category?shop=0" style="color: #83A5FF">HOLIDAY GIFT EDITION</a>
+			            <a href="bestCategory?bestyn=Y">BEST SELLER</a>
+			            <a href="category?shop=1">PERFUME</a>
+			            <a href="category?shop=2">HAIR CARE</a>
+			            <a href="category?shop=3">BODY CARE</a>
+			            <a href="category?shop=4">HAND CARE</a>
+			            <a href="category?shop=5">GIFT SET</a>
+			            <a href="category?shop=6">HOME FRAGRANCE</a>
+			            <a href="category?shop=7">HOME OBJECTS</a>
+			            <a href="category?shop=8">TRIAL KIT</a>
+			            <a href="category?shop=9">ACC</a>
+		            </div>
+		        </div>
+			        <div class="serif category-item">
+			            <a href="#" class="category-link">ABOUT</a>
+			            <div class="dropdown-menu">
+			          <a href="#gift-set">OUR STORY</a>
+			         <a href="#gift-set">CAMPAIGN</a>
+			         <a href="#gift-set">PRESS</a>
+			            </div>
+			        </div>
+		        <div class="serif category-item"><a href="#">STORES</a></div>
+		        <div class="serif category-item"><a href="#">CONTACT</a></div>
+		        <div class="serif category-item"><a href="#">SEARCH</a></div>
+		    </div>
+		</div>
+		   
+		    <div class="top-menu-container">
+		        <div class="right-menu">
+		            <div class="serif dropdown"> <!-- 여기를 수정합니다 -->
+		            <a href="#" class="dropbtn">KR</a>
+		            <div class="dropdown-content">
+		                <a href="#">JP</a>
+		                <a href="#">EN</a>
+		            </div>
+		        </div>
+		        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		        <div class="serif"><a href="">LOGIN</a></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		        <div class="serif"><a href="">CART(<span class="cart-count">0</span>)</a></div>
+		    </div>
+		</div>
+		
       </header>
       

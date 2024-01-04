@@ -6,6 +6,9 @@ DROP TRIGGER TRI_orders_oseq;
 DROP TRIGGER TRI_product_pseq;
 
 
+select*from members;
+select*from qna;
+delete from qna;
 
 /* Drop Tables */
 
@@ -28,15 +31,21 @@ DROP TABLE MSG_CARD CASCADE CONSTRAINTS;
 DROP SEQUENCE SEQ_MSG_CARD_mgseq;
 DROP SEQUENCE SEQ_orders_oseq;
 DROP SEQUENCE SEQ_product_pseq;
+DROP SEQUENCE SEQ_qna_qseq;
 
 
-
+select*from members;
 
 /* Create Sequences */
 
 CREATE SEQUENCE SEQ_MSG_CARD_mgseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_orders_oseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_product_pseq INCREMENT BY 1 START WITH 1;
+
+
+alter sequence SEQ_qna_qseq increment by -63;
+select SEQ_qna_qseq.nextVal from dual;
+alter sequence SEQ_qna_qseq increment by 1;
 
 
 
@@ -101,6 +110,8 @@ CREATE TABLE members
 	PRIMARY KEY (userid)
 );
 
+select*from members;
+
 
 CREATE TABLE MSG_CARD
 (
@@ -118,6 +129,7 @@ CREATE TABLE orders
 	PRIMARY KEY (oseq)
 );
 
+select*from orders;
 
 CREATE TABLE order_detail
 (
@@ -226,6 +238,8 @@ ALTER TABLE order_detail
 	REFERENCES orders (oseq)
 ;
 
+select*from order_detail
+
 
 ALTER TABLE cart
 	ADD FOREIGN KEY (pseq)
@@ -246,37 +260,7 @@ ALTER TABLE review
 
 
 
-/* Create Triggers */
 
-CREATE OR REPLACE TRIGGER TRI_MSG_CARD_mgseq BEFORE INSERT ON MSG_CARD
-FOR EACH ROW
-BEGIN
-	SELECT SEQ_MSG_CARD_mgseq.nextval
-	INTO :new.mgseq
-	FROM dual;
-END;
-
-/
-
-CREATE OR REPLACE TRIGGER TRI_orders_oseq BEFORE INSERT ON orders
-FOR EACH ROW
-BEGIN
-	SELECT SEQ_orders_oseq.nextval
-	INTO :new.oseq
-	FROM dual;
-END;
-
-/
-
-CREATE OR REPLACE TRIGGER TRI_product_pseq BEFORE INSERT ON product
-FOR EACH ROW
-BEGIN
-	SELECT SEQ_product_pseq.nextval
-	INTO :new.pseq
-	FROM dual;
-END;
-
-/
 
 
 
@@ -295,7 +279,13 @@ insert into members(userid, pwd, name, zip_num, address1, address2, phone, email
 ('hong', '1234', '홍승희', '133-110', '서울시 성동구 성수동1가' , '1번지21호', '017-777-7777','acc@abc.com');
 
 
+
 -- 상품
+
+ALTER TABLE product MODIFY mgseq number(10,0) NULL;
+
+ALTER TABLE product DROP COLUMN holidayyn;
+ALTER TABLE product DROP COLUMN acc;
 
 select * from PRODUCT;
 
@@ -333,7 +323,13 @@ values(SEQ_MSG_CARD_mgseq.nextval, '메세지카드 테스트2');
 
 delete from product;
 
-ALTER TABLE product MODIFY mgseq number(10,0) NULL;
 
-ALTER TABLE product DROP COLUMN holidayyn;
-ALTER TABLE product DROP COLUMN acc;
+
+select * from admins;
+
+insert into admins(adminid, pwd, name, phone)
+values('admin', 'admin', 'admin', '010-1111-1111');
+
+
+
+

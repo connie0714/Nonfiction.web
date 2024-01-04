@@ -1,6 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
    
    <footer>
+   
+   	<!--1:1 talk 가변식 버튼  -->
+		<button id="btn-open-chat">1:1 <br>TALK</button>
+		
+		<!-- 모달 창 -->
+		<div class="modal">
+		    <div class="modal-content">
+		        <div class="top-content">
+		            <img src="/nonimage/qnalogo.jpg" class="content-image">
+		            <p class="content-text">논픽션</p>
+		        </div>
+		        <div class="chat-box">
+		        
+		        </div>
+		        <div class="bottom-content">
+		            <button class="home">홈</button>
+		            <button class="chat">대화</button>
+		            <button class="settings">설정</button>
+		        </div>
+		    </div>
+		</div>
+   
       <div id="footer">
          <div class="footer_conbox">
                

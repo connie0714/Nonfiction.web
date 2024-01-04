@@ -1,3 +1,5 @@
+/*	member 관련 승희 작성	*/
+
 function go_next(){
 	 if( document.contractFrm.okon[1].checked==true){
 		alert('회원 약관에 동의 하셔야 회원가입이 가능합니다');
@@ -26,34 +28,48 @@ function idok( userid ){
 }
 
 
-document.addEventListener("DOMContentLoaded", () => {
-	const modal = document.getElementById("modal");
-	const openModalBtn = document.getElementById("btn-open-modal");
-	const closeModalBtn = document.getElementById("btn-close-modal");
+function withdrawal(){
+	var ans = confirm("정말로 탈퇴하시겠습니까?");
+	if(ans) location.href='deleteMember';
+}
 
-	// 모달창 열기
-	openModalBtn.onclick = function() {
-	modal.style.opacity = "0"; // 초기에 투명도를 0으로 설정
-	modal.style.display = "block";
-		 setTimeout(function() {
-		   modal.style.opacity = "1"; // 일정 시간 후에 투명도를 1로 설정하여 부드러운 효과 적용
-		  }, 0); // 0.05초(50ms) 후에 투명도를 1로 변경
-		}
-		
-		// 모달창 닫기
-		closeModalBtn.onclick = function() {
-		  modal.style.opacity = "0"; // 투명도를 0으로 설정하여 부드러운 효과 적용
-		  setTimeout(function() {
-		    modal.style.display = "none";
-		  }, 250); // 일정 시간 후에 모달창을 숨김
-		}
-	});
-				  
-				  
-				  
-				  
-				  
-				  
-				  
-				  
-				  
+
+function gojoinButton() {
+  var joinButton = document.getElementById("joinbtn");
+  if (joinButton) {
+    joinButton.addEventListener("click", function() {
+      window.location.href = "contract";
+    });
+  }
+}
+
+document.addEventListener("DOMContentLoaded", gojoinButton);
+
+function passCheck( qseq ){
+	var url = "passCheck?qseq=" + qseq;
+	var opt = "toolbar=no, menubar=no, resizable=no, width=500, height=250, scrollbars=no";
+    window.open(url, "passCheck", opt);
+}
+
+/*	member 관련 승희 작성	*/
+
+
+
+/*	cart부분	*/
+function addToCart() {
+
+    var currentCart = localStorage.getItem('cart');
+  
+
+    if (!currentCart) {
+        currentCart = 0;
+    }
+  
+    currentCart = Number(currentCart) + 1;
+    localStorage.setItem('cart', currentCart);
+ 
+    document.querySelector('.cart-count').innerText = `CART(${currentCart})`;
+}
+
+
+

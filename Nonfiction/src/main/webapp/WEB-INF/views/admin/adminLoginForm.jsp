@@ -26,7 +26,7 @@
 				       	<tr align="center" ><td  colspan="2">
 				       		<h4 style="color:red">${message}</h4>
 				       		<br><br>
-				       		<input class="btn-outline btn-skin-outline" type="submit" value="업무 로그인" onClick="return worker_check();">
+				       		<input class="btn-outline btn-skin-outline" type="submit" value="업무 로그인">
 				       		</td></tr>
 					</table>
 				</fieldset>

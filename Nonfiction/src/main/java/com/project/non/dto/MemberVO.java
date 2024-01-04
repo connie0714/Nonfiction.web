@@ -1,12 +1,12 @@
 package com.project.non.dto;
 
-import java.sql.Timestamp;
+import java.sql.Timestamp; 
 
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 
 @Data
-public class MemberVO {
+public class MemberVO { 
 	
 	@NotEmpty(message="아이디를 입력하세요")
 	private String userid;

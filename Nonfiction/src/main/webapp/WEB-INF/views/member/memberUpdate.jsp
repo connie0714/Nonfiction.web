@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Insert title here</title>  
 </head>
 <body>
 
@@ -18,12 +18,6 @@
 		
 		
 	
-			
-				<label>Password</label>
-					<input type="password"  name="pwd" value="kakao" readonly><br> 
-		        <label>Retype Password</label>
-		        	<input type="password"  name="pwdCheck"  value="kakao" readonly><br>
-			
 			
 				<label>Password</label>	<input type="password"  name="pwd" ><br> 
 		        <label>Retype Password</label><input type="password"  name="pwdCheck" ><br>

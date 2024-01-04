@@ -102,3 +102,12 @@ BEGIN
 END;
 
 
+
+
+CREATE OR REPLACE PROCEDURE getAdmin(
+    p_adminid IN admins.adminid%TYPE,
+    p_cur OUT SYS_REFCURSOR )
+IS
+BEGIN
+    OPEN p_cur FOR SELECT * FROM admins WHERE adminid=p_adminid;
+END;
