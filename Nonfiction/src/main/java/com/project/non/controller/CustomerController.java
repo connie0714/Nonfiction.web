@@ -41,7 +41,7 @@ public class CustomerController {
 			mav.addObject("qnaList",resultMap.get("ref_cursor") );
 			mav.addObject("paging", resultMap.get("paging") );
 			mav.addObject("key",resultMap.get("key") );
-			mav.setViewName("customer/qnaList");
+			mav.setViewName("customer/qnaList"); 
 		}
 		return mav;
 	}
