@@ -268,9 +268,6 @@ ALTER TABLE review
 
 
 
-
-
-
 /* Comments */
 
 COMMENT ON COLUMN product.price1 IS '원가';
@@ -343,3 +340,6 @@ delete answer where kind='주문/배송';
 select * from answer;
 
 select * from cart;
+
+alter table qna add secret char(1) default 'N';
+alter table qna add pass varchar2(30);
