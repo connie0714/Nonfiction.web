@@ -7,27 +7,30 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="/script/member.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/member.css">
 </head>
 <body>
 
-
-	<form name="formm" method="post">
-	<table width="600">
-		<tr><th width="100" align="center">제목</th>
-				<td  style="text-align:left; font-size:120%">${qnaVO.SUBJECT}</td></tr>
-		<tr><th align="center">등록일</th>
-				<td style="text-align:left;"><fmt:formatDate value="${qnaVO.INDATE}" type="date"/></td></tr>
-		<tr><th align="center">질문내용</th>
-				<td  style="text-align:left; font-size:120%"><pre>${qnaVO.CONTENT}</pre></td></tr>
-		<tr><th align="center">답변 내용</th>
-				<td  style="text-align:left; font-size:120%">${qnaVO.REPLY}</tr>
-		</table>
-		
-		<div id="buttons" style="float:right">
-			<input type="button"  value="Back to List" class="submit" onclick="location.href='qnaList'"> 
-			<input type="button"  value="쇼핑 계속하기"  class="cancel" onclick="location.href='/'">  
-		</div>	
-	</form>	
-
+		<div id="qnaform" style="text-align: center;">
+			<form name="formm" method="post">
+			<table>
+				<tr><th>제목</th>
+						<td  >${qnaVO.SUBJECT}</td></tr>
+				<tr><th >등록일</th>
+						<td ><fmt:formatDate value="${qnaVO.INDATE}" type="date"/></td></tr>
+				<tr><th>질문내용</th>
+						<td  ><pre>${qnaVO.CONTENT}</pre></td></tr>
+				<tr><th >답변 내용</th>
+						<td>${qnaVO.REPLY}</tr>
+				</table>
+	
+				
+				<div id="buttons" style="float:right">
+					<input type="button"  value="Back to List" class="submit" onclick="location.href='qnaList'"> 
+					<input type="button"  value="쇼핑 계속하기"  class="cancel" onclick="location.href='/'">  
+				</div>	
+			</form>	
+	</div>
 </body>
 </html>

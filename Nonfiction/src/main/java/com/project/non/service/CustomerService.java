@@ -86,6 +86,11 @@ public class CustomerService {
 	      return paramMap;
 	}
 
+	public void insertQna(HashMap<String, Object> paramMap) {
+		cdao.insertQna(paramMap);
+		
+	}
+
 
 
 	
