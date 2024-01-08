@@ -29,15 +29,15 @@
 				<form id="answer">
 					<div class="select-qna">
 						<ul>
-							<li><button type="button" class="select-btn" onclick="sendRequest('주문/배송')" value="0">주문/배송</button></li>
-							<li><button type="button" class="select-btn" onclick="sendRequest('상담원 연결')" value="1">상담원 연결</button></li>
-							<li><button type="button" class="select-btn" onclick="sendRequest('상품문의')" value="2">상품문의</button></li>
+							<li><button type="button" class="select-btn" id="select-btn" onclick="sendRequest('주문/배송')" value="0">주문/배송</button></li>
+							<li><button type="button" class="select-btn" id="select-btn" onclick="sendRequest('상담원 연결')" value="1">상담원 연결</button></li>
+							<li><button type="button" class="select-btn" id="select-btn" onclick="sendRequest('상품문의')" value="2">상품문의</button></li>
 						</ul>
 					</div>
 				</form>
 			</div>
 			<div class="bottom-content">
-				<button type="button" class="close-btn" onClick="close()">
+				<button type="button" class="close-btn" id="close-btn">
 					<img src="../nonimage/homebtn.png" style="width: 80px">
 				</button>
 			</div>

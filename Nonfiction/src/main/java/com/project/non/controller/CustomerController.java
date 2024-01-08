@@ -29,7 +29,7 @@ public class CustomerController {
 	
 	
 	@GetMapping("qnaList")
-	public ModelAndView qnaList( HttpServletRequest request ) {
+	public ModelAndView qnaList( HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		
 		HttpSession session = request.getSession();

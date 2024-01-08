@@ -35,6 +35,7 @@
 			)
 		}
 	</select>
+
 	
 	
 	<insert id="insertQna" statementType="CALLABLE" parameterType="java.util.HashMap">
@@ -44,5 +45,6 @@
 			)
 		}
 	</insert>
+
 
 </mapper>
