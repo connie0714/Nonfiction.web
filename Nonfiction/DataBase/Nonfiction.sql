@@ -319,6 +319,9 @@ insert into product(pseq, name, shop, price1, price2, content, image, bestyn)
 values(SEQ_product_pseq.nextval, '테스트상품', '10', '3000', '6000', '테스트 상품입니다', '/CAMPAIGN/campaign1.jpg', 'Y');
 
 
+insert into cart(cseq,userid, pseq, quantity) values(cart_seq.nextval, 'one', 30, 1); 
+insert into cart(cseq,userid, pseq, quantity) values(cart_seq.nextval, 'two', 31, 1); 
+
 -- 메세지 카드
 
 insert into MSG_CARD(mgseq, msg_content)
@@ -343,3 +346,6 @@ delete answer where kind='주문/배송';
 select * from answer;
 
 select * from cart;
+
+alter table qna add secret char(1) default 'N';
+alter table qna add pass varchar2(30);
