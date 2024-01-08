@@ -342,3 +342,4 @@ delete answer where kind='주문/배송';
 	
 select * from answer;
 
+select * from cart;
