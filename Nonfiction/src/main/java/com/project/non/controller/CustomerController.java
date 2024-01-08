@@ -44,7 +44,7 @@ public class CustomerController {
 			mav.addObject("key",resultMap.get("key") );
 			mav.setViewName("customer/qnaList"); 
 		}
-		return mav;
+		return mav; 
 	}
 	
 	@GetMapping("/passCheck")
