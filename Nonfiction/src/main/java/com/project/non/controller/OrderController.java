@@ -20,7 +20,7 @@ public class OrderController {
 	@Autowired
 	OrderService os;
 	
-	@PostMapping("/orderInsert")
+	@PostMapping("/orderInsert") 
 	public String orderInsert( HttpServletRequest request ) {
 		int oseq=0;
 		HttpSession session = request.getSession();
