@@ -3,14 +3,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8"> 
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="../css/member.css">
 <script type="text/javascript" src="/script/member.js"></script>
 </head>
 <body>
 
-	<div id="qnamain">Qna Write</div>
+	<div id="qnamain">Q&amp;A Write</div>
 		<form name="formm" method="post" 	action="qnaWrite">
 			
 				<div id="qnasubject">Subject</div>
@@ -25,7 +25,7 @@
 			<div class="clear"></div>
 			
 		    <div id="buttons" style="float:right">
-			    <input type="submit"  value="Write"     id="qnasubmit"> 
+			    <input type="submit"  value="Write" id="qnasubmit"> 
 		    	<input type="button"  value="Back to List"  id="back"  onclick="location.href='qnaList'"> 
 		    </div>
 		</form>
