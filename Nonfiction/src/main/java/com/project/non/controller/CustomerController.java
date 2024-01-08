@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,6 +45,37 @@ public class CustomerController {
 			mav.setViewName("customer/qnaList"); 
 		}
 		return mav;
+	}
+	
+	@GetMapping("/passCheck")
+	public ModelAndView passCheck( @RequestParam("qseq") int qseq ) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("qseq", qseq);
+		mav.setViewName("customer/checkPass");	
+		return mav;
+	}
+	
+	
+	@PostMapping("/qnaCheckPass")
+	public String qnaCheckPass( 
+			@RequestParam("qseq") int qseq, 
+			@RequestParam("pass") String pass, Model model ) {
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("qseq", qseq);
+		paramMap.put("ref_cursor", null);
+		cs.getQna( paramMap );
+		
+		ArrayList< HashMap<String, Object> > list 
+		= (ArrayList< HashMap<String, Object> >) paramMap.get("ref_cursor" );
+		HashMap<String, Object> qvo = list.get(0);
+		
+		if( qvo.get("PASS").equals(pass) ) {
+			model.addAttribute("qseq", qseq);
+			return "customer/checkPassSuccess";
+		}else {
+			model.addAttribute("message", "비밀번호가 맞지 않습니다");
+			return "customer/checkPass";
+		}
 	}
 	
 	@GetMapping("/qnaView")

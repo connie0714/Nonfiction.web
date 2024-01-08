@@ -22,6 +22,7 @@
                     <td style="text-align: left">
                         <c:choose>
                             <c:when test="${qnaVO.SECRET == 'Y'}">
+                            <a href="#" onClick="passCheck('${qnaVO.QSEQ}')">${qnaVO.SUBJECT}</a>
                                 &nbsp;
                             </c:when>
                             <c:otherwise>
