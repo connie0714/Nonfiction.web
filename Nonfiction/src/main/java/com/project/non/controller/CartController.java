@@ -45,7 +45,7 @@ public class CartController {
 	
 	
 	@GetMapping("/cartList")
-	public ModelAndView cartList( HttpServletRequest request  ) {	
+	public ModelAndView cartList( HttpServletRequest request) {	
 		ModelAndView mav = new ModelAndView();
 		// 로그인 된 상태에서 로그인 유저의 아이디로 카트리스트를 조회해서 jsp로 이동합니다
 		HttpSession session = request.getSession();
