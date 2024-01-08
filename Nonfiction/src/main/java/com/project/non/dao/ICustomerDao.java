@@ -9,7 +9,6 @@ public interface ICustomerDao {
 
 	void listQna(HashMap<String, Object> paramMap);
 	void getQna(HashMap<String, Object> paramMap);
-	void customerGetAllCount(HashMap<String, Object> paramMap);
 	void getQnaList(HashMap<String, Object> paramMap);
 
 

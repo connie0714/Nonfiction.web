@@ -187,7 +187,13 @@ CREATE TABLE review
 	PRIMARY KEY (reseq)
 );
 
+CREATE TABLE answer
+(
+	kind varchar2(100) NOT NULL,
+	content varchar2(1000) NOT NULL
+);
 
+drop table answer;
 
 /* Create Foreign Keys */
 
@@ -330,6 +336,9 @@ select * from admins;
 insert into admins(adminid, pwd, name, phone)
 values('admin', 'admin', 'admin', '010-1111-1111');
 
+insert into ANSWER(kind, content) values('주문/배송', '논픽션 공식몰의 경우,<br> 평일 12시 이전 결제 완료 건에 한하여 당일발송 처리를 진행해 드리고 있습니다.<br> 1~3일 이내에 배송될 예정이며,<br> 자세한 배송문의는 운송장 번호를 통해서 저녁 7시 이후부터 조회를 부탁드립니다.<br> 배송조회 전, 운송장번호를 미리 준비해주세요');
 
-
+delete answer where kind='주문/배송';
+	
+select * from answer;
 

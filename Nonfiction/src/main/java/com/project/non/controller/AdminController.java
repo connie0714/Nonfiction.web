@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.project.non.service.AdminService;
 import com.project.non.service.ProductService;
@@ -67,5 +68,28 @@ public class AdminController {
 	     }
 		return url;
 	}
+	
+	 @GetMapping("/productList")
+	   public ModelAndView productList( HttpServletRequest request ) {
+	      ModelAndView mav = new ModelAndView();
+	      HttpSession session = request.getSession();
+	      if( session.getAttribute("loginAdmin")==null) 
+	         mav.setViewName("admin/adminLoginForm");
+	      else {
+	         HashMap<String, Object> paramMap = new HashMap<String, Object>();
+	         paramMap.put("request", request);
+	         paramMap.put( "ref_cursor", null );
+	         as.getProductList( paramMap );
+	         
+	         // HashMap<String, Object> paramMap = as.getProductList( request );
+
+	         mav.addObject("productList", paramMap.get("ref_cursor"));
+	         mav.addObject("paging", paramMap.get("paging") );
+	         mav.addObject("key", paramMap.get("key") );
+	      
+	         mav.setViewName("admin/product/productList");
+	      }
+	      return mav;
+	   }
 	
 }

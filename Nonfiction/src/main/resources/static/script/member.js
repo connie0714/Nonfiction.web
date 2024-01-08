@@ -51,9 +51,27 @@ function passCheck( qseq ){
     window.open(url, "passCheck", opt);
 }
 
+function passCheck( qseq ){
+   var url = "passCheck?qseq=" + qseq;
+   var opt = "toolbar=no, menubar=no, resizable=no, width=500, height=250, scrollbars=no";
+    window.open(url, "passCheck", opt);
+}
+
+
+
+
+function enable() {
+    var secretCheckbox = document.getElementsByName("secret")[0];
+    var passwordInput = document.getElementsByName("pass")[0];
+    
+    if (secretCheckbox.checked) {
+        passwordInput.disabled = false;
+    } else {
+        passwordInput.disabled = true;
+    }
+}
+
 /*	member 관련 승희 작성	*/
-
-
 
 /*	cart부분	*/
 function addToCart() {

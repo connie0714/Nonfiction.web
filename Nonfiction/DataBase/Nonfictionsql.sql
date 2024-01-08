@@ -69,6 +69,48 @@ BEGIN
     COMMIT;
 END;
 
+-- 승희 qna
+
+CREATE OR REPLACE PROCEDURE listQna (
+    p_rc   OUT     SYS_REFCURSOR )
+IS
+BEGIN
+    OPEN p_rc FOR
+        SELECT * FROM QNA ORDER BY qseq desc;
+END;
+
+
+CREATE OR REPLACE PROCEDURE getQna (
+    p_qseq IN   Qna.qseq%TYPE,
+    p_rc   OUT     SYS_REFCURSOR )
+IS
+BEGIN
+    OPEN p_rc FOR
+        SELECT * FROM qna WHERE qseq=p_qseq;
+END;
+
+
+
+CREATE OR REPLACE PROCEDURE getQnaList(
+    p_startNum IN NUMBER,
+    p_endNum IN NUMBER,
+    p_key IN members.name%TYPE,
+    p_rc  OUT   SYS_REFCURSOR
+)
+IS
+BEGIN
+    OPEN p_rc FOR
+        SELECT * FROM (
+            SELECT * FROM (
+                SELECT rownum as rn, p.* FROM
+                (( SELECT * FROM qna WHERE subject LIKE '%'||p_key||'%'  OR content LIKE '%'||p_key||'%' ORDER BY qseq DESC) p)
+            ) WHERE rn>=p_startNum 
+        ) WHERE rn<=p_endNum;
+END;
+
+
+
+
 
 -- 종범 product
 
@@ -102,12 +144,78 @@ BEGIN
 END;
 
 
+-- 종범 모달 1:1
 
-
-CREATE OR REPLACE PROCEDURE getAdmin(
-    p_adminid IN admins.adminid%TYPE,
-    p_cur OUT SYS_REFCURSOR )
+CREATE OR REPLACE PROCEDURE getAnswer(
+    p_kind IN answer.kind%TYPE,
+    p_cur OUT SYS_REFCURSOR
+)
 IS
 BEGIN
-    OPEN p_cur FOR SELECT * FROM admins WHERE adminid=p_adminid;
+     OPEN p_cur FOR SELECT * FROM answer WHERE kind=p_kind;
 END;
+
+
+
+
+-- 의훈
+
+CREATE OR REPLACE PROCEDURE getAdmin(
+    p_adminid IN   admins.adminid%TYPE,
+    p_rc   OUT     SYS_REFCURSOR )
+IS
+BEGIN
+    OPEN p_rc FOR
+        select * from admins where adminid=p_adminid;
+END;
+
+
+-- admin product
+CREATE OR REPLACE PROCEDURE getProductList(
+    p_startNum IN NUMBER,
+    p_endNum IN NUMBER,
+    p_key IN product.name%TYPE,
+    p_rc OUT SYS_REFCURSOR
+)
+IS
+BEGIN
+    OPEN p_rc FOR
+        SELECT * FROM (
+            SELECT * FROM (
+                SELECT rownum as rn, p.* FROM
+                ( (SELECT * FROM product WHERE name LIKE '%'||p_key||'%' ORDER BY PSEQ DESC) p)
+            ) WHERE rn>=p_startNum
+        ) WHERE rn<=P_endNum;
+END;
+
+
+
+
+-- table들 검색창용
+CREATE OR REPLACE PROCEDURE adminGetAllCount(
+    p_tableName IN VARCHAR2,
+    p_key IN VARCHAR2,
+    p_cnt  OUT  NUMBER 
+)
+IS
+BEGIN
+-- 전달된 KEY 값으로 검색한 결과의 레코드갯수를 조회
+IF p_tableName='product' THEN
+    SELECT COUNT(*) INTO p_cnt FROM product WHERE name LIKE '%'||p_key||'%'
+    OR  content LIKE '%'||p_key||'%';
+END IF;
+END;
+
+
+
+
+
+
+
+
+
+
+
+
+
+

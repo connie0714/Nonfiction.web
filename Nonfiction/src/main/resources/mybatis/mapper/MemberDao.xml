@@ -1,38 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
     
 <mapper namespace="com.project.non.dao.IMemberDao">
 
 <resultMap  id="memberMap" type="java.util.HashMap"></resultMap>
 
-	<select id="getMember" statementType="CALLABLE" parameterType="java.util.HashMap">
-			{
-				CALL getMember(
-					#{userid},
-					#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=memberMap}
-				)
-			}
-	</select>
-	
-	<insert id="insertMember" statementType="CALLABLE" parameterType="java.util.HashMap">
-		{
-			CALL insertMember(
-				#{userid},  #{pwd} , #{name}, #{phone}, #{email} , 
-				#{zip_num} , #{address1} , 	#{address2} ,  #{address3}
-			)
-		}
-	</insert>
-	
-	
-		<insert id="updateMember" statementType="CALLABLE" parameterType="java.util.HashMap">
-		{
-			CALL updateMember(
-				#{USERID},  #{PWD} , #{NAME}, #{PHONE}, #{EMAIL} , 
-				#{ZIP_NUM} , #{ADDRESS1} , 	#{ADDRESS2} ,  #{ADDRESS3}
-			)
-		}
-	</insert>
+   <select id="getMember" statementType="CALLABLE" parameterType="java.util.HashMap">
+         {
+            CALL getMember(
+               #{userid},
+               #{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=memberMap}
+            )
+         }
+   </select>
+   
+   
+      <insert id="joinKakao"  statementType="CALLABLE" parameterType="java.util.HashMap">
+      {
+         CALL  joinKakao(
+            #{userid}, #{name}, #{phone}, #{email},#{provider}
+         )
+      }
+   </insert>
+   
+   
+   <insert id="insertMember" statementType="CALLABLE" parameterType="java.util.HashMap">
+      {
+         CALL insertMember(
+            #{userid},  #{pwd} , #{name}, #{phone}, #{email} , 
+            #{zip_num} , #{address1} ,    #{address2} ,  #{address3}
+         )
+      }
+   </insert>
+   
+   
+    <insert id="updateMember" statementType="CALLABLE" parameterType="java.util.HashMap">
+      {
+         CALL updateMember(
+            #{USERID},  #{PWD} , #{NAME}, #{PHONE}, #{EMAIL} , 
+            #{ZIP_NUM} , #{ADDRESS1} ,    #{ADDRESS2} ,  #{ADDRESS3}
+         )
+      }
+   </insert>
+   
+   
+   <update id="deleteMember" statementType="CALLABLE" parameterType="java.util.HashMap" >
+      { 
+         CALL deleteMember(   #{userid}   ) 
+      }
+   </update>
 
 </mapper>

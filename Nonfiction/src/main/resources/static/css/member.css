@@ -1,0 +1,641 @@
+@charset "UTF-8";
+
+#forgotten{
+	position: absolute;
+	font-weight: bold;
+	top: 50%;
+	left: 39%;
+	
+}
+
+
+#forgottenid{
+	position: absolute;
+	font-weight: bold;
+	top: 50.2%;
+	left: 43%;
+}
+
+
+#forgottenor{
+	
+	position: absolute;
+	font-weight: bold;
+	top: 50%;
+	left: 44.2%;
+	
+}
+
+#forgottenpw{
+	
+	position: absolute;
+	font-weight: bold;
+	top: 50.2%;
+	left: 45.3%;
+	
+}
+
+a {
+	text-decoration-line: none;
+	color: black;
+	
+}
+
+#loginsub{
+	position: absolute;
+	font-size: 150%;
+	left: 47%;
+	top: 24%;
+}
+
+#idsub{
+	position: absolute;
+	left: 39%;
+	top: 30%;
+	font-weight: bold;
+}
+
+#idinput{
+	position: absolute;
+	left: 39%;
+	top: 32.5%;
+	height: 30px;
+	width: 415px;
+	font-size: 15px;
+}
+
+#pwsub{
+	position: absolute;
+	left: 39%;
+	top: 37%;
+	font-weight: bold;
+}
+
+#pwinput{
+	position: absolute;
+	left: 39%;
+	top: 39.5%;
+	height: 30px;
+	width: 415px;
+	font-size: 15px;
+	
+}
+
+#submit{
+	position: absolute;
+	left: 39%;
+	top: 44%;
+	height: 50px;
+	width: 420px;
+	background-color: white;
+	font-weight: bold;
+	font-size: medium;
+	cursor: pointer;
+	
+}
+
+#message-container{
+	position: absolute;
+	margin-top: 200px;
+	left: 39%;
+}
+
+#nonmem{
+	position: absolute;
+	top: 55%;
+	left: 39%;
+	font-size: small;
+}
+
+
+#joinbtn{
+	position: absolute;
+	left: 39%;
+	top: 58%;
+	height: 50px;
+	width: 420px;
+	background-color: black;
+	color: white;
+	font-weight: bold;
+	font-size: medium;
+	cursor: pointer;
+	
+}
+
+#kakao{
+	position: absolute;
+	top: 64.2%;
+	left: 39%;
+	font-size: small;
+}
+
+
+#kakaobtn{
+	position: absolute;
+	left: 39%;
+	top: 67%;
+	height: 50px;
+	width: 420px;
+	background-color: white;
+	font-weight: bold;
+	font-size: medium;
+	cursor: pointer;
+}
+
+ .button-with-icon {
+	
+    background-image: url('/nonimage/kakaochat.jpg');
+    background-repeat: no-repeat;
+    background-position:38%;
+    padding: 8px 16px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+ 
+  }
+  
+  #notice1{
+	position: absolute;
+	top: 73%;
+	left: 39%;
+	font-size: small;
+  }
+
+  #notice2{
+	position: absolute;
+	top: 75%;
+	left: 39%;
+	font-size: small;
+  }
+
+
+#personal{
+	position: absolute;
+	left: 46.5%;
+	top: 20%;
+}
+
+#content{
+	position: absolute;
+	left: 34%;
+	top: 30%;
+}
+
+
+#ok{
+	position: absolute;
+	left: 44%;
+	top: 80%;
+}
+
+
+#nextbtn{
+	position: absolute;
+	left: 37%;
+	top: 82%;
+	height: 40px;
+	width: 300px;
+	background-color: white;
+	font-weight: bold;
+	font-size: medium;
+	cursor: pointer;
+}
+
+
+#signupsub{
+	position: absolute;
+	font-size: 150%;
+	left: 47%;
+	top: 24%;
+}
+
+
+.idcheck{
+	position: absolute;
+	left: 59%;
+	top: 32.6%;
+	height: 33px;
+	width: 80px;
+	background-color: white;
+	font-weight: bold;
+	font-size: small;
+	cursor: pointer;
+	border-radius: 7%;
+}
+
+
+
+#pwchecksub{
+	position: absolute;
+	left: 39%;
+	top: 44%;
+	font-weight: bold;
+}
+
+#pwcheckinput{
+	position: absolute;
+	left: 39%;
+	top: 46.5%;
+	height: 30px;
+	width: 415px;
+	font-size: 15px;
+	
+}
+
+
+#namesub{
+	position: absolute;
+	left: 39%;
+	top: 50%;
+	font-weight: bold;
+}
+
+#nameinput{
+	position: absolute;
+	left: 39%;
+	top: 52.5%;
+	height: 30px;
+	width: 415px;
+	font-size: 15px;
+}
+
+#phonesub{
+	position: absolute;
+	left: 39%;
+	top: 95%;
+	font-weight: bold;
+}
+
+#phoneinput{
+	position: absolute;
+	left: 39%;
+	top: 97.5%;
+	height: 30px;
+	width: 415px;
+	font-size: 15px;
+}
+
+#emailsub{
+	position: absolute;
+	left: 39%;
+	top: 56%;
+	font-weight: bold;
+}
+
+#emailinput{
+	position: absolute;
+	left: 39%;
+	top: 58.5%;
+	height: 30px;
+	width: 415px;
+	font-size: 15px;
+}
+
+
+#emailcheck{
+	position: absolute;
+	left: 59%;
+	top: 58.6%;
+	height: 33px;
+	width: 110px;
+	background-color: white;
+	font-weight: bold;
+	font-size: small;
+	cursor: pointer;
+	border-radius: 7%;
+}
+
+#getemailinput{
+	position: absolute;
+	left: 39%;
+	top: 62.5%;
+	height: 30px;
+	width: 415px;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+#authCode{
+	position: absolute;
+	left: 39%;
+	top: 65.5%;
+	height: 30px;
+	width: 415px;
+	font-size: 15px;
+}
+
+
+#getemailcheck{
+	position: absolute;
+	left: 59%;
+	top: 65.6%;
+	height: 33px;
+	width: 110px;
+	background-color: white;
+	font-weight: bold;
+	font-size: small;
+	cursor: pointer;
+	border-radius: 7%;
+}
+
+
+#zipcodesub{
+	position: absolute;
+	left: 39%;
+	top: 70%;
+	font-weight: bold;
+}
+
+#sample6_postcode{
+	position: absolute;
+	left: 39%;
+	top: 72.5%;
+	height: 30px;
+	width: 415px;
+	font-size: 15px;
+}
+
+.zipcodesearch{
+	position: absolute;
+	left: 59%;
+	top: 72.6%;
+	height: 33px;
+	width: 110px;
+	background-color: white;
+	font-weight: bold;
+	font-size: small;
+	cursor: pointer;
+	border-radius: 7%;
+}
+
+
+#addresssub{
+	position: absolute;
+	left: 39%;
+	top: 76%;
+	font-weight: bold;
+}
+
+
+
+#sample6_address{
+	position: absolute;
+	left: 39%;
+	top: 78.5%;
+	height: 30px;
+	width: 415px;
+	font-size: 15px;
+}
+
+
+#detailaddresssub{
+	position: absolute;
+	left: 39%;
+	top: 82%;
+	font-weight: bold;
+}
+
+#sample6_detailAddress{
+	position: absolute;
+	left: 39%;
+	top: 84.5%;
+	height: 30px;
+	width: 415px;
+	font-size: 15px;
+}
+
+#extraaddresssub{
+	position: absolute;
+	left: 39%;
+	top: 88%;
+	font-weight: bold;
+}
+
+#sample6_extraAddress{
+	position: absolute;
+	left: 39%;
+	top: 91.5%;
+	height: 30px;
+	width: 415px;
+	font-size: 15px;
+}
+
+
+#signUpButton{
+	position: absolute;
+	left: 42%;
+	top: 100.6%;
+	height: 33px;
+	width: 110px;
+	background-color: white;
+	font-weight: bold;
+	font-size: small;
+	cursor: pointer;
+	border-radius: 7%;
+}
+
+
+#joincancle{
+	position: absolute;
+	left: 50%;
+	top: 100.6%;
+	height: 33px;
+	width: 110px;
+	background-color: white;
+	font-weight: bold;
+	font-size: small;
+	cursor: pointer;
+	border-radius: 7%;	
+}
+
+
+
+
+/*	qnaList	*/
+
+#qna{
+	display: flex;
+    justify-content: center;
+    margin-top: 10%;
+    font-weight: bold;
+}
+
+table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+
+
+a {
+        text-decoration: none;
+        color: #000;
+    }
+    
+#cartList {
+        margin: 0 auto;
+        border-collapse: collapse;
+    }
+
+#cartList th,
+#cartList td {
+        border: none;
+        padding: 5px;
+        text-align: center;
+    }
+
+.center-align {
+    display: flex;
+    justify-content: center;
+    margin-top: 3%;
+}
+
+form {
+    width: 50%; 
+}
+
+#page{
+	position: absolute;
+	left: 43.5%;
+	top: 61.5%;
+}
+
+
+#qnawrite{
+	position: absolute;
+	left: 70%;
+	top: 60.9%;
+	height: 33px;
+	width: 80px;
+	background-color: white;
+	border: none;
+	font-weight: bold;
+	font-size: medium;
+	cursor: pointer;
+	border-radius: 7%;
+	
+}
+
+#qnaform {
+        position: absolute;
+        width: 900px;
+        height: 900px;
+        top: 25%;
+        left: 39%;
+    }
+
+
+#backtolist{
+   position: absolute;
+   left: 6%;
+   top: 38%;
+   height: 50px;
+   width: 130px;
+   background-color: white;
+   border: none;
+   font-weight: bold;
+   font-size: medium;
+   cursor: pointer;
+   
+}
+
+
+
+#gomain{
+   position: absolute;
+   left: 30%;
+   top: 38%;
+   height: 50px;
+   width: 130px;
+   background-color: white;
+   border: none;
+   font-weight: bold;
+   font-size: medium;
+   cursor: pointer;
+}
+
+
+#qnamain{
+   position: absolute;
+   font-size: large;
+   left: 46%;
+   top: 15%;
+}
+
+
+#qnasubject{
+   position: absolute;
+   font-size: small;
+   left: 38%;
+   top: 25%;
+   font-weight: bold;
+}
+
+#subjectinput{
+   position: absolute;
+   top: 28%;
+   left: 38%;
+}
+
+
+
+#qnasubmit{
+   position: absolute;
+   left: 58%;
+   top: 60%;
+   height: 40px;
+   width: 70px;
+   background-color: white;
+   font-weight: bold;
+   font-size: medium;
+   cursor: pointer;
+   border: none;
+}
+
+#back{
+   position: absolute;
+   left: 36%;
+   top: 60%;
+   height: 40px;
+   width: 100px;
+   background-color: white;
+   font-weight: bold;
+   font-size: medium;
+   cursor: pointer;
+   border: none;
+}
+
+
+#qnacontent{
+   position: absolute;
+   font-size: small;
+   left: 38%;
+   top: 32%;
+   font-weight: bold;
+}
+
+#contentbox{
+   position: absolute;
+   left: 38%;
+   top: 34%;
+}
+
+#secret{
+   position: absolute;
+   left: 38%;
+   top: 50%;
+}
+
+
+#secretmode{
+   position: absolute;
+   left: 39.5%;
+   top: 49.8%;
+}
+
+#pass{
+   position: absolute;
+   left: 38%;
+   top: 53%;
+}
+

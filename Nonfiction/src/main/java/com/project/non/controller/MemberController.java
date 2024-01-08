@@ -96,110 +96,102 @@ public class MemberController {
       return url;
    }
    
-   
-   @GetMapping("/kakaostart")
-	public @ResponseBody String kakaostart() {
-		
-		String a = "<script type='text/javascript'>" 
-				+ "location.href='https://kauth.kakao.com/oauth/authorize?"
-				+ "client_id=4fde1cbde4d82ed7b25bd2a750d98d3c" 
-				+ "&redirect_uri=http://localhost:8070/kakaoLogin"
-				+ "&response_type=code';" 
-				+ "</script>";
-		return a;
-	}
-	
-	@RequestMapping("/kakaoLogin")
-	public String loginKakao(HttpServletRequest request) throws UnsupportedEncodingException, IOException {
-
-		String code = request.getParameter("code");
-		String endpoint = "https://kauth.kakao.com/oauth/token";
-		URL url = new URL(endpoint);
-		String bodyData = "grant_type=authorization_code&";
-		bodyData += "client_id=4fde1cbde4d82ed7b25bd2a750d98d3c&";
-		bodyData += "redirect_uri=http://localhost:8070/kakaoLogin&";
-		bodyData += "code=" + code;
-		
-		HttpURLConnection conn = (HttpURLConnection) url.openConnection(); // import java.net.HttpURLConnection;
-		conn.setRequestMethod("POST");
-		conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
-		conn.setDoOutput(true);
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream(), "UTF-8"));
-		bw.write(bodyData);
-		bw.flush();
-		BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
-		String input = "";
-		StringBuilder sb = new StringBuilder(); 
-		while ((input = br.readLine()) != null) {
-			sb.append(input);
-			System.out.println(input); 
-		}
-		Gson gson = new Gson();
-		OAuthToken oAuthToken = gson.fromJson(sb.toString(), OAuthToken.class);
-		String endpoint2 = "https://kapi.kakao.com/v2/user/me";
-		URL url2 = new URL(endpoint2);
-		
-		HttpsURLConnection conn2 = (HttpsURLConnection) url2.openConnection();
-		conn2.setRequestProperty("Authorization", "Bearer " + oAuthToken.getAccess_token());
-		conn2.setDoOutput(true);
-		BufferedReader br2 = new BufferedReader(new InputStreamReader(conn2.getInputStream(), "UTF-8"));
-		String input2 = "";
-		StringBuilder sb2 = new StringBuilder();
-		while ((input2 = br2.readLine()) != null) {
-			sb2.append(input2);
-			System.out.println(input2);
-		}
-		
-		Gson gson2 = new Gson();
-		KakaoProfile kakaoProfile = gson2.fromJson(sb2.toString(), KakaoProfile.class);
-		KakaoAccount ac = kakaoProfile.getAccount();
-		Profile pf = ac.getProfile();
-		
-		
-		HashMap< String, Object > paramMap = new HashMap< String, Object >();
-		paramMap.put("userid", kakaoProfile.getId() );
-		paramMap.put("ref_cursor", null );
-		ms.getMember( paramMap );
-		
-		ArrayList< HashMap<String, Object> > list 
-		= (ArrayList< HashMap<String, Object> >) paramMap.get("ref_cursor" );
-		
-		if ( list == null || list.size() == 0 ) {
-			
-			paramMap.put("userid", kakaoProfile.getId() );
-			paramMap.put("email" , "kakao");
-			paramMap.put("name" , pf.getNickname());
-			paramMap.put("provider" , "kakao");
-			paramMap.put("phone" , "kakao");
-			ms.joinKakao( paramMap );
-			
-			paramMap.put("ref_cursor", null );
-			ms.getMember( paramMap );
-			list = (ArrayList< HashMap<String, Object> >) paramMap.get("ref_cursor" );			
-		}
-	
-		HashMap<String , Object> memberMap = list.get(0);
+	@GetMapping("/logout")
+	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		session.setAttribute("loginUser", memberMap);
+		session.removeAttribute("loginUser");
 		return "redirect:/";
 	}
    
    
+   @GetMapping("/kakaostart")
+   public @ResponseBody String kakaostart() {
+      
+      String a = "<script type='text/javascript'>" 
+            + "location.href='https://kauth.kakao.com/oauth/authorize?"
+            + "client_id=8ff5ea79e1ba676b9ff4efb6647881e3" 
+            + "&redirect_uri=http://localhost:8070/kakaoLogin"
+            + "&response_type=code';" 
+            + "</script>";
+      return a;
+   }
    
+   @RequestMapping("/kakaoLogin")
+   public String loginKakao(HttpServletRequest request) throws UnsupportedEncodingException, IOException {
+
+      String code = request.getParameter("code");
+      String endpoint = "https://kauth.kakao.com/oauth/token";
+      URL url = new URL(endpoint);
+      String bodyData = "grant_type=authorization_code&";
+      bodyData += "client_id=8ff5ea79e1ba676b9ff4efb6647881e3&";
+      bodyData += "redirect_uri=http://localhost:8070/kakaoLogin&";
+      bodyData += "code=" + code;
+      
+      HttpURLConnection conn = (HttpURLConnection) url.openConnection(); // import java.net.HttpURLConnection;
+      conn.setRequestMethod("POST");
+      conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+      conn.setDoOutput(true);
+      BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream(), "UTF-8"));
+      bw.write(bodyData);
+      bw.flush();
+      BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+      String input = "";
+      StringBuilder sb = new StringBuilder(); 
+      while ((input = br.readLine()) != null) {
+         sb.append(input);
+         System.out.println(input); 
+      }
+      Gson gson = new Gson();
+      OAuthToken oAuthToken = gson.fromJson(sb.toString(), OAuthToken.class);
+      String endpoint2 = "https://kapi.kakao.com/v2/user/me";
+      URL url2 = new URL(endpoint2);
+      
+      HttpsURLConnection conn2 = (HttpsURLConnection) url2.openConnection();
+      conn2.setRequestProperty("Authorization", "Bearer " + oAuthToken.getAccess_token());
+      conn2.setDoOutput(true);
+      BufferedReader br2 = new BufferedReader(new InputStreamReader(conn2.getInputStream(), "UTF-8"));
+      String input2 = "";
+      StringBuilder sb2 = new StringBuilder();
+      while ((input2 = br2.readLine()) != null) {
+         sb2.append(input2);
+         System.out.println(input2);
+      }
+      
+      Gson gson2 = new Gson();
+      KakaoProfile kakaoProfile = gson2.fromJson(sb2.toString(), KakaoProfile.class);
+      KakaoAccount ac = kakaoProfile.getAccount();
+      Profile pf = ac.getProfile();
+      
+      
+      HashMap< String, Object > paramMap = new HashMap< String, Object >();
+      paramMap.put("userid", kakaoProfile.getId() );
+      paramMap.put("ref_cursor", null );
+      ms.getMember( paramMap );
+      
+      ArrayList< HashMap<String, Object> > list 
+      = (ArrayList< HashMap<String, Object> >) paramMap.get("ref_cursor" );
+      
+      if ( list == null || list.size() == 0 ) {
+         
+         paramMap.put("userid", kakaoProfile.getId() );
+         paramMap.put("email" , "kakao");
+         paramMap.put("name" , pf.getNickname());
+         System.out.println("99"+pf.getNickname());
+         paramMap.put("provider" , "kakao");
+         paramMap.put("phone" , "kakao");
+         ms.joinKakao( paramMap );
+         
+         paramMap.put("ref_cursor", null );
+         ms.getMember( paramMap );
+         list = (ArrayList< HashMap<String, Object> >) paramMap.get("ref_cursor" );         
+      }
    
-   
-   
-   
-   
-   
-   
-   
-   @GetMapping("/logout")
-   public String logout(HttpServletRequest request) {
+      HashMap<String , Object> memberMap = list.get(0);
       HttpSession session = request.getSession();
-      session.removeAttribute("loginUser");
+      session.setAttribute("loginUser", memberMap);
       return "redirect:/";
    }
+   
    
    @GetMapping("/contract")
    public String contract() {
@@ -298,30 +290,30 @@ public class MemberController {
    }
    
    
-	@GetMapping("/memberEditForm")
-	public ModelAndView memberEditForm( HttpServletRequest request ) {
-		ModelAndView mav = new ModelAndView();
-		
-		MemberVO dto = new MemberVO();  // 저장용 객체
-		HttpSession session = request.getSession();
-		HashMap<String, Object> loginUser 
-			= (HashMap<String, Object>)session.getAttribute("loginUser");
-		
-		dto.setUserid( (String)loginUser.get("USERID") );
-		dto.setName( (String)loginUser.get("NAME") );
-		dto.setEmail( (String)loginUser.get("EMAIL") );
-		dto.setPhone( (String)loginUser.get("PHONE") );
-		dto.setZip_num( (String)loginUser.get("ZIP_NUM") );
-		dto.setAddress1( (String)loginUser.get("ADDRESS1") );
-		dto.setAddress2( (String)loginUser.get("ADDRESS2") );
-		dto.setAddress3( (String)loginUser.get("ADDRESS3") );
-		
-		
-		mav.addObject("dto", dto);
-		
-		mav.setViewName("member/memberUpdate");
-		return mav;
-	}
+   @GetMapping("/memberEditForm")
+   public ModelAndView memberEditForm( HttpServletRequest request ) {
+      ModelAndView mav = new ModelAndView();
+      
+      MemberVO dto = new MemberVO();  // 저장용 객체
+      HttpSession session = request.getSession();
+      HashMap<String, Object> loginUser 
+         = (HashMap<String, Object>)session.getAttribute("loginUser");
+      
+      dto.setUserid( (String)loginUser.get("USERID") );
+      dto.setName( (String)loginUser.get("NAME") );
+      dto.setEmail( (String)loginUser.get("EMAIL") );
+      dto.setPhone( (String)loginUser.get("PHONE") );
+      dto.setZip_num( (String)loginUser.get("ZIP_NUM") );
+      dto.setAddress1( (String)loginUser.get("ADDRESS1") );
+      dto.setAddress2( (String)loginUser.get("ADDRESS2") );
+      dto.setAddress3( (String)loginUser.get("ADDRESS3") );
+      
+      
+      mav.addObject("dto", dto);
+      
+      mav.setViewName("member/memberUpdate");
+      return mav;
+   }
    
    
    @PostMapping("/memberUpdate")
@@ -363,43 +355,43 @@ public class MemberController {
    }
    
    
-	@RequestMapping("/deleteMember")
-	public String withdrawal( HttpServletRequest request , Model model) {
-		
-		HttpSession session = request.getSession();
-		HashMap<String, Object> mvo 
-			= ( HashMap<String, Object> )session.getAttribute("loginUser");
-		String userid = (String)mvo.get("USERID");
-		HashMap<String, Object> paramMap = new HashMap<String, Object>();
-		paramMap.put("userid", userid);
-		ms.deleteMember( paramMap );
-		model.addAttribute("message" , "회원탈퇴가 정상적으로 처리되었습니다");
-		return "member/login";
-	}
-	
-	
-	
-	
+   @RequestMapping("/deleteMember")
+   public String withdrawal( HttpServletRequest request , Model model) {
+      
+      HttpSession session = request.getSession();
+      HashMap<String, Object> mvo 
+         = ( HashMap<String, Object> )session.getAttribute("loginUser");
+      String userid = (String)mvo.get("USERID");
+      HashMap<String, Object> paramMap = new HashMap<String, Object>();
+      paramMap.put("userid", userid);
+      ms.deleteMember( paramMap );
+      model.addAttribute("message" , "회원탈퇴가 정상적으로 처리되었습니다");
+      return "member/login";
+   }
+   
+   
+   
+   
 }
-	
-	
-	/*
-	 * @RequestMapping("/idSearch") public String idSearchForm() { return
-	 * "idSearch"; }
-	 */
-		/*
-		 * @RequestMapping("/idSearchResult") public String
-		 * idSearchResult(@RequestParam("email") String email, Model model) { // 이메일 주소를
-		 * 사용하여 아이디 찾기 로직 수행 User user = userRepository.findByEmail(email);
-		 * 
-		 * // 결과를 모델에 담아서 뷰로 전달 if (user != null) { model.addAttribute("userId",
-		 * user.getId()); } else { model.addAttribute("errorMessage",
-		 * "일치하는 이메일 주소가 없습니다."); }
-		 * 
-		 * return "idSearchResult"; }
-		 */
-	
-	
-	
-	
+   
+   
+   /*
+    * @RequestMapping("/idSearch") public String idSearchForm() { return
+    * "idSearch"; }
+    */
+      /*
+       * @RequestMapping("/idSearchResult") public String
+       * idSearchResult(@RequestParam("email") String email, Model model) { // 이메일 주소를
+       * 사용하여 아이디 찾기 로직 수행 User user = userRepository.findByEmail(email);
+       * 
+       * // 결과를 모델에 담아서 뷰로 전달 if (user != null) { model.addAttribute("userId",
+       * user.getId()); } else { model.addAttribute("errorMessage",
+       * "일치하는 이메일 주소가 없습니다."); }
+       * 
+       * return "idSearchResult"; }
+       */
+   
+   
+   
+   
    

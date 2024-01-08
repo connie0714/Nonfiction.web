@@ -7,6 +7,7 @@ import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project.non.dao.IAdminDao;
 import com.project.non.dao.ICustomerDao;
 import com.project.non.dto.Paging;
 
@@ -18,6 +19,9 @@ public class CustomerService {
 	
 	@Autowired
 	ICustomerDao cdao;
+	
+	@Autowired
+	IAdminDao adao;
 
 	public void listQna(HashMap<String, Object> paramMap) {
 		cdao.listQna(paramMap);
@@ -65,7 +69,7 @@ public class CustomerService {
 	      paramMap.put("cnt", 0);
 	      paramMap.put("tableName", "qna");
 	      paramMap.put("key", key);
-	      cdao.customerGetAllCount(paramMap);
+	      adao.adminGetAllCount(paramMap);
 	      int count=Integer.parseInt(paramMap.get("cnt").toString());
 	      paging.setTotalCount(count);
 	      paging.calPaging();

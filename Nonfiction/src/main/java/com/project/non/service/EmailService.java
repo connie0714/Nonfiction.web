@@ -8,12 +8,11 @@ import org.springframework.stereotype.Service;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
-import lombok.RequiredArgsConstructor;
 
+/* @RequiredArgsConstructor */
 @Service
-@RequiredArgsConstructor
 public class EmailService {
-    private final JavaMailSender emailSender;
+    private final JavaMailSender emailSender = null;
     private String authNum; // 인증 번호
 
     // 인증번호 8자리 무작위 생성
