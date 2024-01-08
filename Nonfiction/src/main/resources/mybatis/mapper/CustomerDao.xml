@@ -13,7 +13,7 @@
 			CALL listQna( 
 				#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=qnaMap}
 			)	  
-		}
+		} 
 	</select>
 	
 	

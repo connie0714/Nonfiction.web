@@ -268,9 +268,6 @@ ALTER TABLE review
 
 
 
-
-
-
 /* Comments */
 
 COMMENT ON COLUMN product.price1 IS '원가';

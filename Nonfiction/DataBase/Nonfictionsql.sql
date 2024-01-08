@@ -71,6 +71,19 @@ END;
 
 -- 승희 qna
 
+CREATE OR REPLACE PROCEDURE insertQna(
+    p_userid IN qna.userid%TYPE,
+    p_secret IN qna.secret%TYPE,
+    p_pass IN qna.pass%TYPE,
+    p_subject  IN qna.subject%TYPE,
+    p_content  IN qna.content%TYPE )
+IS
+BEGIN
+    insert into qna(qseq, userid, secret, pass, subject, content) 
+    values( qna_seq.nextVal, p_userid, p_secret, p_pass, p_subject, p_content );
+    commit;    
+END;
+
 CREATE OR REPLACE PROCEDURE listQna (
     p_rc   OUT     SYS_REFCURSOR )
 IS
