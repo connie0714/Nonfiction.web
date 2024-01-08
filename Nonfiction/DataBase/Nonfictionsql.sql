@@ -200,9 +200,12 @@ CREATE OR REPLACE PROCEDURE adminGetAllCount(
 IS
 BEGIN
 -- 전달된 KEY 값으로 검색한 결과의 레코드갯수를 조회
-IF p_tableName='product' THEN
+	IF p_tableName='product' THEN
     SELECT COUNT(*) INTO p_cnt FROM product WHERE name LIKE '%'||p_key||'%'
     OR  content LIKE '%'||p_key||'%';
+    
+    ELSIF p_tableName='qna' THEN
+    SELECT COUNT(*) INTO p_cnt FROM qna WHERE subject LIKE '%'||p_key||'%' OR  content LIKE '%'||p_key||'%';
 END IF;
 END;
 
