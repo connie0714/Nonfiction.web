@@ -36,7 +36,7 @@ public class CustomerController {
 		if( session.getAttribute("loginUser")==null) 
 			mav.setViewName("member/login");
 		else {
-			HashMap<String, Object> resultMap  = cs.getQnaList( request );
+			HashMap<String, Object> resultMap  = cs.getQnaList( request);
 			
 			mav.addObject("qnaList",resultMap.get("ref_cursor") );
 			mav.addObject("paging", resultMap.get("paging") );
