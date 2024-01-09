@@ -59,6 +59,7 @@ public class OrderController {
 			paramMap.put("oseq", oseq);
 			paramMap.put("ref_cursor", null);
 			os.listOrderByOseq( paramMap );
+			
 			mav.addObject("orderList", paramMap.get("ref_cursor") );
 			mav.addObject("totalPrice", paramMap.get("totalPrice") );
 			mav.setViewName("mypage/orderList");

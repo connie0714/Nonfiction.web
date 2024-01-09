@@ -9,8 +9,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/index.css">
+<link rel="stylesheet" type="text/css" href="../css/member.css">
 <script type="text/javascript" src="../script/member.js"></script>
+<!-- 멤버 관련 js  -->
+<script type="text/javascript" src="../script/mypage.js"></script>
+<!-- mypage, order, cart에 쓰일 js -->
 <script type="text/javascript" src="../script/index.js"></script>
+<!-- 모달 1:1 문의 버튼, 해더 스크롤 내릴시 일부 숨김용 js -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
@@ -77,7 +82,7 @@
 				        </c:choose>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<div class="serif">
-							<a href="">CART(<span class="cart-count">0</span>)
+							<a href="cartList">CART(<span class="cart-count">0</span>)
 							</a>
 						</div>
 					</div>
