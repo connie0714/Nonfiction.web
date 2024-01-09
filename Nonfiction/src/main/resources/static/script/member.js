@@ -21,6 +21,11 @@ function idcheck(){
 }
 
 
+
+
+
+
+
 function idok( userid ){
 	opener.formm.userid.value = userid;
 	opener.formm.reid.value = userid;

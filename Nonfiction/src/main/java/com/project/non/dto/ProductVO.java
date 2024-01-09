@@ -13,7 +13,5 @@ public class ProductVO {
 	/* 카테고리 */
 	private String shop;		// shop 매뉴
 	private String bestyn;		// 인기상품
-	private String holidayyn;	// 이벤트상품
-	private String acc;			// 기타상품
 	
 }

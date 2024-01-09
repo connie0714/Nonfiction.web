@@ -24,9 +24,10 @@
 		<input id="submit" type="submit" value="Login"><br>
 						
 		<div id="forgotten">Forgotten&nbsp;</div>
-		<div id="forgottenid"><a href="member/idSearch">ID</a>&nbsp;</div>
+		<div id="forgottenid"><a href="idSearch">ID</a>&nbsp;</div>
 		<div id="forgottenor">or&nbsp;</div>
-	    <div id="forgottenpw"><a href="member/pwdSearch">Password</a>&nbsp;</div>
+	    <div id="forgottenpw"><a href="pwdSearch">Password</a>&nbsp;</div>
+	  
 	    
 	    <div id="nonmem">아직 회원이 아니세요?</div>
 	     <button type="button" id="joinbtn">Sign Up</button>

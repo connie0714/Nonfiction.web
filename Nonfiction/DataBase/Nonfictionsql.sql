@@ -156,6 +156,135 @@ BEGIN
     OPEN p_cur FOR SELECT * FROM product WHERE pseq=p_pseq;
 END;
 
+CREATE OR REPLACE PROCEDURE insertCart(
+    p_userid IN cart.userid%TYPE,
+    p_pseq  IN cart.pseq%TYPE,
+    p_quantity  IN cart.quantity%TYPE )
+IS
+BEGIN
+    INSERT INTO cart( cseq, userid, pseq, quantity ) 
+    VALUES( cart_seq.nextVal, p_userid, p_pseq, p_quantity );
+    COMMIT;    
+END;
+
+
+
+
+CREATE OR REPLACE PROCEDURE deleteCart(
+    p_cseq  IN cart.cseq%TYPE   )
+IS
+BEGIN
+    delete from cart where cseq = p_cseq;
+    commit;    
+END;
+
+
+
+
+
+
+
+
+CREATE OR REPLACE PROCEDURE listCart(
+    p_userid IN cart.userid%TYPE, 
+    p_cur OUT SYS_REFCURSOR   ) 
+IS
+BEGIN
+    OPEN p_cur FOR SELECT * FROM cart_view where userid=p_userid;
+END;
+
+
+
+CREATE OR REPLACE PROCEDURE insertOrder(
+    p_userid IN orders.userid%TYPE,
+    p_oseq OUT orders.oseq%TYPE
+)
+IS
+    v_oseq orders.oseq%TYPE;
+    cart_cur SYS_REFCURSOR;
+    v_cseq cart.cseq%TYPE;
+    v_pseq cart.pseq%TYPE;
+    v_quantity cart.quantity%TYPE;
+BEGIN
+    INSERT INTO orders(oseq, userid) VALUES( orders_seq.nextVal, p_userid );
+    
+    SELECT MAX(oseq) INTO v_oseq FROM orders;
+    
+    OPEN cart_cur FOR SELECT cseq, pseq, quantity FROM cart WHERE userid=p_userid;
+    LOOP 
+        FETCH cart_cur INTO v_cseq, v_pseq, v_quantity; 
+        EXIT WHEN cart_cur%NOTFOUND; 
+        INSERT INTO order_detail(odseq, oseq, pseq, quantity)
+        VALUES( order_detail_seq.nextVal, v_oseq, v_pseq, v_quantity);
+        DELETE FROM cart WHERE cseq=v_cseq;
+    END LOOP;
+    COMMIT;
+    p_oseq := v_oseq;
+    
+EXCEPTION WHEN OTHERS THEN
+    ROLLBACK;
+END;
+
+
+
+CREATE OR REPLACE PROCEDURE listOrderByOseq(
+    p_oseq IN orders.oseq%TYPE, 
+    p_cur OUT SYS_REFCURSOR   )
+IS
+BEGIN
+    OPEN p_cur FOR SELECT * FROM order_view where oseq=p_oseq ORDER BY RESULT;
+END;
+
+
+CREATE OR REPLACE PROCEDURE insertOrderOne(
+    p_userid IN orders.userid%TYPE,
+    p_pseq IN order_detail.pseq%TYPE,
+    p_quantity IN order_detail.quantity%TYPE,
+    p_oseq OUT orders.oseq%TYPE
+)
+IS
+    v_oseq orders.oseq%TYPE;
+BEGIN
+    INSERT INTO ORDERS(oseq, userid) VALUES( orders_seq.nextVal, p_userid); 
+    SELECT MAX(oseq) INTO v_oseq FROM orders;
+    INSERT INTO order_detail( odseq, oseq, pseq, quantity)
+    VALUES( order_detail_seq.nextVal, v_oseq, p_pseq, p_quantity);
+    p_oseq := v_oseq;
+    COMMIT;
+EXCEPTION WHEN OTHERS THEN
+    ROLLBACK;
+END;
+
+
+
+
+
+CREATE OR REPLACE PROCEDURE listOrderByIng(
+    p_userid IN orders.userid%TYPE,
+    p_rc OUT SYS_REFCURSOR
+)
+IS
+BEGIN
+    OPEN p_rc FOR
+    SELECT DISTINCT oseq FROM order_view 
+    WHERE userid=p_userid AND (result='1' OR result='2' OR result='3') ORDER BY OSEQ DESC;
+END;
+
+
+
+
+CREATE OR REPLACE PROCEDURE listOrderAll(
+    p_userid IN orders.userid%TYPE,
+    p_rc OUT SYS_REFCURSOR
+)
+IS
+BEGIN
+    OPEN p_rc FOR
+    SELECT DISTINCT oseq FROM ORDER_VIEW WHERE userid=p_userid ORDER BY OSEQ DESC;
+END;
+
+update order_detail set result='4' where oseq=22;
+commit
 
 -- 종범 모달 1:1
 
