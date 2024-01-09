@@ -38,12 +38,16 @@
             </c:forEach>
         </table>
     </form>
+	<div id="page">
+		<style type="text/css">
+			#paging{
+			position: relative;}
+		</style>
+		<jsp:include page="../include/paging/paging.jsp">
+			<jsp:param name="command" value="qnaList" />
+		</jsp:include>
+	</div>
     <input id="qnawrite" type="button"  value="Write"  class="cancel" onclick="location.href='/qnaWriteForm'">
-</div>
-<div id="page">
-	<jsp:include page="../include/paging/paging.jsp">
-		<jsp:param name="command" value="qnaList" />
-	</jsp:include>
 </div>
 
 

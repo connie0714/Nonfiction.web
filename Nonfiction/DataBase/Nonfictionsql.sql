@@ -228,11 +228,11 @@ END;
 
 
 CREATE OR REPLACE PROCEDURE listOrderByOseq(
-    p_oseq IN orders.oseq%TYPE, 
+    p_userid IN members.userid%TYPE, 
     p_cur OUT SYS_REFCURSOR   )
 IS
 BEGIN
-    OPEN p_cur FOR SELECT * FROM order_view where oseq=p_oseq ORDER BY RESULT;
+    OPEN p_cur FOR SELECT * FROM order_view where userid=p_userid ORDER BY RESULT;
 END;
 
 

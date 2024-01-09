@@ -20,7 +20,7 @@
 	<select id="listOrderByOseq" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{  
 			CALL listOrderByOseq( 
-				#{oseq},
+				#{userid},
 				#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=orderMap}
 			)	  
 		}

@@ -46,8 +46,7 @@ public class OrderController {
 	}
 	
 	@GetMapping( "/orderList")
-	public ModelAndView orderList( @RequestParam("oseq") int oseq,
-			HttpServletRequest request ) {
+	public ModelAndView orderList( HttpServletRequest request ) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		HashMap<String, Object> loginUser 
@@ -56,7 +55,7 @@ public class OrderController {
 			mav.setViewName("member/login");
 		}else {	
 			HashMap<String , Object> paramMap = new HashMap<String , Object>();
-			paramMap.put("oseq", oseq);
+			paramMap.put("userid", loginUser.get("USERID"));
 			paramMap.put("ref_cursor", null);
 			os.listOrderByOseq( paramMap );
 			
