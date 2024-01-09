@@ -6,6 +6,8 @@ import java.util.Random;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import com.project.non.dto.EmailCheckReq;
+
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
@@ -86,4 +88,14 @@ public class EmailService {
 
         return authNum; //인증 코드 반환
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

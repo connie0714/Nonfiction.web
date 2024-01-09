@@ -12,19 +12,18 @@
 
 <div id="wrap">
 <h1>ID 검색</h1>
-<form method="get" name="foorm" action="pwdSearchForm">
-	ID <input type="text" name="userid" value="${userid}">
-	<input type=submit value="검색" class="submit"><br>     
-	<div style="margin-top: 20px">
-		<c:if test="${result == 1}">
-			<script type="text/javascript">opener.document.foorm.userid.value="";</script>
-			${userid} 아이디 확인이 완료되었습니다.
-		</c:if>
-		<c:if test="${result==-1}">
-			${userid}는 아이디가 없습니다.    
-			<input type="button" value="사용" class="cancel"	onclick="idok('${userid}')">
-		</c:if>
-	</div>
+<form method="get" name="formmm" action="pwdCheckForm">
+    User ID <input type="text" name="userid" value="${userid}">
+    <input type="submit" value="검색" class="submit"><br>     
+    <div style="margin-top: 20px">
+        <c:if test="${result == 1}">
+            <input type="button" value="사용" class="cancel" onclick="idokforpwd('${userid}')">
+            아이디 확인이 완료되었습니다.
+        </c:if>
+        <c:if test="${result == -1}">
+            아이디가 없습니다.
+        </c:if>
+    </div>
 </form>
 </div>
 

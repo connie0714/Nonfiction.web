@@ -163,7 +163,7 @@
         
    		<div id="buttons">
 	     <input type="submit" value="회원가입" class="submit" id="signUpButton" onclick="document.getElementById('resultMessage').innerHTML = '회원가입이 완료되었습니다.';" disabled>
-	    <input type="reset" value="취소" class="cancel" onclick="location.href='loginCancle'">
+	     <input type="reset" value="취소" class="cancel" onclick="location.href='loginCancle'">
 	</div>
         
     </fieldset>	
