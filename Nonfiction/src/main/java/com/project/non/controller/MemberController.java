@@ -357,7 +357,7 @@ public class MemberController {
         return "member/pwdSearch";
     }
 
-	@GetMapping("/pwdSearchForm")
+	@GetMapping("/pwdSearchForm") 
 	public ModelAndView pwdSearchForm(@RequestParam("userid") String userid) {
 		ModelAndView mav = new ModelAndView();
 
