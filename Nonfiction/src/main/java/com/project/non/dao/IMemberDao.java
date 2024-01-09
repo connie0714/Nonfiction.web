@@ -17,4 +17,6 @@ public interface IMemberDao {
 
 	void joinKakao(HashMap<String, Object> paramMap);
 
+	
+
 }

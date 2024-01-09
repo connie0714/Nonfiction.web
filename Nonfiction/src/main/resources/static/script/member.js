@@ -12,7 +12,7 @@ function go_next(){
 function idcheck(){
 	if( document.formm.userid.value=="" ){
 		alert("아이디를 입력하고 중복체크를 진행하세요" );
-		documnet.formm.userid.focus();
+		documenet.formm.userid.focus();
 		return;
 	}
 	var url = "idCheckForm?userid=" + document.formm.userid.value;
@@ -20,6 +20,43 @@ function idcheck(){
 	window.open(url, "idcheck", opt);	
 }
 
+
+
+
+
+function pwdCheck() {
+    if (document.formmm.userid.value === "") {
+        alert("아이디를 입력하세요");
+        document.formmm.userid.focus();
+        return;
+    }
+    var url = "pwdSearchForm?userid=" + document.formmm.userid.value;
+    var opt = "toolbar=no, menubar=no, resizable=no, width=500, height=250, scrollbars=no";
+    window.open(url, "pwdcheck", opt);
+}
+
+
+
+function idokforpwd( userid ){
+	opener.formmm.userid.value = userid;
+	opener.formmm.reid.value = userid;
+	self.close();
+}
+
+
+
+function changePassword() {
+    var newPassword = document.getElementById("newPassword").value;
+    var confirmPassword = document.getElementById("confirmPassword").value;
+
+    // 비밀번호 일치 여부 체크
+    if (newPassword !== confirmPassword) {
+        alert("비밀번호가 일치하지 않습니다.");
+        return false; // 폼 전송을 중지합니다.
+    }
+
+    return true; // 폼을 제출합니다.
+}
 
 
 

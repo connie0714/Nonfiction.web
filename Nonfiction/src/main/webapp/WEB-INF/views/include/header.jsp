@@ -77,12 +77,12 @@
 				            </c:when>
 				            <c:otherwise>
 				                <div class="serif"><a href="logout">LOGOUT</a></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				            	<div class="serif"><a href="memberEditForm">ACCOUNT</a></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				            	<div class="serif"><a href="orderList">ACCOUNT</a></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				            </c:otherwise>
 				        </c:choose>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<div class="serif">
-							<a href="cartList">CART(<span class="cart-count">0</span>)
+							<a href="cartList">CART(<span class="cart-count"><fmt:formatNumber value="${cartCount}"/></span>)
 							</a>
 						</div>
 					</div>

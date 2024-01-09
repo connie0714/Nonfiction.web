@@ -9,18 +9,7 @@
 
 <script type="text/javascript" src="/script/member.js"></script>
 
-<script>
-function pwdSearch() {
-    if (document.foorm.userid.value === "") {
-        alert("아이디를 입력해주세요");
-        document.foorm.userid.focus();
-        return;
-    }
-    var url = "pwdSearchForm?userid=" + document.foorm.userid.value;
-    var opt = "toolbar=no, menubar=no, resizable=no, width=500, height=250, scrollbars=no";
-    window.open(url, "pwdSearch", opt);
-}
-</script>
+
 
 <script>
     var serverAuthCode = ""; // 서버에서 받은 인증번호를 저장하는 변수
@@ -93,7 +82,7 @@ function pwdSearch() {
 <body>
 
     <div>
-        <form action="pwdSearch" method="get" name="foorm">
+        <form action="pwdSearch" method="post" name="formmm">
             <h2>비밀번호 찾기</h2>
             <p>
                 아래 이메일주소를 입력하시면,<br> 입력하신 이메일로 새암호를 보내드립니다<br>
@@ -108,11 +97,12 @@ function pwdSearch() {
             
             <label>ID</label><input type="text" name="userid" size="12"  value="${dto.userid}" >
 	        <input type="hidden" name="reid"   value="${reid}">
-	        <input type="button" value="아이디 확인" class="dup" onclick="pwdSearch()"><br>
+	        <input type="button" value="중복 확인" class="dup" onclick="pwdCheck()"><br>
+	        
             
  
              <input type="email" id="email" name="email" value="${dto.email }"required>
-            <input type="button" value="인증번호 받기" onclick="sendAuthCode()"><br>
+             <input type="button" value="인증번호 받기" onclick="sendAuthCode()"><br>
             
             <label for="authCode">인증번호:</label>
 			<input type="text" id="authCode">
@@ -122,6 +112,7 @@ function pwdSearch() {
                 <input type="password" id="newPassword" placeholder="새로운 비밀번호">
                 <input type="password" id="confirmPassword" placeholder="비밀번호 확인">
                 <input type="button" value="비밀번호 변경" onclick="changePassword()">
+      
             </div>
         </form>
     </div>
