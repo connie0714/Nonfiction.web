@@ -8,7 +8,7 @@
 
 
 <div id="qna">Q&amp;A</div>
-	<div class="center-align">
+   <div class="center-align">
     <form name="formm" method="post">
         <table id="cartList">
             <c:forEach items="${qnaList}" var="qnaVO">
@@ -40,11 +40,10 @@
     </form>
     <input id="qnawrite" type="button"  value="Write"  class="cancel" onclick="location.href='/qnaWriteForm'">
 </div>
-
 <div id="page">
-<jsp:include page="../include/paging/paging.jsp">
-	<jsp:param name="command" value="qnaList" />
-</jsp:include>
+	<jsp:include page="../include/paging/paging.jsp">
+		<jsp:param name="command" value="qnaList" />
+	</jsp:include>
 </div>
 
 
