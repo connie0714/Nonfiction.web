@@ -13,7 +13,6 @@ import java.util.HashMap;
 
 import javax.net.ssl.HttpsURLConnection;
 
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,6 +33,7 @@ import com.project.non.dto.KakaoProfile.KakaoAccount;
 import com.project.non.dto.KakaoProfile.KakaoAccount.Profile;
 import com.project.non.dto.MemberVO;
 import com.project.non.dto.OAuthToken;
+import com.project.non.service.CartService;
 import com.project.non.service.EmailService;
 import com.project.non.service.MemberService;
 
@@ -51,6 +51,9 @@ public class MemberController {
 	@Autowired
 	EmailService es;
 
+	@Autowired
+	CartService cs;
+	
 	@GetMapping("/loginForm")
 	public String loginForm() {
 		return "member/login";
@@ -86,6 +89,15 @@ public class MemberController {
 			else if (memberMap.get("PWD").equals(membervo.getPwd())) {
 				HttpSession session = request.getSession();
 				session.setAttribute("loginUser", memberMap);
+				ModelAndView mav = new ModelAndView();
+					HashMap<String, Object> loginUser 
+					=  (HashMap<String, Object>)session.getAttribute("loginUser");
+					
+					paramMap.put("userid", loginUser.get("USERID"));
+					paramMap.put("ref_cursor", null);
+					cs.listCart( paramMap );
+					
+					mav.addObject("cartCount", (Integer) paramMap.get("count"));
 				url = "redirect:/";
 			}
 		}

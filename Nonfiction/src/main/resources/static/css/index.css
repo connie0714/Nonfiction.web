@@ -33,17 +33,16 @@
 }
 
 #footer-area {
-	top: 73vh;
+	position: relative;
+	margin-top: 22%;
 }
 
 #footer {
 	position: relative;
-	margin-top: 100%;
 	width: 100%;
 	font-family: 'Playfair Display', sans-serif;
 	/* padding:50px; */
 	overflow: hidden;
-	margin-top: 20px;
 	font-family: Union;
 	font-size: 14px;
 	font-weight: normal;

@@ -27,9 +27,10 @@
 <style type="text/css">
 
 #footer-area {
-	top:100%
+	position:relative;
+	margin-top:20px;
 }
 
 
-</style>
+</style> 
 <%@ include file="include/footer.jsp"  %>
