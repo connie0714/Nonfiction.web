@@ -347,3 +347,28 @@ select * from cart_view;
 
 alter table qna add secret char(1) default 'N';
 alter table qna add pass varchar2(30);
+
+
+
+
+create or replace view cart_view
+as
+select c.cseq, c.userid, m.name as mname, c.pseq, p.name as pname, c.quantity, p.price2, c.result, c.indate
+from cart c, product p, members m
+where c.pseq = p.pseq and c.userid = m.userid;
+
+select * from cart_view;
+
+
+
+
+
+create or replace view order_view
+as
+select  d.odseq, o.oseq, o.indate, o.userid, 
+         m.name as mname, m.zip_num, m.address1, m.address2, m.phone,
+         d.pseq, p.price2, d.quantity, d.result, p.name as pname
+from orders o, order_detail d, members m, product p
+where o.oseq=d.oseq and o.userid=m.userid and d.pseq=p.pseq;
+
+select * from order_view;
