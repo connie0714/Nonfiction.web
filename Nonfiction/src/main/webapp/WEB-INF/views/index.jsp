@@ -23,4 +23,13 @@
 
 
  </div>
+
+<style type="text/css">
+
+#footer-area {
+	top:100%
+}
+
+
+</style>
 <%@ include file="include/footer.jsp"  %>

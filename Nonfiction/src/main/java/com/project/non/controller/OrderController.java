@@ -67,4 +67,30 @@ public class OrderController {
 		return mav;
 	}
 	
+	@PostMapping("/orderInsertOne")
+	public String orderInsertOne(
+			@RequestParam("pseq") int pseq,
+			@RequestParam("quantity") int quantity,
+			HttpServletRequest request ) {
+		int oseq = 0;
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser 
+			= (HashMap<String, Object>)session.getAttribute("loginUser");
+		if( loginUser == null ) {
+			return "member/login";
+		}else {
+			// userid, pseq, quantity 전송
+			// oseq 수신   
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("userid", loginUser.get("USERID") );
+			paramMap.put("pseq", pseq);
+			paramMap.put("quantity", quantity);
+			paramMap.put("oseq", 0); 
+			
+			os.insertOrderOne( paramMap );
+			oseq = (Integer) paramMap.get("oseq");
+		}
+		return "redirect:/orderList?oseq="+oseq;
+	
+	}
 }

@@ -343,6 +343,7 @@ delete answer where kind='주문/배송';
 select * from answer;
 
 select * from cart;
+select * from cart_view;
 
 alter table qna add secret char(1) default 'N';
 alter table qna add pass varchar2(30);

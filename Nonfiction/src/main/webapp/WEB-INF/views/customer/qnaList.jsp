@@ -1,19 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8"> 
-<title>Insert title here</title>
+<%@ include file="../include/header.jsp" %>
+
+
 <script type="text/javascript" src="/script/member.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/member.css">
-</head>
-<body>
+
 
 <div id="qna">Q&amp;A</div>
-	<div class="center-align">
+   <div class="center-align">
     <form name="formm" method="post">
         <table id="cartList">
             <c:forEach items="${qnaList}" var="qnaVO">
@@ -45,13 +40,12 @@
     </form>
     <input id="qnawrite" type="button"  value="Write"  class="cancel" onclick="location.href='/qnaWriteForm'">
 </div>
-
 <div id="page">
-<jsp:include page="../include/paging/paging.jsp">
-	<jsp:param name="command" value="qnaList" />
-</jsp:include>
+	<jsp:include page="../include/paging/paging.jsp">
+		<jsp:param name="command" value="qnaList" />
+	</jsp:include>
 </div>
 
-</body>
-</html>
 
+
+ <%@ include file="../include/footer.jsp" %>

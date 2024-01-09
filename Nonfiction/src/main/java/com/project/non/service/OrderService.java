@@ -30,5 +30,9 @@ public class OrderService {
 		paramMap.put("totalPrice", totalPrice );		
 		paramMap.put("orderDetail", list.get(0) );  // order Detail 페이지에서만 사용할 예정
 	}
+
+	public void insertOrderOne(HashMap<String, Object> paramMap) {
+		odao.insertOrderOne( paramMap );	
+	}
 	
 }
