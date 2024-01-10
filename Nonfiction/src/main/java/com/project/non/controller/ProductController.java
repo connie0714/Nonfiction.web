@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.project.non.service.ProductService;
 
 @Controller
-public class ProductController {
+public class ProductController{
 
 	@Autowired
 	ProductService ps;
