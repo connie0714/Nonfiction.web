@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Service
-public class AdminService {
+public class AdminService { 
 
 	@Autowired
 	IAdminDao adao;
