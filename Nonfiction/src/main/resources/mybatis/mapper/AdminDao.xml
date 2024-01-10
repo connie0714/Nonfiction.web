@@ -36,4 +36,51 @@
 		}
 	</select>
 	
+		<select id="getQna" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{  
+			CALL getQna( 
+				#{qseq}, 
+				#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap}
+			)	  
+		}
+	</select>
+	
+	
+		<select id="getQnaList" statementType="CALLABLE"  parameterType="java.util.HashMap" >
+		{
+			CALL getQnaList( 
+				#{startNum}, #{endNum}, #{key}, 
+				#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap}
+			)
+		}
+	</select>
+	
+	<update id="updateQna" statementType="CALLABLE" parameterType="java.util.HashMap" >
+		{ 
+			CALL updateQna( 
+				#{qseq},#{reply}
+			)	 
+		}
+	</update>
+	
+	
+	<select id="getMemberList" statementType="CALLABLE"  parameterType="java.util.HashMap" >
+		{
+			CALL getMemberList( 
+				#{startNum}, #{endNum}, #{key}, 
+				#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap}
+			)
+		}
+	</select>
+	
+	
+	<update id="memberReinsert" statementType="CALLABLE" parameterType="java.util.HashMap" >
+		{ 
+			CALL memberReinsert( 
+				#{userid},#{useyn}
+			)	 
+		}
+	</update>
+	
+	
 </mapper>

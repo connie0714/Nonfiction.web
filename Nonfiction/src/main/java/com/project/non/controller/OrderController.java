@@ -45,7 +45,7 @@ public class OrderController {
 		return "redirect:/orderList?oseq="+oseq;
 	}
 	
-	@GetMapping( "/orderList")
+	@GetMapping("/orderList")
 	public ModelAndView orderList( HttpServletRequest request ) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();

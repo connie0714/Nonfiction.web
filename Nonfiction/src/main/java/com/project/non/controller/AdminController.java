@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.non.service.AdminService;
+import com.project.non.service.CustomerService;
+import com.project.non.service.MemberService;
 import com.project.non.service.ProductService;
 
 import jakarta.servlet.ServletContext;
@@ -29,6 +31,12 @@ public class AdminController {
 	
 	@Autowired
 	ServletContext context;
+	
+	@Autowired
+	MemberService ms;
+	
+	@Autowired
+	CustomerService cs;
 	
 	@GetMapping("/admin")
 	public String admin() {
@@ -63,11 +71,14 @@ public class AdminController {
 	      else if(adminpwd.equals((String)resultMap.get("PWD"))) {
 	         HttpSession session=request.getSession();
 	         session.setAttribute("loginAdmin", resultMap);
-	         url="redirect:/productList";
+	         url="admin/sub_menu";
 	      }
 	     }
 		return url;
 	}
+	
+	
+	
 	
 	 @GetMapping("/productList")
 	   public ModelAndView productList( HttpServletRequest request ) {
@@ -91,5 +102,85 @@ public class AdminController {
 	      }
 	      return mav;
 	   }
+	 
+	 
+	 @GetMapping("/adminQnaList")
+		public ModelAndView adminQnaList( HttpServletRequest request ) {
+			ModelAndView mav = new ModelAndView();
+			
+			HttpSession session = request.getSession();
+			if( session.getAttribute("loginAdmin")==null) 
+				mav.setViewName("admin/adminLoginForm");
+			else {
+				HashMap<String, Object> resultMap  = as.getQnaList( request );
+				
+				mav.addObject("qnaList",resultMap.get("ref_cursor") );
+				mav.addObject("paging", resultMap.get("paging") );
+				mav.addObject("key",resultMap.get("key") );
+				mav.setViewName("admin/qna/adminQnaList");
+			}
+			return mav;
+		}
+	 
+	 @GetMapping("/adminQnaView")
+		public ModelAndView adminQnaView(@RequestParam("qseq")int qseq) {
+			ModelAndView mav = new ModelAndView();
+			
+				HashMap<String , Object>paramMap = new HashMap<String, Object>();
+				paramMap.put("qseq", qseq);
+				paramMap.put("ref_cursor", null);
+				cs.getQna(paramMap);
+				ArrayList< HashMap<String , Object> > list
+					=(ArrayList< HashMap<String , Object> >) paramMap.get("ref_cursor");
+				
+				HashMap<String , Object> qvo = list.get(0);
+				mav.addObject("qnaVO", qvo);
+				mav.setViewName("admin/qna/adminQnaView");
+				
+				return mav;	
+	 }
+	 
+	 @PostMapping("/adminQnaRepSave")
+		public String adminQnaRepSave(@RequestParam("qseq")int qseq,@RequestParam("reply")String reply) {
+			HashMap<String , Object>paramMap = new HashMap<String, Object>();
+			paramMap.put("qseq", qseq);
+			paramMap.put("reply", reply);
+			as.updateQna(paramMap);
+			return "redirect:/adminQnaView?qseq="+qseq;
+			
+		}
+	 
+	 
+	 @GetMapping("/memberList")
+		public ModelAndView memberList( HttpServletRequest request ) {
+			ModelAndView mav = new ModelAndView();
+			
+			HttpSession session = request.getSession();
+			if( session.getAttribute("loginAdmin")==null) 
+				mav.setViewName("admin/adminLoginForm");
+			else {
+				HashMap<String, Object> resultMap  = as.getMemberList( request );
+				
+				mav.addObject("memberList",resultMap.get("ref_cursor") );
+				mav.addObject("paging", resultMap.get("paging") );
+				mav.addObject("key",resultMap.get("key") );
+				mav.setViewName("admin/member/memberList");
+			}
+			return mav;
+	 }
+	 
+	 @GetMapping("/memberReinsert")
+		public String memberReinsert(@RequestParam("userid")String userid, @RequestParam("useyn")String useyn) {
+			
+			if(useyn.equals("Y"))useyn="N";
+			else useyn="Y";
+			
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("userid", userid);				
+			paramMap.put("useyn", useyn);
+			
+			as.memberReinsert(paramMap);
+			return "redirect:/memberList";
+		}
 	
 }

@@ -45,18 +45,6 @@ function idokforpwd( userid ){
 
 
 
-function changePassword() {
-    var newPassword = document.getElementById("newPassword").value;
-    var confirmPassword = document.getElementById("confirmPassword").value;
-
-    // 비밀번호 일치 여부 체크
-    if (newPassword !== confirmPassword) {
-        alert("비밀번호가 일치하지 않습니다.");
-        return false; // 폼 전송을 중지합니다.
-    }
-
-    return true; // 폼을 제출합니다.
-}
 
 
 

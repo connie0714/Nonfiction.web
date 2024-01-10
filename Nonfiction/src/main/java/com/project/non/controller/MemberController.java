@@ -13,6 +13,7 @@ import java.util.HashMap;
 
 import javax.net.ssl.HttpsURLConnection;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,10 +23,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 import com.google.gson.Gson;
 import com.project.non.dto.EmailCheckReq;
@@ -350,57 +353,6 @@ public class MemberController {
 	}
 	
 
-	
-	
-    @GetMapping(value = "/pwdSearch")
-    public String pwdSearch(Model model) {
-        return "member/pwdSearch";
-    }
-
-	@GetMapping("/pwdSearchForm") 
-	public ModelAndView pwdSearchForm(@RequestParam("userid") String userid) {
-		ModelAndView mav = new ModelAndView();
-
-		HashMap<String, Object> paramMap = new HashMap<String, Object>();
-		paramMap.put("userid", userid);
-		paramMap.put("ref_cursor", null);
-		ms.getMember(paramMap);
-
-		ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
-
-		if (list == null || list.size() == 0)
-			mav.addObject("result", -1);
-		else
-			mav.addObject("result", 1);
-
-		mav.addObject("userid", userid);
-		mav.setViewName("member/pwdSearchForm");
-
-		return mav;
-	}
-	
-	
-	
-	 @PostMapping("/changePassword") public String
-	 changePassword(@RequestParam("userid") String userid,
-	 
-	 @RequestParam("newPassword") String newPassword,
-	 
-	 @RequestParam("confirmPassword") String confirmPassword, RedirectAttributes
-	  redirectAttributes, HttpServletRequest request) { 
-		 if (!newPassword.equals(confirmPassword)) {
-	  redirectAttributes.addFlashAttribute("errorMessage", "비밀번호가 일치하지 않습니다.");
-	  return "redirect:/member/pwdSearchForm"; }
-	  
-	  // 비밀번호 변경 로직 // newPassword를 사용하여 비밀번호를 변경하는 코드 작성
-		MemberVO dto = new MemberVO(); // 저장용 객체
-		HttpSession session = request.getSession();
-		HashMap<String, Object> loginUser = (HashMap<String, Object>) session.getAttribute("loginUser");
-	 
-	  return "redirect:/"; 
-	  }
-	 
-	
 	
 	
 
