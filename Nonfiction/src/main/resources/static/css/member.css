@@ -18,12 +18,10 @@
 
 
 #forgottenor{
-	
 	position: absolute;
 	font-weight: bold;
 	top: 50%;
 	left: 44.2%;
-	
 }
 
 #forgottenpw{
@@ -486,6 +484,7 @@ a {
 
 .center-align {
     display: flex;
+    justify-content: center;
     margin-top: 3%;
     flex-direction: column;
     align-items: center;
@@ -639,4 +638,11 @@ form {
    position: absolute;
    left: 38%;
    top: 53%;
+
+
+
 }
+
+
+
+

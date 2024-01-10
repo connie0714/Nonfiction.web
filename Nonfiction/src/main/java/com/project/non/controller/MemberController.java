@@ -400,6 +400,10 @@ public class MemberController {
 	  return "redirect:/"; 
 	  }
 	 
+	 @GetMapping("/mypage")
+		public String mypage(){
+			return "mypage/mypage";
+		}
 	
 	
 	
