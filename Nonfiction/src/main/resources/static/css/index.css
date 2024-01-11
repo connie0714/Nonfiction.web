@@ -12,6 +12,7 @@
 	font-style: normal;
 }
 
+
 .fa fa-phone:before {
 	content: "\f095";
 }
@@ -32,10 +33,6 @@
 	font-family: 'UNO', sans-serif;
 }
 
-#footer-area {
-	position: relative;
-	margin-top: 22%;
-}
 
 #footer {
 	position: relative;

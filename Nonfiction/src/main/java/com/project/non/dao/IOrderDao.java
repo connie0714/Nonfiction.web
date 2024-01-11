@@ -9,8 +9,12 @@ public interface IOrderDao {
 
 	void insertOrder(HashMap<String, Object> paramMap);
 
+	void insertOrderOne(HashMap<String, Object> paramMap);
+
+	void listOrderByIng(HashMap<String, Object> paramMap);
+
 	void listOrderByOseq(HashMap<String, Object> paramMap);
 
-	void insertOrderOne(HashMap<String, Object> paramMap);
+	void orderEnd(int odseq);
 
 }

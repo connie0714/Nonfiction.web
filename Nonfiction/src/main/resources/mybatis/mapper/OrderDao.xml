@@ -17,14 +17,6 @@
 		}
 	</insert>
 	
-	<select id="listOrderByOseq" statementType="CALLABLE" parameterType="java.util.HashMap">
-		{  
-			CALL listOrderByOseq( 
-				#{userid},
-				#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=orderMap}
-			)	  
-		}
-	</select>
 
 	<insert id="insertOrderOne" statementType="CALLABLE" parameterType="java.util.HashMap" >
 		{
@@ -35,18 +27,18 @@
 		}
 	</insert>
 	
+	<select id="listOrderByOseq" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{  
+			CALL listOrderByOseq( 
+				#{oseq},
+				#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=orderMap}
+			)	  
+		}
+	</select>
 	
 	<select id="listOrderByIng" statementType="CALLABLE" parameterType="java.util.HashMap" >
 		{ 
 			CALL listOrderByIng( 
-				#{userid},
-				#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=orderMap}
-			) 
-		}
-	</select>
-	<select id="listOrderAll" statementType="CALLABLE" parameterType="java.util.HashMap" >
-		{ 
-			CALL listOrderAll( 
 				#{userid},
 				#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=orderMap}
 			) 

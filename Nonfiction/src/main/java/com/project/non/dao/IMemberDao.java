@@ -17,6 +17,10 @@ public interface IMemberDao {
 
 	void joinKakao(HashMap<String, Object> paramMap);
 
+	void getEmail(HashMap<String, Object> paramMap);
+
+	void getPwd(HashMap<String, Object> paramMap);
+
 	
 
 }

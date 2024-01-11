@@ -25,7 +25,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
 import com.project.non.dto.EmailCheckReq;
@@ -34,7 +33,6 @@ import com.project.non.dto.KakaoProfile.KakaoAccount;
 import com.project.non.dto.KakaoProfile.KakaoAccount.Profile;
 import com.project.non.dto.MemberVO;
 import com.project.non.dto.OAuthToken;
-import com.project.non.service.CartService;
 import com.project.non.service.EmailService;
 import com.project.non.service.MemberService;
 
@@ -52,9 +50,6 @@ public class MemberController {
 	@Autowired
 	EmailService es;
 
-	@Autowired
-	CartService cs;
-	
 	@GetMapping("/loginForm")
 	public String loginForm() {
 		return "member/login";
@@ -90,15 +85,6 @@ public class MemberController {
 			else if (memberMap.get("PWD").equals(membervo.getPwd())) {
 				HttpSession session = request.getSession();
 				session.setAttribute("loginUser", memberMap);
-				ModelAndView mav = new ModelAndView();
-					HashMap<String, Object> loginUser 
-					=  (HashMap<String, Object>)session.getAttribute("loginUser");
-					
-					paramMap.put("userid", loginUser.get("USERID"));
-					paramMap.put("ref_cursor", null);
-					cs.listCart( paramMap );
-					
-					mav.addObject("cartCount", (Integer) paramMap.get("count"));
 				url = "redirect:/";
 			}
 		}
@@ -349,59 +335,74 @@ public class MemberController {
 		return "member/login";
 	}
 	
-
-	
-	
-    @GetMapping(value = "/pwdSearch")
-    public String pwdSearch(Model model) {
-        return "member/pwdSearch";
-    }
-
-	@GetMapping("/pwdSearchForm") 
-	public ModelAndView pwdSearchForm(@RequestParam("userid") String userid) {
-		ModelAndView mav = new ModelAndView();
-
-		HashMap<String, Object> paramMap = new HashMap<String, Object>();
-		paramMap.put("userid", userid);
-		paramMap.put("ref_cursor", null);
-		ms.getMember(paramMap);
-
-		ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
-
-		if (list == null || list.size() == 0)
-			mav.addObject("result", -1);
-		else
-			mav.addObject("result", 1);
-
-		mav.addObject("userid", userid);
-		mav.setViewName("member/pwdSearchForm");
-
-		return mav;
+	@GetMapping("/idSearch")
+	public String idSearch() {
+		return "member/idSearch";
 	}
-	
-	
-	
-	 @PostMapping("/changePassword") public String
-	 changePassword(@RequestParam("userid") String userid,
-	 
-	 @RequestParam("newPassword") String newPassword,
-	 
-	 @RequestParam("confirmPassword") String confirmPassword, RedirectAttributes
-	  redirectAttributes, HttpServletRequest request) { 
-		 if (!newPassword.equals(confirmPassword)) {
-	  redirectAttributes.addFlashAttribute("errorMessage", "비밀번호가 일치하지 않습니다.");
-	  return "redirect:/member/pwdSearchForm"; }
-	  
-	  // 비밀번호 변경 로직 // newPassword를 사용하여 비밀번호를 변경하는 코드 작성
-		MemberVO dto = new MemberVO(); // 저장용 객체
-		HttpSession session = request.getSession();
-		HashMap<String, Object> loginUser = (HashMap<String, Object>) session.getAttribute("loginUser");
-	 
-	  return "redirect:/"; 
-	  }
-	 
-	
-	
-	
-
+	@PostMapping("/Searchid")
+	public String Searchid(@ModelAttribute("dto") @Valid MemberVO membervo, BindingResult result,
+			@RequestParam(value = "email", required = false) String email, Model model) {
+		
+		String url="member/idSearch";
+		if( result.getFieldError("email") !=null)
+			model.addAttribute("email", result.getFieldError("email").getDefaultMessage() );
+		else {
+			HashMap<String, Object> paramMap  = new HashMap<String, Object>();
+			paramMap.put("email", membervo.getEmail() );
+			paramMap.put("ref_cursor", null );
+			ms.getEmail( paramMap );
+			
+			ArrayList< HashMap<String, Object> > list
+			= (ArrayList< HashMap<String, Object> >) paramMap.get("ref_cursor");
+			
+			if( list==null || list.size() == 0 ) {
+				model.addAttribute("message" , "해당 이메일에 등록된 아이디가 없습니다.");
+				return "member/idSearch";
+			}
+			HashMap<String, Object> searchMap = list.get(0);
+			
+			if( searchMap.get("EMAIL").equals( membervo.getEmail() ) ) {
+				model.addAttribute("message" , "고객님의 아이디는" + searchMap.get("USERID") + "입니다.");
+			}
+		}
+		return url;
 	}
+
+	@GetMapping("/pwdSearch")
+	public String pwdSearch() {
+		return "member/pwdSearch";
+		}
+	
+	@PostMapping("/Searchpwd")
+	public String Searchpwd(@ModelAttribute("dto") @Valid MemberVO membervo, BindingResult result,
+			@RequestParam(value = "email", required = false) String email,
+			@RequestParam(value = "userid", required = false) String userid,Model model) {
+		
+		String url="member/pwdSearch";
+		if( result.getFieldError("email") !=null) {
+			model.addAttribute("email", result.getFieldError("email").getDefaultMessage() );
+		}else if( result.getFieldError("userid") != null) {
+			model.addAttribute("userid", result.getFieldError("userid").getDefaultMessage() ); 
+		}else {
+			HashMap<String, Object> paramMap  = new HashMap<String, Object>();
+			paramMap.put("email", membervo.getEmail() );
+			paramMap.put("userid", membervo.getUserid() );
+			paramMap.put("ref_cursor", null );
+			ms.getPwd( paramMap );
+			
+			ArrayList< HashMap<String, Object> > list
+			= (ArrayList< HashMap<String, Object> >) paramMap.get("ref_cursor");
+			
+			if( list==null || list.size() == 0 ) {
+				model.addAttribute("message" , "아이디와 이메일을 확인해주세요.");
+				return "member/pwdSearch";
+			}
+			HashMap<String, Object> searchMap = list.get(0);
+			
+			if( searchMap.get("EMAIL").equals( membervo.getEmail() ) || searchMap.get("USERID").equals( membervo.getUserid() ) ) {
+				model.addAttribute("message" , "고객님의 비밀번호는" + searchMap.get("PWD") + "입니다.");
+			}
+		}
+		return url;
+	}
+}
