@@ -44,8 +44,7 @@ public class OrderController {
 		}
 		return "redirect:/orderList?oseq="+oseq;
 	}
-<<<<<<< HEAD
-=======
+
 	
 	@GetMapping("/orderList")
 	public ModelAndView orderList( HttpServletRequest request ) {
@@ -68,7 +67,7 @@ public class OrderController {
 		return mav;
 	}
 	
->>>>>>> branch 'main' of https://github.com/connie0714/Nonfiction.web.git
+
 	@PostMapping("/orderInsertOne")
 	public String orderInsertOne(
 			@RequestParam("pseq") int pseq,
