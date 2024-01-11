@@ -66,8 +66,12 @@ public class OrderController {
 		}
 		return mav;
 	}
+<<<<<<< HEAD
 	
 
+=======
+	
+>>>>>>> branch 'main' of https://github.com/connie0714/Nonfiction.web.git
 	@PostMapping("/orderInsertOne")
 	public String orderInsertOne(
 			@RequestParam("pseq") int pseq,
