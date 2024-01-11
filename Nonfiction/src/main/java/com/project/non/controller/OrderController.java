@@ -44,6 +44,31 @@ public class OrderController {
 		}
 		return "redirect:/orderList?oseq="+oseq;
 	}
+<<<<<<< HEAD
+=======
+	
+	@GetMapping("/orderList")
+	public ModelAndView orderList( HttpServletRequest request ) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser 
+			= (HashMap<String, Object>)session.getAttribute("loginUser");
+		if( loginUser == null ) {
+			mav.setViewName("member/login");
+		}else {	
+			HashMap<String , Object> paramMap = new HashMap<String , Object>();
+			paramMap.put("userid", loginUser.get("USERID"));
+			paramMap.put("ref_cursor", null);
+			os.listOrderByOseq( paramMap );
+			
+			mav.addObject("orderList", paramMap.get("ref_cursor") );
+			mav.addObject("totalPrice", paramMap.get("totalPrice") );
+			mav.setViewName("mypage/orderList");
+		}
+		return mav;
+	}
+	
+>>>>>>> branch 'main' of https://github.com/connie0714/Nonfiction.web.git
 	@PostMapping("/orderInsertOne")
 	public String orderInsertOne(
 			@RequestParam("pseq") int pseq,

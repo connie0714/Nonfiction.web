@@ -82,8 +82,7 @@
 				        </c:choose>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<div class="serif">
-							<a href="cartList">CART(<span class="cart-count"><fmt:formatNumber value="${cartCount}"/></span>)
-							</a>
+							<a href="cartList">CART</a>
 						</div>
 					</div>
 				</div>

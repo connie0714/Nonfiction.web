@@ -13,6 +13,7 @@ import java.util.HashMap;
 
 import javax.net.ssl.HttpsURLConnection;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,9 +23,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import org.springframework.web.servlet.ModelAndView;
+
 
 import com.google.gson.Gson;
 import com.project.non.dto.EmailCheckReq;
@@ -33,6 +37,7 @@ import com.project.non.dto.KakaoProfile.KakaoAccount;
 import com.project.non.dto.KakaoProfile.KakaoAccount.Profile;
 import com.project.non.dto.MemberVO;
 import com.project.non.dto.OAuthToken;
+import com.project.non.service.CartService;
 import com.project.non.service.EmailService;
 import com.project.non.service.MemberService;
 
@@ -49,7 +54,7 @@ public class MemberController {
 
 	@Autowired
 	EmailService es;
-
+	
 	@GetMapping("/loginForm")
 	public String loginForm() {
 		return "member/login";
