@@ -370,7 +370,9 @@ select * from order_view;
 alter table qna add secret char(1) default 'N';
 alter table qna add pass varchar2(30);
 
+alter table qna add qnaoption varchar2(30);
 
+select*from qna;
 
 
 create or replace view cart_view

@@ -503,6 +503,8 @@ form {
 }
 
 
+
+
 #qnawrite{
     position: relative;
     left: 300px;
@@ -556,6 +558,15 @@ form {
    cursor: pointer;
 }
 
+#qnaTheme{
+	position: absolute;
+	top: 20%;
+	left: 38%;
+	font-size: small;
+	
+}
+
+
 
 #qnamain{
    position: absolute;
@@ -563,6 +574,7 @@ form {
    left: 47%;
    top: 15%;
 }
+
 
 
 #qnasubject{
@@ -663,24 +675,24 @@ form {
 
  #table {
     position: absolute;
-    top: 40%;
+    top: 44%;
     text-align: center;
     padding: 10px;
-    width: 50%; 
+    width: 60%; 
     left: 23%;
   }
   
   
 #memberListPaging{
 	position: absolute;
-	top: 75%;
+	top: 78%;
 	left: 47%;
 }
 
 
 #memberList{
 	position: absolute;
-	top: 20%;
+	top: 23%;
 	left: 46%;
 	font-size: large;
 	font-weight: bold;
@@ -692,13 +704,14 @@ form {
 	position: absolute;
 	top: 30%;
 	left: 40%;
-	
+	width: 500px;
+	height: 100px;
 }
 
 #memberListSearch{
 	position: absolute;
-	top: 3%;
-	left: 14%;
+	top: 35%;
+	left: 60%;
 	height: 30px;
 	width: 50px;
 	background-color: white;
@@ -709,10 +722,11 @@ form {
 }
 
 
+
 #allList{
 	position: absolute;
-	top: 3%;
-	left: 16.5%;
+	top: 34.5%;
+	left: 70.5%;
 	height: 30px;
 	width: 80px;
 	background-color: white;
@@ -727,6 +741,8 @@ form {
 	position: absolute;
 	top: 30%;
 	left: 46.7%;
+	font-size: large;
+	font-weight: bold;
 }
 
 
@@ -740,14 +756,17 @@ form {
 	position: absolute;
 	top: 60%;
 	left: 40%;
+	width: 600px;
 }
 
 
 #qnaViewtable{
 	position: absolute;
 	top: 41%;
-	left: 29%;
+	left: 43%;
 	text-align: center;
+	width: 600px;
+
 }
 
 
@@ -755,7 +774,7 @@ form {
 #replySubmit{
 	position: absolute;
 	top: 130%;
-	left: 3%;
+	left: 25%;
 	height: 30px;
 	width: 80px;
 	background-color: white;
@@ -768,8 +787,8 @@ form {
 
 #goQnaList{
 	position: absolute;
-	top: 66.9%;
-	left: 49%;
+	top: 75%;
+	left: 47.7%;
 	height: 40px;
 	width: 80px;
 	background-color: white;
@@ -783,12 +802,24 @@ form {
 #writtenReply{
 	position: absolute;
 	top: 60%;
-	left: 5%;
+	left: 39.5%;
 	text-align: center;
-	border-collapse: separate;
-    border-spacing: 0 0px;
+	width: 400px;
  }
+ 
+#adminSetting{
+	position: absolute;
+	font-size: large;
+	font-weight: bold;
+	top: 25%;
+	left: 45%;
+}
 
+#category{
+	position: absolute;
+	top: 35%;
+	left: 44%;
+}
 
 
 

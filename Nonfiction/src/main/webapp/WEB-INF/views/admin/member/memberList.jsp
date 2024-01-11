@@ -17,7 +17,7 @@
 <table id="memberSearch" style="float:right; ">
 	<tr><td>회원 이름 <input type="text" name="key" value="${key}">
 	<input id="memberListSearch" type="button" value="검색" onClick="searchPosts('memberList');">
-	<input id="allList" type="button" name="btn_total" value="전체보기 " onClick="go_memberList();"></td> </tr>
+	<input id="allList" type="button" name="btn_total" value="전체보기 " onClick="go_memberList();"></td></tr>
 </table><br>
 <table id="table">
 	<tr><th>아이디(탈퇴여부)</th><th> 이름 </th><th>이메일</th><th>우편번호</th><th>주소</th><th>전화</th><th>가입일</th></tr>

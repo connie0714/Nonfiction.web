@@ -5,17 +5,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="../css/member.css">
 </head>
 <body>
 
 <nav id="sub_menu">
-<h1>Admin Setting</h1>
-<ul>
-	<li><a href='productList?first=y'>상품리스트</a></li>
-	<li><a href='adminOrderList?first=y'>주문리스트</a></li>
-	<li><a href='memberList'>회원리스트</a></li>
-	<li><a href='adminQnaList'>Q&amp;A리스트</a></li>
-	<li><a href='adminBannerList?first=y'>메인배너관리</a></li>
+<div id="adminSetting">Admin Setting</div>
+
+<ul id="category">
+	<li><a href='productList?first=y'>상품리스트</a></li><br>
+	<li><a href='adminOrderList?first=y'>주문리스트</a></li><br>
+	<li><a href='memberList'>회원리스트</a></li><br>
+	<li><a href='adminQnaList'>Q&amp;A리스트</a></li><br>
+	<li><a href='informLocation'>메인배너관리</a></li>
 </ul>
 </nav>
 

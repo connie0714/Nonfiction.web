@@ -11,7 +11,19 @@
 <body>
 
 	<div id="qnamain">Q&amp;A Write</div>
-		<form name="formm" method="post" 	action="qnaWrite">
+		<form name="formm" method="post" action="qnaWrite">
+			<div id="qnaTheme">
+				<label>
+		            <input type="radio" name="qnaoption " value="상품문의" checked> 상품문의
+		        </label>
+		        <label>
+		            <input type="radio" name="qnaoption " value="배송문의"> 배송문의
+		        </label>
+		        <label>
+		            <input type="radio" name="qnaoption " value="교환/환불문의"> 교환/환불문의
+		        </label>
+		    </div>
+		        <br><br>
 			
 				<div id="qnasubject">Subject</div>
 				<input id="subjectinput" type="text" name="subject"  size="60" ><br>
