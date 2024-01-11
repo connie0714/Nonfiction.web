@@ -393,7 +393,7 @@ public class MemberController {
          paramMap.put("email", membervo.getEmail() );
          paramMap.put("userid", membervo.getUserid() );
          paramMap.put("ref_cursor", null );
-         ms.getPwd( paramMap );
+         ms.getPwd( paramMap ); 
          
          ArrayList< HashMap<String, Object> > list
          = (ArrayList< HashMap<String, Object> >) paramMap.get("ref_cursor");
