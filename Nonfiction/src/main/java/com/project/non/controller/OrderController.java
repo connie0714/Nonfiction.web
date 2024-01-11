@@ -20,6 +20,20 @@ public class OrderController {
 	@Autowired
 	OrderService os;
 	
+	@GetMapping("/mypage")
+	public ModelAndView mypage( HttpServletRequest request ) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser 
+			= (HashMap<String, Object>)session.getAttribute("loginUser");
+		if( loginUser == null ) {
+			mav.setViewName("member/login");
+		}else {
+			mav.setViewName("mypage/mypage");
+		}
+		return mav;
+	}
+	
 	@PostMapping("/orderInsert") 
 	public String orderInsert( HttpServletRequest request ) {
 		int oseq=0;
@@ -44,29 +58,31 @@ public class OrderController {
 		}
 		return "redirect:/orderList?oseq="+oseq;
 	}
-
 	
-	@GetMapping("/orderList")
+	@GetMapping( "/orderList")
 	public ModelAndView orderList( HttpServletRequest request ) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		HashMap<String, Object> loginUser 
-			= (HashMap<String, Object>)session.getAttribute("loginUser");
+		= (HashMap<String, Object>)session.getAttribute("loginUser");
 		if( loginUser == null ) {
 			mav.setViewName("member/login");
-		}else {	
-			HashMap<String , Object> paramMap = new HashMap<String , Object>();
-			paramMap.put("userid", loginUser.get("USERID"));
+		}else {
+			// 로그인한 사람의 아이디를 보내서, 현재 진행중인 주문내역을  "XXX 상품 포함 X건" 형태의 리스트로 정리해서 리턴
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("userid",  loginUser.get("USERID") );
 			paramMap.put("ref_cursor", null);
-			os.listOrderByOseq( paramMap );
+			os.orderList(paramMap);
 			
-			mav.addObject("orderList", paramMap.get("ref_cursor") );
-			mav.addObject("totalPrice", paramMap.get("totalPrice") );
+			mav.addObject("orderList", paramMap.get("finalList"));		
+			mav.addObject("title", " 진행중인 주문내역");
 			mav.setViewName("mypage/orderList");
 		}
 		return mav;
 	}
 
+	
+	
 	@PostMapping("/orderInsertOne")
 	public String orderInsertOne(
 			@RequestParam("pseq") int pseq,
@@ -94,27 +110,6 @@ public class OrderController {
 		
 	}	
 	
-	@GetMapping( "/orderList")
-	public ModelAndView mypage( HttpServletRequest request ) {
-		ModelAndView mav = new ModelAndView();
-		HttpSession session = request.getSession();
-		HashMap<String, Object> loginUser 
-			= (HashMap<String, Object>)session.getAttribute("loginUser");
-		if( loginUser == null ) {
-			mav.setViewName("member/login");
-		}else {
-			// 로그인한 사람의 아이디를 보내서, 현재 진행중인 주문내역을  "XXX 상품 포함 X건" 형태의 리스트로 정리해서 리턴
-			HashMap<String, Object> paramMap = new HashMap<String, Object>();
-			paramMap.put("userid",  loginUser.get("USERID") );
-			paramMap.put("ref_cursor", null);
-			os.orderList(paramMap);
-			
-			mav.addObject("orderList", paramMap.get("finalList"));		
-			mav.addObject("title", " 진행중인 주문내역");
-			mav.setViewName("mypage/orderList");
-		}
-		return mav;
-	}
 	
 	
 	
