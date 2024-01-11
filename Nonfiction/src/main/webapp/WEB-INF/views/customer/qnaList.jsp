@@ -5,7 +5,7 @@
 
 <script type="text/javascript" src="/script/member.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/member.css">
-
+ 
 <div id="align">
 	<div id="qna">Q&amp;A</div>
 	   <div class="center-align">
