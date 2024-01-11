@@ -77,7 +77,7 @@
 				            </c:when>
 				            <c:otherwise>
 				                <div class="serif"><a href="logout">LOGOUT</a></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				            	<div class="serif"><a href="orderList">ACCOUNT</a></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				            	<div class="serif"><a href="mypage">ACCOUNT</a></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				            </c:otherwise>
 				        </c:choose>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

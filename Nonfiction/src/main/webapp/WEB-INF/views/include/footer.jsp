@@ -101,7 +101,7 @@
 						<li><a href="qnaList">문의하기</a></li>
 						<li><a href="">기업구매 문의</a></li>
 						<li><a href="/contact.html">고객 센터</a></li>
-						<li><a href="/stores.html">매장안내</a></li>
+						<li><a href="informLocation">매장안내</a></li>
 					</ul>
 				</div>
 			</div>
@@ -126,6 +126,7 @@
 		</div>
 	</div>
 </footer>
+
 
 </div>
 </body>

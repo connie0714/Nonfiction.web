@@ -139,5 +139,11 @@ public class CustomerController {
       return mav;
    }
    
+   
+   @GetMapping("/informLocation")
+   public String informLocation() {
+      return "customer/informLocation";
+   }
+   
 
 }

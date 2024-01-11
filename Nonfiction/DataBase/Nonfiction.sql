@@ -23,7 +23,7 @@ DROP TABLE review CASCADE CONSTRAINTS;
 DROP TABLE members CASCADE CONSTRAINTS;
 DROP TABLE product CASCADE CONSTRAINTS;
 DROP TABLE MSG_CARD CASCADE CONSTRAINTS;
-
+DROP TABLE banner CASCADE CONSTRAINTS;
 
 
 /* Drop Sequences */
@@ -32,6 +32,7 @@ DROP SEQUENCE SEQ_MSG_CARD_mgseq;
 DROP SEQUENCE SEQ_orders_oseq;
 DROP SEQUENCE SEQ_product_pseq;
 DROP SEQUENCE SEQ_qna_qseq;
+DROP SEQUENCE banner_seq;
 
 
 select*from members;
@@ -50,6 +51,19 @@ alter sequence SEQ_qna_qseq increment by 1;
 
 
 /* Create Tables */
+
+CREATE TABLE banner(
+	bseq NUMBER(5) primary key,
+	order_seq NUMBER(2),
+	image varchar2(30),
+	subject varchar2(30),
+	indate DATE default sysdate
+);
+
+CREATE SEQUENCE banner_seq INCREMENT BY 1 START WITH 1;
+
+alter table banner add useyn char(1);
+
 
 CREATE TABLE admins
 (

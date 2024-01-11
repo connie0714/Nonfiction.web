@@ -3,7 +3,7 @@
 
 	<div id="body" style="position:relative;">
 		<h2> Order List </h2>
-		<form name="formm" method="post">
+		<form name="formm" method="post" >
 		<table id="cartList">
 			<tr><th>상품명</th><th>수 량</th><th>가 격</th><th>주문일</th><th>진행상태</th></tr>
 			<c:forEach items="${orderList}" var="orderVO">

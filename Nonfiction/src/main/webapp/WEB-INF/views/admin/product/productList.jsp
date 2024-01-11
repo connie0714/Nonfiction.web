@@ -36,9 +36,9 @@
    </table>
 </form><br>
 
-<%-- <jsp:include page="../../include/paging/paging.jsp">
+<jsp:include page="../../include/paging/paging.jsp">
    <jsp:param name="command" value="productList" />
-</jsp:include> --%>
+</jsp:include>
 
 </article>
 

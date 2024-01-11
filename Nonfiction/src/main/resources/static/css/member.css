@@ -645,4 +645,190 @@ form {
 
 
 
+#nonfictionSubject{
+	position: absolute;
+	top: 70%;
+	left: 48%;
+	font-size: large;
+	font-weight: bold;
+}
+
+
+
+#map{
+	position: absolute;
+	top: 90%;
+	left: 35%;	
+}
+
+
+/* admin */
+
+ #table {
+    position: absolute;
+    top: 40%;
+    text-align: center;
+    padding: 10px;
+    width: 50%; 
+    left: 23%;
+  }
+  
+  
+#memberListPaging{
+	position: absolute;
+	top: 75%;
+	left: 47%;
+}
+
+
+#memberList{
+	position: absolute;
+	top: 20%;
+	left: 46%;
+	font-size: large;
+	font-weight: bold;
+	
+}
+
+
+#memberSearch{
+	position: absolute;
+	top: 30%;
+	left: 40%;
+	
+}
+
+#memberListSearch{
+	position: absolute;
+	top: 3%;
+	left: 14%;
+	height: 30px;
+	width: 50px;
+	background-color: white;
+	font-weight: bold;
+	font-size: medium;
+	cursor: pointer;
+	border: none;
+}
+
+
+#allList{
+	position: absolute;
+	top: 3%;
+	left: 16.5%;
+	height: 30px;
+	width: 80px;
+	background-color: white;
+	font-weight: bold;
+	font-size: medium;
+	cursor: pointer;
+	border: none;
+}
+
+
+#qnaList{
+	position: absolute;
+	top: 30%;
+	left: 46.7%;
+}
+
+
+#qnaListPaging{
+	position: absolute;
+	top: 75%;
+	left: 45%;
+}
+
+#writeReply{
+	position: absolute;
+	top: 60%;
+	left: 40%;
+}
+
+
+#qnaViewtable{
+	position: absolute;
+	top: 41%;
+	left: 29%;
+	text-align: center;
+}
+
+
+
+#replySubmit{
+	position: absolute;
+	top: 130%;
+	left: 3%;
+	height: 30px;
+	width: 80px;
+	background-color: white;
+	font-weight: bold;
+	font-size: medium;
+	cursor: pointer;
+	border: none;
+}
+
+
+#goQnaList{
+	position: absolute;
+	top: 66.9%;
+	left: 49%;
+	height: 40px;
+	width: 80px;
+	background-color: white;
+	font-weight: bold;
+	font-size: medium;
+	cursor: pointer;
+	border: none;
+}
+
+
+#writtenReply{
+	position: absolute;
+	top: 60%;
+	left: 5%;
+	text-align: center;
+	border-collapse: separate;
+    border-spacing: 0 0px;
+ }
+
+
+
+/*mypage css*/
+#account-section {
+  text-align: center;
+  margin-top: 150px;
+}
+
+#account-section img {
+  max-width: 130px;
+  max-height: 130px;
+  margin-bottom: 20px;
+}
+
+#account-section a {
+  text-decoration: underline;
+  color: black;
+}
+
+#account-section p {
+  font-weight: bold;
+}
+
+.short-hr {
+  margin: 10px auto;
+  width: 15%;
+  border: none;
+  border-top: 2px solid black;
+}
+
+.long-hr {
+   margin: 10px auto;
+  width: 92vw;
+  border: none;
+  border-top: 2px solid black;
+  margin-left: -135px;
+}
+/*mypage css*/
+
 
