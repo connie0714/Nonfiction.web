@@ -483,13 +483,24 @@ a {
     }
 
 .center-align {
+<<<<<<< HEAD
     display: flex;
     justify-content: center;
+=======
+	display: flex;
+>>>>>>> branch 'main' of https://github.com/connie0714/Nonfiction.web.git
     margin-top: 3%;
     flex-direction: column;
     align-items: center;
 }
 
+#align {
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    height: 81vh;
+    flex-direction: column;
+}
 
 form {
     width: 50%; 

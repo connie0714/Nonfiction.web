@@ -52,6 +52,7 @@ public class MemberController {
    @Autowired
    MemberService ms;
 
+<<<<<<< HEAD
    @Autowired
    EmailService es;
    
@@ -63,6 +64,15 @@ public class MemberController {
    @PostMapping("/login")
    public String login(@ModelAttribute("dto") @Valid MemberVO membervo, BindingResult result,
          HttpServletRequest request, Model model) {
+=======
+	@Autowired
+	EmailService es;
+	
+	@GetMapping("/loginForm")
+	public String loginForm() {
+		return "member/login";
+	}
+>>>>>>> branch 'main' of https://github.com/connie0714/Nonfiction.web.git
 
       String url = "member/login";
       if (result.getFieldError("userid") != null)
@@ -96,12 +106,27 @@ public class MemberController {
       return url;
    }
 
+<<<<<<< HEAD
    @GetMapping("/logout")
    public String logout(HttpServletRequest request) {
       HttpSession session = request.getSession();
       session.removeAttribute("loginUser");
       return "redirect:/";
    }
+=======
+			if (memberMap.get("USEYN").equals("N"))
+				model.addAttribute("message", "회원탈퇴 이력이 있습니다. 고객센터에 문의 바랍니다");
+			else if (!memberMap.get("PWD").equals(membervo.getPwd()))
+				model.addAttribute("message", "비밀번호가 맞지 않습니다");
+			else if (memberMap.get("PWD").equals(membervo.getPwd())) {
+				HttpSession session = request.getSession();
+				session.setAttribute("loginUser", memberMap);
+				url = "redirect:/";
+			}
+		}
+		return url;
+	}
+>>>>>>> branch 'main' of https://github.com/connie0714/Nonfiction.web.git
 
    @GetMapping("/kakaostart")
    public @ResponseBody String kakaostart() {
@@ -373,6 +398,7 @@ public class MemberController {
       return url;
    }
 
+<<<<<<< HEAD
    @GetMapping("/pwdSearch")
    public String pwdSearch() {
       return "member/pwdSearch";
@@ -411,3 +437,86 @@ public class MemberController {
       return url;
    }
 }
+=======
+		HttpSession session = request.getSession();
+		HashMap<String, Object> mvo = (HashMap<String, Object>) session.getAttribute("loginUser");
+		String userid = (String) mvo.get("USERID");
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("userid", userid);
+		ms.deleteMember(paramMap);
+		model.addAttribute("message", "회원탈퇴가 정상적으로 처리되었습니다");
+		return "member/login";
+	}
+	
+	@GetMapping("/idSearch")
+	public String idSearch() {
+		return "member/idSearch";
+	}
+	@PostMapping("/Searchid")
+	public String Searchid(@ModelAttribute("dto") @Valid MemberVO membervo, BindingResult result,
+			@RequestParam(value = "email", required = false) String email, Model model) {
+		
+		String url="member/idSearch";
+		if( result.getFieldError("email") !=null)
+			model.addAttribute("email", result.getFieldError("email").getDefaultMessage() );
+		else {
+			HashMap<String, Object> paramMap  = new HashMap<String, Object>();
+			paramMap.put("email", membervo.getEmail() );
+			paramMap.put("ref_cursor", null );
+			ms.getEmail( paramMap );
+			
+			ArrayList< HashMap<String, Object> > list
+			= (ArrayList< HashMap<String, Object> >) paramMap.get("ref_cursor");
+			
+			if( list==null || list.size() == 0 ) {
+				model.addAttribute("message" , "해당 이메일에 등록된 아이디가 없습니다.");
+				return "member/idSearch";
+			}
+			HashMap<String, Object> searchMap = list.get(0);
+			
+			if( searchMap.get("EMAIL").equals( membervo.getEmail() ) ) {
+				model.addAttribute("message" , "고객님의 아이디는" + searchMap.get("USERID") + "입니다.");
+			}
+		}
+		return url;
+	}
+
+	@GetMapping("/pwdSearch")
+	public String pwdSearch() {
+		return "member/pwdSearch";
+		}
+	
+	@PostMapping("/Searchpwd")
+	public String Searchpwd(@ModelAttribute("dto") @Valid MemberVO membervo, BindingResult result,
+			@RequestParam(value = "email", required = false) String email,
+			@RequestParam(value = "userid", required = false) String userid,Model model) {
+		
+		String url="member/pwdSearch";
+		if( result.getFieldError("email") !=null) {
+			model.addAttribute("email", result.getFieldError("email").getDefaultMessage() );
+		}else if( result.getFieldError("userid") != null) {
+			model.addAttribute("userid", result.getFieldError("userid").getDefaultMessage() ); 
+		}else {
+			HashMap<String, Object> paramMap  = new HashMap<String, Object>();
+			paramMap.put("email", membervo.getEmail() );
+			paramMap.put("userid", membervo.getUserid() );
+			paramMap.put("ref_cursor", null );
+			ms.getPwd( paramMap );
+			
+			ArrayList< HashMap<String, Object> > list
+			= (ArrayList< HashMap<String, Object> >) paramMap.get("ref_cursor");
+			
+			if( list==null || list.size() == 0 ) {
+				model.addAttribute("message" , "아이디와 이메일을 확인해주세요.");
+				return "member/pwdSearch";
+			}
+			HashMap<String, Object> searchMap = list.get(0);
+			
+			if( searchMap.get("EMAIL").equals( membervo.getEmail() ) || searchMap.get("USERID").equals( membervo.getUserid() ) ) {
+				model.addAttribute("message" , "고객님의 비밀번호는" + searchMap.get("PWD") + "입니다.");
+			}
+		}
+		return url;
+	}
+}
+>>>>>>> branch 'main' of https://github.com/connie0714/Nonfiction.web.git

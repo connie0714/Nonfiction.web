@@ -12,6 +12,7 @@
 	font-style: normal;
 }
 
+
 .fa fa-phone:before {
 	content: "\f095";
 }
@@ -32,10 +33,13 @@
 	font-family: 'UNO', sans-serif;
 }
 
+<<<<<<< HEAD
 #footer-area {
 	position: relative;
 	margin-top: 10%;
 }
+=======
+>>>>>>> branch 'main' of https://github.com/connie0714/Nonfiction.web.git
 
 #footer {
 	position: relative;

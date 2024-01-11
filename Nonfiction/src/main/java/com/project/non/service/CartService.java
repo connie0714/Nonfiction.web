@@ -20,26 +20,15 @@ public class CartService {
 
 	public void listCart(HashMap<String, Object> paramMap) {
 		cadao.listCart(paramMap);		
-		
-		
 		ArrayList<HashMap<String, Object>> list
 			=(ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
-		int cartCount = 0;
 		
-		for(int i=0;i<=list.size();i++) {
-			cartCount++;
-		}
-		paramMap.put("cartCount", cartCount-1);
-		System.out.println(cartCount-1);
-				
 		int totalPrice = 0;
 		for( HashMap<String , Object> cart : list) {
 			totalPrice +=	Integer.parseInt( cart.get("QUANTITY").toString() )
 					* Integer.parseInt( cart.get("PRICE2").toString() );
 		}
-		
 		paramMap.put("totalPrice", totalPrice );
-		
 	}
 
 	public void deleteCart(HashMap<String, Object> paramMap) {
