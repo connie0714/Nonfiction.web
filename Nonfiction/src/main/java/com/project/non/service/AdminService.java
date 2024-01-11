@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Service
-public class AdminService { 
+public class AdminService {
 
 	@Autowired
 	IAdminDao adao;
@@ -176,6 +176,16 @@ public class AdminService {
 
 	public void memberReinsert(HashMap<String, Object> paramMap) {
 		adao.memberReinsert(paramMap);
+		
+	}
+
+	public void getBannerList(HashMap<String, Object> paramMap) {
+		adao.getBannerList(paramMap);
+		
+	}
+
+	public void insertBanner(HashMap<String, Object> paramMap) {
+		adao.insertBanner(paramMap);
 		
 	}
 }

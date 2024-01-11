@@ -20,5 +20,9 @@ public interface IAdminDao {
 	void getMemberList(HashMap<String, Object> paramMap);
 
 	void memberReinsert(HashMap<String, Object> paramMap);
+
+	void getBannerList(HashMap<String, Object> paramMap);
+
+	void insertBanner(HashMap<String, Object> paramMap);
 		
 }

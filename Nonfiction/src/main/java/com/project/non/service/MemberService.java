@@ -40,6 +40,14 @@ public class MemberService {
 		
 	}
 
+	public void getEmail(HashMap<String, Object> paramMap) {
+		mdao.getEmail( paramMap );
+	}
+
+	public void getPwd(HashMap<String, Object> paramMap) {
+		mdao.getPwd( paramMap );
+	}
+
 
 
 

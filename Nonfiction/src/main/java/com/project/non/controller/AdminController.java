@@ -1,6 +1,9 @@
 package com.project.non.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.non.service.AdminService;
@@ -71,14 +76,11 @@ public class AdminController {
 	      else if(adminpwd.equals((String)resultMap.get("PWD"))) {
 	         HttpSession session=request.getSession();
 	         session.setAttribute("loginAdmin", resultMap);
-	         url="admin/sub_menu";
+	         url="redirect:/productList";
 	      }
 	     }
 		return url;
 	}
-	
-	
-	
 	
 	 @GetMapping("/productList")
 	   public ModelAndView productList( HttpServletRequest request ) {
@@ -182,5 +184,69 @@ public class AdminController {
 			as.memberReinsert(paramMap);
 			return "redirect:/memberList";
 		}
+	 
+	 
+	 @GetMapping("/adminBannerList")
+		public ModelAndView adminBannerList( ) {
+			ModelAndView mav = new ModelAndView();
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("ref_cursor", null);
+			as.getBannerList(paramMap);
+			mav.addObject("bannerList",  paramMap.get("ref_cursor") );
+			mav.setViewName("admin/banner/bannerList");
+			return mav;
+		}
+		
+		
+		@GetMapping("/newBannerWrite")
+		public String newBannerWrite() {
+			return "admin/banner/writeBanner";
+		}
+		
+		
+		@PostMapping("/bannerWrite" )
+		public String bannerWrite( HttpServletRequest request	) {		
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("subject", request.getParameter("subject") );
+			paramMap.put("order_seq", request.getParameter("order_seq") );
+			paramMap.put("image", request.getParameter("image") );
+			
+			if( request.getParameter("order_seq").equals("6") ) paramMap.put("useyn", "N" );
+			else paramMap.put("useyn", "Y" );
+			
+			as.insertBanner( paramMap );
+			return "redirect:/adminBannerList";
+		}
+		
+		@PostMapping("/fileup")
+		@ResponseBody    // 자신을 호출하는 곳으로 "리턴되는 데이터"를 갖고 이동하여 페이지에 표시하라는 뜻
+		public HashMap<String, Object> fileup( 
+				@RequestParam("fileimage") MultipartFile file, 
+				HttpServletRequest request, Model model ) {
+				
+			String path = context.getRealPath("/product_images");
+			Calendar today = Calendar.getInstance();
+	 		long t = today.getTimeInMillis();
+	 		
+	 		String filename = file.getOriginalFilename();
+	 		String fn1 = filename.substring(0, filename.indexOf(".") );  // 파일이름과 확장장 분리
+	 		String fn2 = filename.substring(filename.indexOf(".") );
+	 		String uploadPath = path + "/" + fn1 + t + fn2;
+	 		System.out.println("파일 저장 경로 = " + uploadPath);
+	 		
+	 		HashMap<String, Object> result = new HashMap<String, Object>();
+	 		try {
+				file.transferTo( new File(uploadPath) );
+				result.put("STATUS", 1);  // 파일 전송 상태
+				result.put("FILENAME", fn1 + t +  fn2 );
+			} catch (IllegalStateException e) { 
+				e.printStackTrace();  result.put("STATUS", 0); 
+			} catch (IOException e) { 
+				e.printStackTrace();  result.put("STATUS", 0); 
+			}  
+			return result;
+		}
+		
+	}
 	
-}
+

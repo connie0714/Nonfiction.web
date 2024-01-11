@@ -23,14 +23,4 @@
 
 
  </div>
-
-<style type="text/css">
-
-#footer-area {
-	position:relative;
-	margin-top:20px;
-}
-
-
-</style> 
 <%@ include file="include/footer.jsp"  %>

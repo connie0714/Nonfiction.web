@@ -18,12 +18,10 @@
 
 
 #forgottenor{
-	
 	position: absolute;
 	font-weight: bold;
 	top: 50%;
 	left: 44.2%;
-	
 }
 
 #forgottenpw{
@@ -485,12 +483,24 @@ a {
     }
 
 .center-align {
+<<<<<<< HEAD
     display: flex;
+    justify-content: center;
+=======
+	display: flex;
+>>>>>>> branch 'main' of https://github.com/connie0714/Nonfiction.web.git
     margin-top: 3%;
     flex-direction: column;
     align-items: center;
 }
 
+#align {
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    height: 81vh;
+    flex-direction: column;
+}
 
 form {
     width: 50%; 
@@ -651,7 +661,11 @@ form {
    position: absolute;
    left: 38%;
    top: 53%;
+
+
+
 }
+
 
 
 #nonfictionSubject{
@@ -822,31 +836,41 @@ form {
 }
 
 
+/*mypage css*/
+#account-section {
+  text-align: center;
+  margin-top: 150px;
+}
 
+#account-section img {
+  max-width: 130px;
+  max-height: 130px;
+  margin-bottom: 20px;
+}
 
+#account-section a {
+  text-decoration: underline;
+  color: black;
+}
 
+#account-section p {
+  font-weight: bold;
+}
 
+.short-hr {
+  margin: 10px auto;
+  width: 15%;
+  border: none;
+  border-top: 2px solid black;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.long-hr {
+   margin: 10px auto;
+  width: 92vw;
+  border: none;
+  border-top: 2px solid black;
+  margin-left: -135px;
+}
+/*mypage css*/
 
 

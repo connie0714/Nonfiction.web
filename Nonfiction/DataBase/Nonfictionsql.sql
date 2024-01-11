@@ -228,11 +228,11 @@ END;
 
 
 CREATE OR REPLACE PROCEDURE listOrderByOseq(
-    p_userid IN members.userid%TYPE, 
+    p_oseq IN orders.oseq%TYPE, 
     p_cur OUT SYS_REFCURSOR   )
 IS
 BEGIN
-    OPEN p_cur FOR SELECT * FROM order_view where userid=p_userid ORDER BY RESULT;
+    OPEN p_cur FOR SELECT * FROM order_view where oseq=p_oseq ORDER BY RESULT;
 END;
 
 
@@ -353,10 +353,27 @@ END;
 
 
 
+-- 종범 member 아이디 찾기 비밀번호 찾기
+
+CREATE OR REPLACE PROCEDURE getEmail(
+    p_email IN members.email%TYPE,
+    p_cur OUT SYS_REFCURSOR)
+IS
+BEGIN
+       OPEN p_cur FOR
+        select * from members where email=p_email;
+END;
 
 
-
-
+CREATE OR REPLACE PROCEDURE getPwd(
+    p_email IN members.email%TYPE,
+    p_userid IN members.userid%TYPE,
+    p_cur OUT SYS_REFCURSOR)
+IS
+BEGIN
+       OPEN p_cur FOR
+        select * from members where email=p_email and userid=p_userid;
+END;
 
 
 
