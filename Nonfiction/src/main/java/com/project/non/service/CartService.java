@@ -44,4 +44,19 @@ public class CartService {
 		
 		
 	}
+
+	public void cartcntup(HashMap<String, Object> paramMap) {
+		
+		cadao.cartcntup(paramMap);
+
+	}
+
+	public void cartcntdown(HashMap<String, Object> paramMap) {
+		cadao.cartcntdown(paramMap);
+		
+	}
+
+
+
+
 }
