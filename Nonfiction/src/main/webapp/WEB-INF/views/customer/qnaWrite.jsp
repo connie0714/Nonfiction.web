@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="../css/member.css">
 <script type="text/javascript" src="/script/member.js"></script>
+
+
+
 </head>
 <body>
 
@@ -14,13 +17,13 @@
 		<form name="formm" method="post" action="qnaWrite">
 			<div id="qnaTheme">
 				<label>
-		            <input type="radio" name="qnaoption " value="상품문의" checked> 상품문의
+		            <input type="radio" name="qnaoption" value="상품문의" checked> 상품문의
 		        </label>
 		        <label>
-		            <input type="radio" name="qnaoption " value="배송문의"> 배송문의
+		            <input type="radio" name="qnaoption" value="배송문의"> 배송문의
 		        </label>
 		        <label>
-		            <input type="radio" name="qnaoption " value="교환/환불문의"> 교환/환불문의
+		            <input type="radio" name="qnaoption" value="교환/환불문의"> 교환/환불문의
 		        </label>
 		    </div>
 		        <br><br>
@@ -43,4 +46,28 @@
 		</form>
 
 </body>
+
+<script>
+function submitForm() {
+	  // 선택한 카테고리 값을 가져오기
+	  var selectedCategory = document.getElementById("categoryDropdown").value;
+
+	  // 폼 데이터 생성
+	  var formData = new FormData();
+	  formData.append("qnaoption", selectedCategory); // qnaoption 열에 선택한 카테고리 값 추가
+
+	  // AJAX 요청 전송
+	  var xhr = new XMLHttpRequest();
+	  xhr.open("POST", "qnaWrite.php", true);
+	  xhr.onreadystatechange = function() {
+	    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+	      // 요청이 성공적으로 완료되었을 때의 동작
+	      // 예: 작성한 글을 등록한 후 다른 페이지로 이동
+	      window.location.href = "qnaList.jsp";
+	    }
+	  };
+	  xhr.send(formData);
+	}
+</script>
+
 </html>

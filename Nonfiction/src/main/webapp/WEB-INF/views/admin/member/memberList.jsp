@@ -11,9 +11,9 @@
 <link rel="stylesheet" type="text/css" href="../css/member.css">
 </head>
 <body>
-
 <div id="memberList">회원리스트</div>  
-<form name="frm" method="post">
+<form name="frm" method="get" action="memberDetail">
+<div id="toMemberDetail"><a href='memberDetail'>회원수 조회</a></div>
 <table id="memberSearch" style="float:right; ">
 	<tr><td>회원 이름 <input type="text" name="key" value="${key}">
 	<input id="memberListSearch" type="button" value="검색" onClick="searchPosts('memberList');">

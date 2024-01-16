@@ -76,7 +76,7 @@ public class AdminController {
 	      else if(adminpwd.equals((String)resultMap.get("PWD"))) {
 	         HttpSession session=request.getSession();
 	         session.setAttribute("loginAdmin", resultMap);
-	         url="redirect:/productList";
+	         url="admin/sub_menu";
 	      }
 	     }
 		return url;
@@ -185,6 +185,13 @@ public class AdminController {
 			return "redirect:/memberList";
 		}
 	 
+	 @GetMapping("/memberDetail")
+		public String memberDetail() {
+			return "admin/member/memberDetail";
+		}
+	 
+	 
+	 
 	 
 	 @GetMapping("/adminBannerList")
 		public ModelAndView adminBannerList( ) {
@@ -204,17 +211,17 @@ public class AdminController {
 		}
 		
 		
-		@PostMapping("/bannerWrite" )
-		public String bannerWrite( HttpServletRequest request	) {		
-			HashMap<String, Object> paramMap = new HashMap<String, Object>();
-			paramMap.put("subject", request.getParameter("subject") );
-			paramMap.put("order_seq", request.getParameter("order_seq") );
-			paramMap.put("image", request.getParameter("image") );
+		@PostMapping("/bannerWrite")
+		public String bannerWrite(HttpServletRequest request) {
+			HashMap<String , Object>paramMap = new HashMap<String, Object>();
+			paramMap.put("subject", request.getParameter("subject"));
+			paramMap.put("order_seq", request.getParameter("order_seq"));
+			paramMap.put("image", request.getParameter("image"));
 			
-			if( request.getParameter("order_seq").equals("6") ) paramMap.put("useyn", "N" );
-			else paramMap.put("useyn", "Y" );
+			if(request.getParameter("order_seq").equals("6"))paramMap.put("useyn", "N");
+			else paramMap.put("useyn","Y");
 			
-			as.insertBanner( paramMap );
+			as.insertBanner(paramMap);
 			return "redirect:/adminBannerList";
 		}
 		
@@ -224,7 +231,7 @@ public class AdminController {
 				@RequestParam("fileimage") MultipartFile file, 
 				HttpServletRequest request, Model model ) {
 				
-			String path = context.getRealPath("/product_images");
+			String path = context.getRealPath("/nonimage");
 			Calendar today = Calendar.getInstance();
 	 		long t = today.getTimeInMillis();
 	 		
@@ -246,6 +253,9 @@ public class AdminController {
 			}  
 			return result;
 		}
+		
+		
+		
 		
 	}
 	

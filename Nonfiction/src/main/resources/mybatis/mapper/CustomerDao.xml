@@ -41,10 +41,30 @@
 	<insert id="insertQna" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{
 			CALL insertQna(
-				#{userid} , #{secret} , #{pass} , #{subject} , #{content}
+				#{userid} , #{secret} , #{pass} , #{subject} , #{content}, #{qnaoption}
 			)
 		}
 	</insert>
+	
+	
+	<select id="getFaqList" statementType="CALLABLE"  parameterType="java.util.HashMap" >
+		{
+			CALL getFaqList( 
+				#{startNum}, #{endNum}, #{key}, 
+				#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=qnaMap}
+			)
+		}
+	</select>
+	
+	
+	<select id="getFaq" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{  
+			CALL getFaq( 
+				#{fseq}, 
+				#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=qnaMap}
+			)	  
+		}
+	</select>
 
 
 </mapper>

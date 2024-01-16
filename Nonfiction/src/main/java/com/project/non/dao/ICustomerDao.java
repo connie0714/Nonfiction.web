@@ -11,6 +11,8 @@ public interface ICustomerDao {
 	void getQna(HashMap<String, Object> paramMap);
 	void getQnaList(HashMap<String, Object> paramMap);
 	void insertQna(HashMap<String, Object> paramMap);
+	void getFaqList(HashMap<String, Object> paramMap);
+	void getFaq(HashMap<String, Object> paramMap);
 
 
 }

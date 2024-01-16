@@ -85,7 +85,7 @@
 					<ul class='no_dot'>
 						<li><a href="">공지사항</a></li>
 						<li><a href="">채용</a></li>
-						<li><a href="">자주묻는 질문</a></li>
+						<li><a href="faqList">자주묻는 질문</a></li>
 						<li><a href="">배송 &amp; 교환/반품</a></li>
 					</ul>
 				</div>
@@ -100,7 +100,7 @@
 						<li><a href="">주문조회</a></li>
 						<li><a href="qnaList">문의하기</a></li>
 						<li><a href="">기업구매 문의</a></li>
-						<li><a href="/contact.html">고객 센터</a></li>
+						<li><a href="">고객 센터</a></li>
 						<li><a href="informLocation">매장안내</a></li>
 					</ul>
 				</div>

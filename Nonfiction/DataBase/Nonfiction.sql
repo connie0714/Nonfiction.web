@@ -24,6 +24,7 @@ DROP TABLE members CASCADE CONSTRAINTS;
 DROP TABLE product CASCADE CONSTRAINTS;
 DROP TABLE MSG_CARD CASCADE CONSTRAINTS;
 DROP TABLE banner CASCADE CONSTRAINTS;
+DROP TABLE faq CASCADE CONSTRAINTS;
 
 
 /* Drop Sequences */
@@ -32,7 +33,9 @@ DROP SEQUENCE SEQ_MSG_CARD_mgseq;
 DROP SEQUENCE SEQ_orders_oseq;
 DROP SEQUENCE SEQ_product_pseq;
 DROP SEQUENCE SEQ_qna_qseq;
+DROP SEQUENCE SEQ_faq_fseq;
 DROP SEQUENCE banner_seq;
+
 
 
 select*from members;
@@ -42,6 +45,7 @@ select*from members;
 CREATE SEQUENCE SEQ_MSG_CARD_mgseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_orders_oseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_product_pseq INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE SEQ_faq_fseq INCREMENT BY 1 START WITH 1;
 
 
 alter sequence SEQ_qna_qseq increment by -63;
@@ -282,6 +286,8 @@ ALTER TABLE review
 
 
 
+
+
 /* Comments */
 
 COMMENT ON COLUMN product.price1 IS '원가';
@@ -410,3 +416,39 @@ from orders o, order_detail d, members m, product p
 where o.oseq=d.oseq and o.userid=m.userid and d.pseq=p.pseq;
 
 select * from order_view;
+
+
+
+
+CREATE TABLE faq
+(
+	fseq number(10,0) NOT NULL,
+	adminid varchar2(30) NOT NULL, 
+	title varchar2(30) NOT NULL,
+	content varchar2(1000) NOT NULL,
+	indate date DEFAULT SYSDATE NOT NULL,
+	PRIMARY KEY (fseq)
+);
+
+select*from faq;
+
+insert into faq(fseq, adminid, title, content)
+values(SEQ_faq_fseq.nextval, 'admin', '공지사항', '공지사항 입니다');
+
+insert into faq(fseq, adminid, title, content)
+values(SEQ_faq_fseq.nextval, 'admin', '주문서 확인', '로그인 -> ACCONT -> ORDER HISTORY -> View List 에서 주문서 확인 가능합니다.');
+
+insert into faq(fseq, adminid, title, content)
+values(SEQ_faq_fseq.nextval, 'admin', '가상계좌 입금 기한', '가상계좌의 경우 7일 이내 미입금시 주문이 자동 취소 처리 됩니다.');
+
+
+
+
+
+
+
+
+
+
+
+

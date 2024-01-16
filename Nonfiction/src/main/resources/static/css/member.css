@@ -832,6 +832,14 @@ form {
 	left: 44%;
 }
 
+#faqsubject{
+	position: absolute;
+	top:30%;
+	left: 48%;
+	font-size: large;
+	font-weight: bold;
+}
+
 
 /*mypage css*/
 #account-section {
