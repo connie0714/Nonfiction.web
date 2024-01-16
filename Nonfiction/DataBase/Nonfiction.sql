@@ -310,6 +310,9 @@ ALTER TABLE product MODIFY mgseq number(10,0) NULL;
 ALTER TABLE product DROP COLUMN holidayyn;
 ALTER TABLE product DROP COLUMN acc;
 
+ALTER TABLE product DROP COLUMN mgseq;
+delete from MSG_CARD;
+
 select * from PRODUCT;
 
 insert into product(pseq, name, shop, price1, price2, content, image, bestyn)
@@ -335,6 +338,10 @@ values(SEQ_product_pseq.nextval, '테스트상품', '9', '3000', '6000', '테스
 insert into product(pseq, name, shop, price1, price2, content, image, bestyn)
 values(SEQ_product_pseq.nextval, '테스트상품', '10', '3000', '6000', '테스트 상품입니다', '/CAMPAIGN/campaign1.jpg', 'Y');
 
+
+
+insert into product(pseq, name, shop, price1, price2, content, image, bestyn, msgyn)
+values(SEQ_product_pseq.nextval, '메세지카드 테스트상품', '0', '3000', '6000', '테스트 상품입니다', '/CAMPAIGN/campaign3.jpg', 'N', 'Y');
 
 insert into cart(cseq,userid, pseq, quantity) values(cart_seq.nextval, 'one', 30, 1); 
 insert into cart(cseq,userid, pseq, quantity) values(cart_seq.nextval, 'two', 31, 1); 
@@ -419,6 +426,7 @@ select * from order_view;
 
 
 
+<<<<<<< HEAD
 
 CREATE TABLE faq
 (
@@ -452,3 +460,9 @@ values(SEQ_faq_fseq.nextval, 'admin', '가상계좌 입금 기한', '가상계�
 
 
 
+=======
+ALTER TABLE PRODUCT 
+ADD (MSGCARD NUMBER(10) DEFAULT 3 NOT NULL);
+
+COMMENT ON COLUMN PRODUCT.MSGCARD IS '메세지카드';
+>>>>>>> branch 'main' of https://github.com/connie0714/Nonfiction.web.git

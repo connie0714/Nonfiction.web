@@ -11,6 +11,18 @@
 <link rel="stylesheet" type="text/css" href="../css/member.css">
 </head>
 <body>
+<<<<<<< HEAD
+=======
+
+		<ul id="category" style="position: relative; top: 10px; left: 10px;">
+			<li><a href='productList?first=y'>상품리스트</a></li><br>
+			<li><a href='adminOrderList?first=y'>주문리스트</a></li><br>
+			<li><a href='memberList'>회원리스트</a></li><br>
+			<li><a href='adminQnaList'>Q&amp;A리스트</a></li><br>
+			<li><a href='informLocation'>메인배너관리</a></li>
+		</ul>
+
+>>>>>>> branch 'main' of https://github.com/connie0714/Nonfiction.web.git
 <div id="memberList">회원리스트</div>  
 <form name="frm" method="get" action="memberDetail">
 <div id="toMemberDetail"><a href='memberDetail'>회원수 조회</a></div>

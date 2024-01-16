@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.project.non.dto.Paging;
 import com.project.non.service.AdminService;
 import com.project.non.service.CustomerService;
 import com.project.non.service.MemberService;
@@ -28,60 +29,62 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class AdminController { 
 
-	@Autowired
-	AdminService as;
-	
-	@Autowired
-	ProductService ps;
-	
-	@Autowired
-	ServletContext context;
-	
-	@Autowired
-	MemberService ms;
-	
-	@Autowired
-	CustomerService cs;
-	
-	@GetMapping("/admin")
-	public String admin() {
-		return "admin/adminLoginForm";
-	}
-	
-	@PostMapping("/adminLogin")
-	public String adminLogin( @RequestParam(value="adminid", required=false) String adminid,
-							  @RequestParam(value="adminpwd", required=false) String adminpwd,
-							  HttpServletRequest request, Model model) {
-		String url="admin/adminLoginForm";
-		 if(adminid==null || adminid.equals("")) {
-	         model.addAttribute("message", "아이디를 입력하세요");
-	      }else if(adminpwd==null || adminpwd.equals("")) {
-	         model.addAttribute("message", "비밀번호를 입력하세요");
-	      }else {
-	      HashMap<String, Object> paramMap = new HashMap<String, Object>();
-	      paramMap.put("adminid", adminid);
-	      paramMap.put("ref_cursor", null);
-	      as.getAdmin(paramMap);
-	      
-	      ArrayList< HashMap<String, Object> > list 
-	      = (ArrayList< HashMap<String, Object> >) paramMap.get("ref_cursor");
-	      
-	      if(list==null || list.size()==0) {
-	         model.addAttribute("message","아이디가 없습니다.");
-	         return "admin/adminLoginForm";
-	      }
-	      HashMap<String,Object> resultMap=list.get(0);
-	      if(!adminpwd.equals((String)resultMap.get("PWD")))
-	         model.addAttribute("message","비밀번호가 맞지 않습니다");
-	      else if(adminpwd.equals((String)resultMap.get("PWD"))) {
-	         HttpSession session=request.getSession();
-	         session.setAttribute("loginAdmin", resultMap);
-	         url="admin/sub_menu";
-	      }
-	     }
-		return url;
-	}
-	
+
+   @Autowired
+   AdminService as;
+   
+   @Autowired
+   ProductService ps;
+   
+   @Autowired
+   ServletContext context;
+   
+   @Autowired
+   MemberService ms;
+   
+   @Autowired
+   CustomerService cs;
+   
+   @GetMapping("/admin")
+   public String admin() {
+      return "admin/adminLoginForm";
+   }
+   
+   @PostMapping("/adminLogin")
+   public String adminLogin( @RequestParam(value="adminid", required=false) String adminid,
+                       @RequestParam(value="adminpwd", required=false) String adminpwd,
+                       HttpServletRequest request, Model model) {
+      String url="admin/adminLoginForm";
+       if(adminid==null || adminid.equals("")) {
+            model.addAttribute("message", "아이디를 입력하세요");
+         }else if(adminpwd==null || adminpwd.equals("")) {
+            model.addAttribute("message", "비밀번호를 입력하세요");
+         }else {
+         HashMap<String, Object> paramMap = new HashMap<String, Object>();
+         paramMap.put("adminid", adminid);
+         paramMap.put("ref_cursor", null);
+         as.getAdmin(paramMap);
+         
+         ArrayList< HashMap<String, Object> > list 
+         = (ArrayList< HashMap<String, Object> >) paramMap.get("ref_cursor");
+         
+         if(list==null || list.size()==0) {
+            model.addAttribute("message","아이디가 없습니다.");
+            return "admin/adminLoginForm";
+         }
+         HashMap<String,Object> resultMap=list.get(0);
+         if(!adminpwd.equals((String)resultMap.get("PWD")))
+            model.addAttribute("message","비밀번호가 맞지 않습니다");
+         else if(adminpwd.equals((String)resultMap.get("PWD"))) {
+            HttpSession session=request.getSession();
+            session.setAttribute("loginAdmin", resultMap);
+            url="admin/sub_menu";
+         }
+        }
+      return url;
+   }
+   
+  
 	 @GetMapping("/productList")
 	   public ModelAndView productList( HttpServletRequest request ) {
 	      ModelAndView mav = new ModelAndView();
@@ -254,9 +257,81 @@ public class AdminController {
 			return result;
 		}
 		
-		
-		
-		
-	}
-	
+  
+    @GetMapping("/adminProductDetail")
+    public ModelAndView adminProductDetail(
+ 	HttpServletRequest request, @RequestParam("pseq") int pseq) {
+ 	  
+ 	   ModelAndView mav = new ModelAndView();
+ 	   HttpSession session = request.getSession();
+ 	  
+ 	   if( session.getAttribute("loginAdmin") == null)
+ 		   mav.setViewName("admin/adminLoginForm");
+ 	   
+ 	   else {
+ 		   HashMap<String, Object>paramMap = new HashMap<String, Object>();
+ 		   paramMap.put("pseq", pseq);
+ 		   paramMap.put("ref_cursor", null);
+ 		   ps.getProduct( paramMap );
+ 		   ArrayList< HashMap<String, Object> > list
+ 		   = (ArrayList< HashMap<String, Object> >) paramMap.get("ref_cursor");
+ 		   HashMap<String, Object> pvo = list.get(0);
+ 		   String kindList[] = { "0", "Heels", "Boots", "Sandals", "Snickers", "Slipers", "Sale" };
+ 		   mav.addObject("kind", kindList[ Integer.parseInt( pvo.get("KIND").toString() ) ]);
+ 		   mav.addObject("productVO", pvo);
+ 		   mav.setViewName("admin/product/productDetail");
+ 	   }
+ 	   return mav;
+    }
+    
+    @GetMapping("/adminLogout")
+    public String adminLogout( HttpServletRequest request ) {
+ 	   
+ 	   HttpSession session = request.getSession();
+ 	   session.removeAttribute("loginAdmin");
+ 	   
+ 	   return "admin/adminLoginForm";
+    }
+    
+    @GetMapping("/productWriteForm")
+    public String product_Write_Form( HttpServletRequest request, Model model) {
+ 	   String shopList[] = {"PERFUME", "HAIR CARE", "BODY CARE", "HAND CARE",
+ 			   "GIFT SET", "HOME FRAGRANCE", "HOME OBJECTS", "TRIAL KIT", "ACC"};
+ 	   model.addAttribute("shopList", shopList);
+ 	   return "admin/product/productWriteForm";
+    }
+    
+    
+      
+      @GetMapping("/adminOrderList")
+      public ModelAndView adminOrderList( HttpServletRequest request) {
+   	   ModelAndView mav = new ModelAndView();
+   	   
+   	   HttpSession session = request.getSession();
+   	   	if( session.getAttribute("loginAdmin") == null )
+   	   		mav.setViewName("admin/adminLoginForm");
+   	   	else {
+   	   		HashMap<String, Object> resultMap = as.getOrderList( request );
+   	   		mav.addObject("orderList",
+   	   				(ArrayList< HashMap<String, Object> > )resultMap.get("ref_cursor") );
+   	   		mav.addObject("paging",(Paging)resultMap.get("paging") );
+   	   		mav.addObject("key", (String)resultMap.get("key") );
+   	   		
+   	   		mav.setViewName("admin/order/orderList");
+   	   	}
+   	   
+   	   return mav;
+      }
+      
+      @GetMapping("/orderUpdateResult")
+      public String orderUpdateResult( @RequestParam("result") int [] results ) {
+   	   
+   	   as.updateOrderResult( results );
+   	   
+   	   return "redirect:/adminOrderList";
+      }
+      
+      
+   }
+   
 

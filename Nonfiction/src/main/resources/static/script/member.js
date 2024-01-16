@@ -115,22 +115,13 @@ function enable() {
 
 /*	member 관련 승희 작성	*/
 
-/*	cart부분	*/
-function addToCart() {
 
-    var currentCart = localStorage.getItem('cart');
-  
 
-    if (!currentCart) {
-        currentCart = 0;
-    }
-  
-    currentCart = Number(currentCart) + 1;
-    localStorage.setItem('cart', currentCart);
- 
-    document.querySelector('.cart-count').innerText = `CART(${currentCart})`;
-}
 
+
+
+
+/*cart*/
 
 
 

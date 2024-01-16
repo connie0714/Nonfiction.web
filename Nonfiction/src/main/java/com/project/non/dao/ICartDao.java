@@ -12,6 +12,12 @@ public interface ICartDao {
 	void listCart(HashMap<String, Object> paramMap);
 
 	void deleteCart(HashMap<String, Object> paramMap);
+
+	void cartcntup(HashMap<String, Object> paramMap);
+
+	void cartcntdown(HashMap<String, Object> paramMap);
+	
+
 	
 	
 

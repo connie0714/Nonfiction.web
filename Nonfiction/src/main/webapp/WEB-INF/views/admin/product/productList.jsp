@@ -9,7 +9,7 @@
       <tr><td width="642">
          상품명<input type="text" name="key" value="${key}">
          <input class="btn" type="button" name="btn_search" value="검색" onClick="go_search('productList');">
-         <input class="btn" type="button" name="btn_write" value="상품등록"     onClick="go_wrt();"></td></tr>
+         <input class="btn" type="button" name="btn_write" value="상품등록"     onClick="go_wrt()"></td></tr>
    </table>
    <table id="productList" align="center">
       <tr><th>번호</th><th>상품명</th><th>원가</th><th>판매가</th><th>등록일</th><th>사용유무</th></tr>

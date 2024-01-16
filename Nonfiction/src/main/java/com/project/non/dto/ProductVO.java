@@ -13,5 +13,5 @@ public class ProductVO {
 	/* 카테고리 */
 	private String shop;		// shop 매뉴
 	private String bestyn;		// 인기상품
-	
+	private Integer msgyn;
 }

@@ -24,5 +24,9 @@ public interface IAdminDao {
 	void getBannerList(HashMap<String, Object> paramMap);
 
 	void insertBanner(HashMap<String, Object> paramMap);
+
+	void getOrderList(HashMap<String, Object> paramMap);
+
+	void updateResult(int odseq);
 		
 }

@@ -10,7 +10,10 @@
 	<insert id="insertCart" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{
 			CALL insertCart(
-				#{userid}, #{pseq}, #{quantity}
+				#{userid},
+				#{pseq},
+				#{msgcard},
+				#{quantity}
 			)
 		}
 	</insert>
@@ -31,7 +34,20 @@
 		{ CALL deleteCart(  #{cseq}	) }
 	</delete>
 	
+	<update id="cartcntup" statementType="CALLABLE" parameterType="java.util.HashMap" >
+		{
+			CALL cartcntup(#{cseq},#{quantity})
+		}
+	</update>
 	
+	<update id="cartcntdown" statementType="CALLABLE" parameterType="java.util.HashMap" >
+		{
+			CALL cartcntdown(#{cseq},#{quantity})
+		}
+		</update>	
+	
+
+
 </mapper>
 
 
