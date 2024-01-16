@@ -118,6 +118,7 @@
 							target="_blank">Pinterest</a></li>
 						<li><a href="http://pf.kakao.com/_GxcuyT" target="_blank">Kakao</a></li>
 						<li><a href="admin">Admin Home</a></li>
+						<li><a href="delivery">Delivery Home</a></li>
 					</ul>
 				</div>
 			</div>

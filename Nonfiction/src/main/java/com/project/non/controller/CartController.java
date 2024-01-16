@@ -25,6 +25,7 @@ public class CartController {
 	@PostMapping("/cartInsert")
 	public String cartInsert(
 		@RequestParam("pseq") int pseq,
+		@RequestParam("msgcard") int msgcard,
 		@RequestParam("quantity") int quantity,
 		HttpServletRequest request, Model model
 	){
@@ -37,6 +38,7 @@ public class CartController {
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("userid", loginUser.get("USERID") );
 			paramMap.put("pseq", pseq);
+			paramMap.put("msgcard", msgcard);
 			paramMap.put("quantity", quantity);
 			cs.insertCart( paramMap );
 		}
@@ -66,6 +68,7 @@ public class CartController {
 		mav.setViewName("cart/cartList");
 		return mav;
 	}
+
 	
 	
 	@PostMapping("/cartDelete")
@@ -79,4 +82,7 @@ public class CartController {
 		
 		return "redirect:/cartList";
 	}
+	
+	
+	
 }

@@ -33,11 +33,6 @@
 	font-family: 'UNO', sans-serif;
 }
 
-#footer-area {
-	position: relative;
-	margin-top: 10%;
-}
-
 #footer {
 	position: relative;
 	width: 100%;
@@ -656,3 +651,57 @@ a:hover {
 
 /*KR JP EN*/
 /*------------------- 훈 -------------------*/
+
+
+.clear {	clear: both; }
+
+/* product-detail*/
+
+#detail-align {
+	font-family: 'Playfair Display', serif;
+    position: relative;
+    padding: 30px;
+    /* margin: 0 auto; */
+    margin-top: 150px;
+    margin-bottom: 81px;
+    margin-left: 50%;
+    text-align: center;
+    float: left;
+    display: flex;
+    justify-content: center;
+}
+
+#product-image img{
+	max-width: 480px;
+	max-height: 480px;
+	margin-right: 40px;
+}
+
+#content-box {
+	width: 360px;
+	height: 600px;
+	align-items: center;
+}
+
+#content-box .pname {
+	float:left;
+}
+
+#content-box .price {
+	float: right;
+}
+
+#product-content{
+	text-align: center;
+	align-items: center;
+	margin: 0 auto;
+}
+
+#product-btn input[type=button] {
+	margin: 10px;
+	border: 1px solid black;
+	background: black;
+	color: white;
+	width: 170px;
+	height: 40px;
+}

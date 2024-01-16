@@ -53,7 +53,22 @@ BEGIN
     COMMIT;    
 END;
 
-
+CREATE OR REPLACE PROCEDURE getMemberList(
+    p_startNum IN NUMBER,
+    p_endNum IN NUMBER,
+    p_key IN members.name%TYPE,
+    p_rc  OUT   SYS_REFCURSOR
+)
+IS
+BEGIN
+    OPEN p_rc FOR
+        SELECT * FROM (
+            SELECT * FROM (
+                SELECT rownum as rn, p.* FROM
+                (( SELECT * FROM members WHERE name LIKE '%'||p_key||'%'  ORDER BY indate DESC) p)
+            ) WHERE rn>=p_startNum 
+        ) WHERE rn<=p_endNum;
+END;
 
 CREATE OR REPLACE PROCEDURE joinKakao(
     p_userid IN members.userid%TYPE,
@@ -159,11 +174,12 @@ END;
 CREATE OR REPLACE PROCEDURE insertCart(
     p_userid IN cart.userid%TYPE,
     p_pseq  IN cart.pseq%TYPE,
+    p_msgcard IN cart.msgcard%TYPE,
     p_quantity  IN cart.quantity%TYPE )
 IS
 BEGIN
-    INSERT INTO cart( cseq, userid, pseq, quantity ) 
-    VALUES( cart_seq.nextVal, p_userid, p_pseq, p_quantity );
+    INSERT INTO cart( cseq, userid, pseq, msgcard, quantity ) 
+    VALUES( cart_seq.nextVal, p_userid, p_pseq, p_msgcard, p_quantity );
     COMMIT;    
 END;
 
@@ -348,10 +364,42 @@ BEGIN
     
     ELSIF p_tableName='qna' THEN
     SELECT COUNT(*) INTO p_cnt FROM qna WHERE subject LIKE '%'||p_key||'%' OR  content LIKE '%'||p_key||'%';
+    
+    ELSIF p_tableName='order_view' THEN
+    SELECT COUNT(*) INTO p_cnt FROM order_view WHERE pname LIKE '%'||p_key||'%';
+    
+    ELSIF p_tableName='members' THEN
+    SELECT COUNT(*) INTO p_cnt FROM members WHERE name LIKE '%'||p_key||'%';
+    
 END IF;
 END;
 
+CREATE OR REPLACE PROCEDURE getOrderList(
+    p_startNum IN NUMBER,
+    p_endNum IN NUMBER,
+    p_key IN members.NAME%TYPE,
+    p_rc OUT SYS_REFCURSOR
+)
+IS
+BEGIN
+    OPEN p_rc FOR
+        SELECT * FROM (
+            SELECT * FROM (
+                SELECT rownum as rn, p.* FROM
+                ( (SELECT * FROM order_view WHERE mname LIKE '%'||p_key||'%'
+                    ORDER BY result ASC , indate DESC) p)
+            ) WHERE rn>=p_startNum
+        ) WHERE rn<=P_endNum;
+END;
 
+
+CREATE OR REPLACE PROCEDURE updateResult(
+    p_odseq IN order_detail.odseq%TYPE )
+IS
+BEGIN
+    UPDATE order_detail SET result=result+1 WHERE odseq=p_odseq;
+    COMMIT;
+END;
 
 -- 종범 member 아이디 찾기 비밀번호 찾기
 

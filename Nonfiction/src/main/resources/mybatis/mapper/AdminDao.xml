@@ -62,16 +62,18 @@
 			)	 
 		}
 	</update>
-	
-	
-	<select id="getMemberList" statementType="CALLABLE"  parameterType="java.util.HashMap" >
+
+
+	<select id="getMemberList" statementType="CALLABLE"
+		parameterType="java.util.HashMap">
 		{
-			CALL getMemberList( 
-				#{startNum}, #{endNum}, #{key}, 
+			CALL getMemberList(
+				#{startNum}, #{endNum}, #{key},
 				#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap}
 			)
 		}
 	</select>
+
 	
 	
 	<update id="memberReinsert" statementType="CALLABLE" parameterType="java.util.HashMap" >
@@ -98,5 +100,20 @@
 			)	 
 		}
 	</insert>
+	
+	<select id="getOrderList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL getOrderList(
+				#{startNum}, #{endNum}, #{key},
+				#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap}
+			)
+		}
+	</select>
+	
+	
+	
+	<update id="updateResult" statementType="CALLABLE">
+		{	CALL updateResult( #{param1} )	}
+	</update>
 	
 </mapper>

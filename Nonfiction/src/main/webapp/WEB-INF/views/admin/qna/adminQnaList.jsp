@@ -12,6 +12,14 @@
 </head>
 <body>
 
+		<ul id="category" style="position: relative; top: 10px; left: 10px;">
+			<li><a href='productList?first=y'>상품리스트</a></li><br>
+			<li><a href='adminOrderList?first=y'>주문리스트</a></li><br>
+			<li><a href='memberList'>회원리스트</a></li><br>
+			<li><a href='adminQnaList'>Q&amp;A리스트</a></li><br>
+			<li><a href='informLocation'>메인배너관리</a></li>
+		</ul>
+
 <div id="memberList">Q&amp;A 게시글 리스트</div>  
 <form name="frm" method="post">
 <table id="memberSearch" style="float: right;">

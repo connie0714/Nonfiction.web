@@ -10,7 +10,10 @@
 	<insert id="insertCart" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{
 			CALL insertCart(
-				#{userid}, #{pseq}, #{quantity}
+				#{userid},
+				#{pseq},
+				#{msgcard},
+				#{quantity}
 			)
 		}
 	</insert>

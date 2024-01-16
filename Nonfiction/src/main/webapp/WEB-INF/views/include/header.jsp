@@ -24,7 +24,7 @@
 		<header>
 			<div id="header">
 				<div id="black-bar" align="center" style="font-family: FGR;">
-					<a href="">전 구매 무료 배송 | 선물 포장 서비스 제공</a>
+					<a href="/">전 구매 무료 배송 | 선물 포장 서비스 제공</a>
 				</div>
 				<br> <br>
 
@@ -33,14 +33,17 @@
 						<div class="serif category-item">
 							<a href="#" class="category-link">SHOP</a>
 							<div class="dropdown-menu">
-								<a href="category?shop=0" style="color: #83A5FF">HOLIDAY
-									GIFT EDITION</a> <a href="bestCategory?bestyn=Y">BEST SELLER</a> <a
-									href="category?shop=1">PERFUME</a> <a href="category?shop=2">HAIR
-									CARE</a> <a href="category?shop=3">BODY CARE</a> <a
-									href="category?shop=4">HAND CARE</a> <a href="category?shop=5">GIFT
-									SET</a> <a href="category?shop=6">HOME FRAGRANCE</a> <a
-									href="category?shop=7">HOME OBJECTS</a> <a
-									href="category?shop=8">TRIAL KIT</a> <a href="category?shop=9">ACC</a>
+								<a href="category?shop=1" style="color: #83A5FF">HOLIDAYGIFT EDITION</a>
+								<a href="bestCategory?bestyn=Y">BEST SELLER</a>
+								<a href="category?shop=2">PERFUME</a>
+								<a href="category?shop=3">HAIR CARE</a>
+								<a href="category?shop=4">BODY CARE</a>
+								<a href="category?shop=5">HAND CARE</a>
+								<a href="category?shop=6">GIFT SET</a>
+								<a href="category?shop=7">HOME FRAGRANCE</a>
+								<a href="category?shop=8">HOME OBJECTS</a> 
+								<a href="category?shop=9">TRIAL KIT</a>
+								<a href="category?shop=10">ACC</a>
 							</div>
 						</div>
 						<div class="serif category-item">
