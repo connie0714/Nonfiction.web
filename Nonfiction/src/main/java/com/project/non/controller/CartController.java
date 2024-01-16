@@ -79,4 +79,30 @@ public class CartController {
 		
 		return "redirect:/cartList";
 	}
+	
+	
+	@PostMapping("/cartcntup")
+	public String cartcntup(@RequestParam("cseq") int cseq,
+			@RequestParam("quantity") int quantity) {
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("cseq", cseq);
+		paramMap.put("quantity",quantity);
+		cs.cartcntup( paramMap );
+		
+		return "redirect:/cartList";
+	}
+	
+	@PostMapping("/cartcntdown")
+	public String cartcntdown(@RequestParam("cseq") int cseq,
+			@RequestParam("quantity") int quantity) {
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("cseq", cseq);
+		paramMap.put("quantity",quantity);
+		cs.cartcntdown( paramMap );
+		
+		return "redirect:/cartList";
+	}
+	
 }
+
+

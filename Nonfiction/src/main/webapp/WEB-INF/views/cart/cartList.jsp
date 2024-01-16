@@ -2,8 +2,79 @@
 <%@ include file="../include/header.jsp" %>
 
 <link rel="stylesheet" type="text/css" href="../css/member.css">
+<script>
+$(document).ready(function() {
+	   
+	   $('#downbtn').on('click', function() {
+		   	document.formm.action="cartcntdown";
+		document.formm.submit();
+	})
+	})
+		
+		
+	$(document).ready(function() {
+	   
+	   $('#upbtn').on('click', function() {
+		document.formm.action="cartcntup";
+		document.formm.submit();
+	})
+	})
+
+ function quantityup(cseq) {
+    $.ajax({
+        url: '/updateQuantity',
+        type: 'POST',
+        data: {
+            cseq: cseq,
+            quantity: 1 // 수량 1 증가
+        },
+        success: function(result) {
+            location.reload(); // 페이지 새로고침
+        }
+    });
+}
+
+function quantitydown(cseq) {
+    $.ajax({
+        url: '/updateQuantity',
+        type: 'POST',
+        data: {
+            cseq: cseq,
+            quantity: -1 // 수량 1 감소
+        },
+        success: function(result) {
+            location.reload(); // 페이지 새로고침
+        }
+    });
+} 
+
+function removeItem(cseq){
+    $.ajax({
+        url: '/removeItem',
+        type: 'POST',
+        data: {
+            cseq: cseq
+        },
+        success: function(result) {
+            location.reload(); // 페이지 새로고침
+        }
+    });
+}
+</script>
 <div id="align">
-	<div id="qna">CartList</div>
+	<div id="qna">
+		<header>
+		<div id="logo" style="margin-top: -150px;">
+			<a href="admin"><img src="/nonimage/logo.svg" class="logoimg" style="width:135px;"></a>
+		</div>
+	</header>
+	<br><br>
+        <div>
+            <a href="#">Return to store</a>
+        </div>
+    </div>
+
+    <hr>
 		<div class="center-align">
 		<form name="formm" method="post">
 		<c:choose>
@@ -12,17 +83,29 @@
 			</c:when>
 			<c:otherwise>
 				<table id="cartList">
-					<tr><th>상품명</th><th>수 량</th><th>가 격</th><th>주문일</th><th>삭 제</th></tr>
+					<tr><th>상품명</th><th>수량</th><th>가격</th><th>삭제</th></tr>
 					<c:forEach items="${cartList}" var="cartVO">
-						<tr><td><a href="productDetail&pseq=${cartVO.PSEQ}">
-							<h3> ${cartVO.PNAME} </h3></a></td><td> ${cartVO.QUANTITY} </td>
-		   					<td><fmt:formatNumber value="${cartVO.PRICE2*cartVO.QUANTITY}" type="currency"/></td>      
-			   				<td><fmt:formatDate value="${cartVO.INDATE}" type="date"/></td>      
-		       				<td><input type="checkbox" name="cseq" value= "${cartVO.CSEQ}"></td></tr>
+						<tr>
+                            <td>
+                                
+                                <a href="productDetail&pseq=${cartVO.PSEQ}">
+                                <img src="/nonimage/${productVO.IMAGE}"> <h3> ${cartVO.PNAME} </h3>
+                                </a>
+                                <input type="hidden" name="cseq" value="${cartVO.CSEQ}">
+                                <input type="hidden" name="quantity" value="${cartVO.QUANTITY}">
+                            </td>
+                            <td>
+                                <%-- <button type="button" onclick="quantitydown();" id="downbtn">down</button>--%>
+                                <button type="button" onclick="quantitydown(${cartVO.CSEQ});" id="downbtn">down</button>
+                                ${cartVO.QUANTITY} 
+                                
+                                <!-- <button type="button" onclick="quantityup();" id="upbtn">up</button> -->
+                                <button type="button" onclick="quantityup(${cartVO.CSEQ});" id="upbtn">up</button>
+                            </td>
+		   					<td><fmt:formatNumber value="${cartVO.PRICE2*cartVO.QUANTITY}" type="currency"/></td>
+		       				<td><button type="button" onclick="removeItem(${cartVO.CSEQ})">remove</button></td>
+                        </tr>
 					</c:forEach>
-					<tr><th colspan="2"> 총 액 </th><th colspan="2"> 
-						<fmt:formatNumber value="${totalPrice}" type="currency"/><br></th> 
-		       			<th><a href="#"onClick="go_cart_delete();"><h3>삭제하기</h3></a></th></tr> 
 				</table>
 			</c:otherwise>
 		</c:choose>

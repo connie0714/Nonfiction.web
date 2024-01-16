@@ -76,7 +76,7 @@ public class AdminController {
 	      else if(adminpwd.equals((String)resultMap.get("PWD"))) {
 	         HttpSession session=request.getSession();
 	         session.setAttribute("loginAdmin", resultMap);
-	         url="redirect:/productList";
+	         url="admin/sub_menu";
 	      }
 	     }
 		return url;

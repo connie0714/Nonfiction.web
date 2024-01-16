@@ -31,7 +31,20 @@
 		{ CALL deleteCart(  #{cseq}	) }
 	</delete>
 	
+	<update id="cartcntup" statementType="CALLABLE" parameterType="java.util.HashMap" >
+		{
+			CALL cartcntup(#{cseq},#{quantity})
+		}
+	</update>
 	
+	<update id="cartcntdown" statementType="CALLABLE" parameterType="java.util.HashMap" >
+		{
+			CALL cartcntdown(#{cseq},#{quantity})
+		}
+		</update>	
+	
+
+
 </mapper>
 
 

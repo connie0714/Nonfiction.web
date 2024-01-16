@@ -863,11 +863,14 @@ form {
 
 .long-hr {
    margin: 10px auto;
-  width: 92vw;
+  width: 100vw;
   border: none;
   border-top: 2px solid black;
-  margin-left: -135px;
+  margin-left: 0px;
 }
 /*mypage css*/
 
+/*CartList*/
+
+/*CartList*/
 
